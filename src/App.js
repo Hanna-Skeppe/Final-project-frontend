@@ -5,6 +5,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import { user } from './reducers/user'
 import { NavbarMain } from './components/NavbarMain'
+import { HeroHeader } from './components/HeroHeader'
+import { WineList } from './components/WineList'
 
 const reducer = combineReducers({
   // wines: wines.reducer,
@@ -30,13 +32,12 @@ export const App = () => {
     </Switch> */
     //   </BrowserRouter>
     // </Provider>
-    
     <Provider store={store}>
-     <BrowserRouter>
-        <div>Find me in src/app.js!</div>
+      <BrowserRouter>
         <NavbarMain />
+        <HeroHeader />
+        <WineList />
       </BrowserRouter>
     </Provider>
-   
   )
 }

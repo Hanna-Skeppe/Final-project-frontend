@@ -9,7 +9,7 @@ import { SignoutButton } from './lib/Buttons'
 //This has to be redone. I have the function for logout in the reducer & not here
 export const Logout = () => {
   const dispatch = useDispatch()
-  //const history = useHistory()
+// const history = useHistory()
 
   return (
     <SignoutButton

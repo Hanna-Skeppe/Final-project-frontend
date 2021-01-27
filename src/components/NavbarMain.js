@@ -7,31 +7,32 @@
 // login <PopoverLogin /> // logout <Logout />
 
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+// import { useSelector } from 'react-redux'
+// import { Link, NavLink } from 'react-router-dom'
 
-// import { users } from '../reducers/users'
+// import { user } from '../reducers/user'
 
-import { PopoverLogin } from './PopoverLogin'
+// import { PopoverLogin } from './PopoverLogin'
 import { NavbarContainer } from './lib/Containers'
-import { NavbarLinkText } from './lib/Text'
-import { Logout } from './Logout'
+import { NavbarLinkText, NavSpan } from './lib/Text'
+import { NavbarLink } from './lib/Links'
+// import { Logout } from './Logout'
 
 export const NavbarMain = () => {
-  const accessToken = useSelector((store) => store.users.accessToken)
-  const userId = useSelector((store) => store.users.userId)
-  const name = useSelector((store) => store.users.name)
-  const surName = useSelector((store) => store.users.surName)
+  // const accessToken = useSelector((store) => store.user.accessToken)
+  // const userId = useSelector((store) => store.user.userId)
+  // const name = useSelector((store) => store.user.name)
+  // const surname = useSelector((store) => store.user.surname)
 
   // const dispatch = useDispatch()
 
   return (
     <NavbarContainer>
-      <Link to="/">
+      <NavbarLink to="/">
         <NavbarLinkText>Home</NavbarLinkText>
         {/* does the NavbarLinkText need a special className when active? */}
-      </Link>
-      <span>|</span>
+      </NavbarLink>
+      <NavSpan>|</NavSpan>
       {/* <Link to="/about_us">
         <NavbarLinkText>About Us</NavbarLinkText>
       </Link>
@@ -40,25 +41,27 @@ export const NavbarMain = () => {
         <NavbarLinkText>About Natural Wines</NavbarLinkText>
       </Link>
       <span>|</span> */}
-      <Link to="/producers">
+      <NavbarLink to="/producers">
         <NavbarLinkText>Wine Producers</NavbarLinkText>
-      </Link>
-      <span>|</span>
-      {!accessToken &&
-        <PopoverLogin />}
-      {/* // <Link to="/login">
+      </NavbarLink>
+      <NavSpan>|</NavSpan>
+      {/* {!accessToken &&
+        <PopoverLogin />} */}
+      {/*
+      // <Link to="/login">
         //   <NavbarLinkText>Login</NavbarLinkText>
         //* Should be text Logout if user is logged in!
       // </Link>
      */}
-      {accessToken &&
+      {/* {accessToken &&
         <Link to="/">
           <Logout />
-        </Link>}
-      <span>|</span>
-      <Link to={`/users/${userId}/collection`}>
-        <NavbarLinkText>`${name}{''}${surName}`</NavbarLinkText>
-      </Link>
+        </Link>} */}
+      {/* <span>|</span> */}
+      <NavbarLink to="/users/:id/collection">
+        <NavbarLinkText>My Page </NavbarLinkText>
+        {/* `${name}{''}${surname}` */}
+      </NavbarLink>
     </NavbarContainer>
   )
 }

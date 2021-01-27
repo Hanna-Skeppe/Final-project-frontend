@@ -13,8 +13,8 @@ export const NavbarLinkText = styled.p`
     text-decoration: underline;
     color: #C9C4C4;
   }
-  &.active {
-    text-decoration: underline;
-    color: #C9C4C4;
-  }
+`
+export const NavSpan = styled.span` 
+  color: #fff;
+  font-weight: bold;
 `

@@ -5,9 +5,11 @@ import { USERS_URL, SESSIONS_URL } from '../urls'
 const initialState = {
   login: {
     name: localStorage.name || '',
-    surName: localStorage.surName || '',
+    surname: localStorage.surname || '',
     accessToken: localStorage.accessToken || null,
-    userId: localStorage.userId || 0, // Where is this userId from? Confused where it comes from.
+    userId: localStorage.userId || 0,
+    // Where is this userId from? Confused where it comes from. is it _id?
+    // see in backend login: app.post sessions: I think userId = _id
     errorMessage: ''
   }
 }
@@ -19,22 +21,22 @@ export const user = createSlice({
     setName: (store, action) => {
       const { name } = action.payload
       store.login.name = name
-      // localStorage.setItem('name', name) // Will I use Localstorage??
+      localStorage.setItem('name', name)
     },
-    setSurName: (store, action) => {
-      const { surName } = action.payload
-      store.login.surName = surName
-      // localStorage.setItem('surName', surName)
+    setSurname: (store, action) => {
+      const { surname } = action.payload
+      store.login.surname = surname
+      localStorage.setItem('surname', surname)
     },
     setUserId: (store, action) => {
       const { userId } = action.payload
       store.login.userId = userId
-      // localStorage.setItem('userId', userId)
+      localStorage.setItem('userId', userId)
     },
     setAccessToken: (store, action) => {
       const { accessToken } = action.payload
       store.login.accessToken = accessToken
-      // localStorage.setItem('accessToken', accessToken)
+      localStorage.setItem('accessToken', accessToken)
     },
     setErrorMessage: (store, action) => {
       const { errorMessage } = action.payload
@@ -65,7 +67,8 @@ export const login = (email, password) => {
         dispatch(user.actions.setAccessToken({ accessToken: json.accessToken }))
         dispatch(user.actions.setUserId({ userId: json.userId }))
         dispatch(user.actions.setName({ name: json.name }))
-        dispatch(user.actions.setSurName({ surName: json.surName }))
+        dispatch(user.actions.setSurname({ surname: json.surname }))
+        dispatch(user.actions.setErrorMessage({ errorMessage: '' }))
       })
       .catch((err) => {
         dispatch(user.actions.setErrorMessage({ errorMessage: err.toString }))
@@ -74,11 +77,11 @@ export const login = (email, password) => {
 }
 
 // SIGNUP
-export const signUp = (name, surName, email, password) => {
+export const signUp = (name, surname, email, password) => {
   return (dispatch) => {
     fetch(USERS_URL, {
       method: 'POST',
-      body: JSON.stringify({ name, surName, email, password }),
+      body: JSON.stringify({ name, surname, email, password }),
       headers: { 'Content-Type': 'application/json' }
     })
       .then((res) => {
@@ -90,8 +93,9 @@ export const signUp = (name, surName, email, password) => {
       .then((json) => {
         dispatch(user.actions.setAccessToken({ accessToken: json.accessToken }))
         dispatch(user.actions.setName({ name: json.name }))
-        dispatch(user.actions.setSurName({ surName: json.surName }))
+        dispatch(user.actions.setSurname({ surname: json.surname }))
         dispatch(user.actions.setErrorMessage({ errorMessage: '' }))
+        dispatch(user.actions.setUserId({ userId: json.userId }))
       })
       .catch((err) => {
         dispatch(user.actions.setErrorMessage({ errorMessage: err.toString() }))
@@ -119,13 +123,13 @@ export const logout = () => {
         )
       })
     dispatch(user.actions.setName({ name: '' }))
-    dispatch(user.actions.setSurName({ surName: '' }))
+    dispatch(user.actions.setSurname({ surname: '' }))
     dispatch(user.actions.setUserId({ userId: null })) // Should this be 0 or null or '' ?
     dispatch(user.actions.setErrorMessage({ errorMessage: '' }))
-    dispatch(user.actions.setAccessToken({ accessToken: null })) // // Should this be 0 or null or '' ?
-    // localStorage.removeItem('accessToken')
-    // localStorage.removeItem('name')
-    // localStorage.removeItem('surName')
-    // localStorage.removeItem('userId')
+    dispatch(user.actions.setAccessToken({ accessToken: null })) // Should this be 0 or null or '' ?
+    localStorage.removeItem('accessToken')
+    localStorage.removeItem('name')
+    localStorage.removeItem('surname')
+    localStorage.removeItem('userId')
   }
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 //import { useHistory } from 'react-router-dom'
 
-import { logout } from '../reducers/users'
+import { logout } from '../reducers/user'
 import { NavbarLinkText } from './lib/Text'
 import { SignoutButton } from './lib/Buttons'
 

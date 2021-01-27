@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro'
 
-export const SingoutButton = styled.button`
+export const SignoutButton = styled.button`
   border: none;
   padding: 0;
   margin: 0;

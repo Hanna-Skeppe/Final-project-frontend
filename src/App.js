@@ -19,9 +19,6 @@ const store = configureStore({ reducer })
 
 export const App = () => {
   return (
-    // <Provider store={store}>
-    //   
-    //     <NavbarMain />
     /* <Switch>
       <Route path="/" exact component={Home} />
       <Route path="/login" exact component={PopoverLogin} />
@@ -30,8 +27,6 @@ export const App = () => {
       <Route path="/producers" exact component={ProducersPage} />
       <Route path="/producers/:id/wines" exact component={SingleProducerPage} />
     </Switch> */
-    //   </BrowserRouter>
-    // </Provider>
     <Provider store={store}>
       <BrowserRouter>
         <NavbarMain />

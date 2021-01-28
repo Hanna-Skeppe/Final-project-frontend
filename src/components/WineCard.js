@@ -5,7 +5,6 @@ export const WineCard = ({
   name,
   image_url,
   average_rating,
-  producer,
   country,
   origin,
   year,

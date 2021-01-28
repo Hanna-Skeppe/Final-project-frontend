@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-
+import { ui } from './ui'
 import { USERS_URL, SESSIONS_URL } from '../urls'
 
 const initialState = {
@@ -8,8 +8,6 @@ const initialState = {
     surname: localStorage.surname || '',
     accessToken: localStorage.accessToken || null,
     userId: localStorage.userId || 0,
-    // Where is this userId from? Confused where it comes from. is it _id?
-    // see in backend login: app.post sessions: I think userId = _id
     errorMessage: ''
   }
 }
@@ -48,7 +46,7 @@ export const user = createSlice({
 // // THUNKS // //
 
 // LOGIN
-export const login = (email, password) => {
+export const login = ({ email, password }) => {
   return (dispatch) => {
     fetch(SESSIONS_URL, {
       method: 'POST',
@@ -69,9 +67,11 @@ export const login = (email, password) => {
         dispatch(user.actions.setName({ name: json.name }))
         dispatch(user.actions.setSurname({ surname: json.surname }))
         dispatch(user.actions.setErrorMessage({ errorMessage: '' }))
+        dispatch(ui.actions.setLoginFailed(false))
       })
       .catch((err) => {
         dispatch(user.actions.setErrorMessage({ errorMessage: err.toString }))
+        dispatch(ui.actions.setLoginFailed(true))
       })
   }
 }

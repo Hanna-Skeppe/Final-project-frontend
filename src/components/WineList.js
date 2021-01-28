@@ -13,7 +13,7 @@ export const WineList = () => {
       .then((res) => res.json())
       .then((json) => setWines(json))
   }, [])
-  console.log('wines[0]', wines[0])
+
   // how to reach/display producer???
   // I changed producer to an array of objects in the model. It did not work either.
   // Use Object.entries? And if so how?

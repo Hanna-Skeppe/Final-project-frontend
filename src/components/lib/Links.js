@@ -18,3 +18,12 @@ text-decoration: none;
   color: #C9C4C4;
 }
 `
+
+export const CardLink = styled(NavLink).attrs({ activeClassName })`
+  font-weight: bold;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color: red;
+  }
+  `

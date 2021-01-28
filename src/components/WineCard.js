@@ -4,6 +4,7 @@ import styled from 'styled-components/macro'
 
 import { CardContainer, CardImageWrapper } from './lib/Containers'
 import { CardTitle } from './lib/Text'
+import { CardLink } from './lib/Links'
 
 export const WineCard = ({
   name,
@@ -17,10 +18,10 @@ export const WineCard = ({
   average_price,
   added_sulfites,
   goes_well_with,
-  importer
-  // producer
-
+  importer,
+  producer
 }) => {
+  // console.log('name', name, 'producer', producer)
   // add loadingspinner (lottie animation or gif)
   return (
     <CardContainer>
@@ -34,7 +35,7 @@ export const WineCard = ({
           <TextSubWrapper>
             <CardTextTitle>Country:</CardTextTitle>
             <CardTextTitle>Origin:</CardTextTitle>
-            {/* <CardTextTitle>Producer:</CardTextTitle> */}
+            <CardTextTitle>Producer:</CardTextTitle>
             <CardTextTitle>Type:</CardTextTitle>
             <CardTextTitle>Year:</CardTextTitle>
             <CardTextTitle>Grape:</CardTextTitle>
@@ -46,7 +47,11 @@ export const WineCard = ({
           <TextSubWrapper>
             <CardText>{country}</CardText>
             <CardText>{origin}</CardText>
-            {/* <CardText>{producer}</CardText> */}
+            <CardText>
+              <CardLink to="/producers">
+                {producer.producer_name}
+              </CardLink>
+            </CardText>
             <CardText>{type}</CardText>
             <CardText>{year}</CardText>
             <CardText>{grape}</CardText>

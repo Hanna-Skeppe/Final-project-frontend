@@ -25,6 +25,8 @@ export const ProducerCard = ({
     </CardContainer>
   )
 }
+// include lik to single producer-page on card.
+
 
 const CardImage = styled.img`
   width: 100%;

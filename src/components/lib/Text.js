@@ -1,6 +1,5 @@
 import styled from 'styled-components/macro'
 
-// Should the active & hover be styled border-bottom: 1px solid #C9C4C4 instead?
 export const NavbarLinkText = styled.p`
   color: #fff;
   margin: 2vh 1vw;
@@ -17,5 +16,13 @@ export const NavbarLinkText = styled.p`
 export const NavSpan = styled.span` 
   color: #fff;
   font-weight: bold;
+`
+
+export const CardTitle = styled.h3`
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 32px;
+  text-decoration: underline;
+  text-align: center;
 `
 

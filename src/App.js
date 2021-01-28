@@ -5,8 +5,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import { user } from './reducers/user'
 import { NavbarMain } from './components/NavbarMain'
-import { HeroHeader } from './components/HeroHeader'
-import { WineList } from './components/WineList'
+import { Home } from './pages/Home'
+import { ProducersPage } from './pages/ProducersPage'
 
 const reducer = combineReducers({
   // wines: wines.reducer,
@@ -30,8 +30,10 @@ export const App = () => {
     <Provider store={store}>
       <BrowserRouter>
         <NavbarMain />
-        <HeroHeader />
-        <WineList />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/producers" exact component={ProducersPage} />
+        </Switch>
       </BrowserRouter>
     </Provider>
   )

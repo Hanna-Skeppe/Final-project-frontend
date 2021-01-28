@@ -1,5 +1,9 @@
+/* eslint-disable camelcase */
 import React from 'react'
 import styled from 'styled-components/macro'
+
+import { CardContainer, CardImageWrapper } from './lib/Containers'
+import { CardTitle } from './lib/Text'
 
 export const WineCard = ({
   name,
@@ -13,9 +17,11 @@ export const WineCard = ({
   average_price,
   added_sulfites,
   goes_well_with,
-  importer,
+  importer
   // producer
+
 }) => {
+  // add loadingspinner (lottie animation or gif)
   return (
     <CardContainer>
       <CardImageWrapper>
@@ -55,23 +61,6 @@ export const WineCard = ({
   )
 }
 
-const CardContainer = styled.div`
-  display: flex;
-  margin: 20px auto;
-  width: 90vw;
-  max-width: 1100px;
-  height: 450px;
-  background: #EFEDED;
-  box-shadow: 3px 3px 8px rgba(90,87,87,0.6);
-`
-const CardImageWrapper = styled.div`
-  width: 20%;
-  margin: 10px;
-  background: #EFEDED;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
 const CardImage = styled.img`
   width: 100%;
   height: 100%;
@@ -87,13 +76,7 @@ const CardTextWrapper = styled.div`
 const InfoTextWrapper = styled.div`
   display: flex
 `
-const CardTitle = styled.h3`
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 32px;
-  text-decoration: underline;
-  text-align: center;
-`
+
 const RatingText = styled.p`
   font-weight: 700;
   font-size: 22px;
@@ -118,20 +101,3 @@ const CardText = styled.p`
   text-align: left;
   margin: 0;
 `
-// const Table = styled.table`
-//   width: 100%;
-//   border-collapse: collapse;
-// `
-
-// 
-// 
-// const Thread = styled.thread`
-//   display: flex;
-//   flex-direction: column;
-// `
-// const Tr = styled.thread`
-//   display: flex;
-//   flex-direction: column;
-// `
-
-

@@ -9,8 +9,7 @@ import { NavbarMain } from './components/NavbarMain'
 import { Home } from './pages/Home'
 import { ProducersPage } from './pages/ProducersPage'
 import { UserPage } from './pages/UserPage'
-import { Registration } from './components/Registration'
-// import { PopoverLogin } from './components/PopoverLogin'
+import { RegistrationPage } from './pages/RegistrationPage'
 
 const reducer = combineReducers({
   // wines: wines.reducer,
@@ -23,21 +22,17 @@ const store = configureStore({ reducer })
 
 export const App = () => {
   return (
-    /* <Switch>
-      <Route path="/" exact component={Home} />
-      
-      <Route path="/producers" exact component={ProducersPage} />
+    /*
       <Route path="/producers/:id/wines" exact component={SingleProducerPage} />
-    </Switch> */
+     */
     <Provider store={store}>
       <BrowserRouter>
         <NavbarMain />
         <Switch>
-          <Route path="/" exact component={Home} />
-          {/* <Route path="/login" exact component={PopoverLogin} /> */}
-          <Route path="/register" exact component={Registration} />
-          <Route path="/producers" exact component={ProducersPage} />
-          <Route path="/users/:id/collection" exact component={UserPage} />
+          <Route exact path="/" component={Home} />
+          <Route path="/register" component={RegistrationPage} />
+          <Route path="/producers" component={ProducersPage} />
+          <Route path="/users/:id/collection" component={UserPage} />
         </Switch>
       </BrowserRouter>
     </Provider>

@@ -7,63 +7,61 @@ import Popover from '@material-ui/core/Popover'
 import Typography from '@material-ui/core/Typography'
 import styled from 'styled-components/macro'
 import { makeStyles } from '@material-ui/core/styles'
-import { login } from '../reducers/user'
+import { loginUser } from '../reducers/user'
+import { LogInOutButton } from './lib/Buttons'
 // https://material-ui.com/api/popover/
+// https://material-ui.com/components/popover/
 
-// I need to add possibility to close popover or toggle it
-// right now I have to reload to close it
-// An accesstoken seems to be sent when logging in but nothing happens when clicking loginbutton on popup
-
-// From makeStyles material ui
+// From material-ui 
 const useStyles = makeStyles((theme) => ({
   typography: {
     padding: theme.spacing(2)
-  }
+  },
 }));
 
 export const PopoverLogin = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [accessToken, setAccessToken] = useState(null) // Shall I have accesstoken here?
-  const classes = useStyles()
-
-  const [anchorEl, setAnchorEl] = useState(null)
+  const classes = useStyles() // From material-ui 
+  const [anchorEl, setAnchorEl] = useState(null) // From material-ui 
+  
   const history = useHistory()
   const dispatch = useDispatch()
-  const failedLogin = useSelector((store) => store.ui.isLoginFailed)
+  const failed = useSelector((store) => store.ui.isLoginFailed) 
+  
 
-  const handleLoginClick = (event) => {
+  //const errorMessage = useSelector((store) => store.user.login.errorMessage) // use this instead in the return?
+
+  const handlePopupClick = (event) => { // From material-ui 
     setAnchorEl(event.currentTarget)
   };
 
-  // function for closing the popup??
-  const handleClose = () => {
-    if (failedLogin) {
-      setAnchorEl(null)
-    }
+  //From material-ui (for closing the popup)
+  const handleClose = () => { 
+    setAnchorEl(null)
   }
 
-  // Not sure what this does? Something with id the popup should be open or not?
+  // From material-ui 
   const open = Boolean(anchorEl)
-  const id = open ? 'simple-popover' : undefined
+  const id = open ? 'popup-login' : undefined
 
-  const handleLogin = (event) => {
+  const handleSubmit = (event) => { 
     event.preventDefault()
-    dispatch(login({ email, password , accessToken })) // Shall accesstoken be here or not?
-    handleClose()
+    dispatch(loginUser(email, password)) // 'loginUser' is the thunk-function in user.js 
+    handleClose() 
     history.push(`/`)
   }
 
-  const handleKeyPressLogin = (event) => {
+  const handleKeyPressLogin = (event) => { // Haven't tested to login on keypress yet
     if (event.key === 'Enter') {
       event.preventDefault()
-      dispatch(login({ email, password, accessToken })) // Shall accesstoken be here or not?
-      handleClose()
+      dispatch(loginUser({ email, password })) 
       history.push(`/`)
     }
   }
-
-  const goToSignup = () => {
+  
+  // This works. It redirects to '/register'-page when pressing button on popup
+  const goToSignup = () => { 
     handleClose()
     setAnchorEl(null)
     history.push(`/register`)
@@ -71,9 +69,9 @@ export const PopoverLogin = () => {
   
   return (
     <>
-      <LogInButton onClick={handleLoginClick}>
+      <LogInOutButton aria-describedby={id} onClick={handlePopupClick}>
         Login
-      </LogInButton>
+      </LogInOutButton>
       <Popover
         id={id}
         open={open}
@@ -88,13 +86,14 @@ export const PopoverLogin = () => {
           horizontal: 'center'
         }}
       >
-        <Typography className={classes.typagraphy}>
-          <Label>
+        <Typography className={classes.typography}>
+          <Label> 
             Email
             <Input
               type="email"
               required
               value={email}
+              placeholder="example@email.com"
               onChange={(event) => setEmail(event.target.value.toLowerCase())}
             />
           </Label>
@@ -104,16 +103,15 @@ export const PopoverLogin = () => {
               type="password"
               required
               value={password}
+              placeholder="type your password (min. 5 characters)"
               onChange={(event) => setPassword(event.target.value)}
               onKeyPress={handleKeyPressLogin}
             />
           </Label>
-          {failedLogin &&
-            <ErrorMessage>Login failed. Try again.</ErrorMessage>
-          }
+          {failed && <ErrorMessage>Login failed. Try again.</ErrorMessage>}
           <Button
             type="submit"
-            onClick={handleLogin}
+            onClick={handleSubmit}
           >
             Login
           </Button>
@@ -128,31 +126,6 @@ export const PopoverLogin = () => {
     </>
   )
 }
-const activeClassName = 'nav-item-active'
-
-const LogInButton = styled.button.attrs({ activeClassName })`
-  background: inherit;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 18px;
-  font-weight: bold;
-  margin: 2vh 1vw;
-  padding: 0;
- 
-  &:hover {
-    cursor: pointer;
-    text-decoration: underline;
-    color: #C9C4C4;
-  }
-  &.${activeClassName} {
-    color: #C9C4C4;
-  }
-  // @media(max-width: 600px) {
-  //   display: none;
-  // }
-`
 
 const Label = styled.label`
   color: #666;

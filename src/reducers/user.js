@@ -7,7 +7,7 @@ const initialState = {
     name: localStorage.name || '',
     surname: localStorage.surname || '',
     accessToken: localStorage.accessToken || null,
-    userId: localStorage.userId || 0,
+    userId: localStorage.userId || '',
     errorMessage: ''
   }
 }
@@ -46,7 +46,7 @@ export const user = createSlice({
 // // THUNKS // //
 
 // LOGIN
-export const login = ({ email, password }) => {
+export const loginUser = (email, password) => {
   return (dispatch) => {
     fetch(SESSIONS_URL, {
       method: 'POST',
@@ -104,7 +104,7 @@ export const signUp = (name, surname, email, password) => {
 }
 
 // LOGOUT
-export const logout = () => {
+export const logoutUser = () => {
   return (dispatch, getStore) => {
     const { accessToken } = getStore().user.login.accessToken
     fetch(`${USERS_URL}/logout`, {

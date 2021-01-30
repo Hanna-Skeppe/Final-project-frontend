@@ -1,10 +1,11 @@
 import styled from 'styled-components/macro'
 import { NavLink } from 'react-router-dom'
 
-const activeClassName = 'nav-item-active'
+// const activeClassName = 'active'
 
-export const NavbarLink = styled(NavLink).attrs({ activeClassName })`
+export const NavbarLink = styled(NavLink)`
 color: #fff;
+margin: 2vh 1vw;
 font-size: 18px;
 font-weight: bold;
 font-family: 'Montserrat', sans-serif;
@@ -14,16 +15,14 @@ text-decoration: none;
   text-decoration: underline;
   color: #C9C4C4;
 }
-&.${activeClassName} {
-  color: #C9C4C4;
-}
 `
 
-export const CardLink = styled(NavLink).attrs({ activeClassName })`
+export const CardLink = styled(NavLink)`
   font-weight: bold;
+  color: #000;
   &:hover {
     cursor: pointer;
     text-decoration: underline;
-    color: red;
+    color: #C9C4C4;
   }
   `

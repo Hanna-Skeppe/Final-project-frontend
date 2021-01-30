@@ -95,7 +95,7 @@ const TextSubWrapper = styled.div`
 
 const CardTextTitle = styled.p`
   font-weight: 700;
-  color: red;
+  color: #637050;
   margin: 0 15px 0 0;
   font-size: 18px;
   text-align: right;

@@ -4,7 +4,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 // The wines-store/state is populated with all wines when I do a search.
 const initialState = {
-  wines: []
+  wines: [],
+  errorMessage: ''
 }
 // How do I implement the filter-button? Should that be connected to the reducer or not?
 // Should filter be implemented directly in the winelist?
@@ -18,7 +19,7 @@ export const wines = createSlice({
     },
     setErrorMessage: (store, action) => {
       const { errorMessage } = action.payload
-      store.wines.errorMessage = errorMessage
+      store.errorMessage = errorMessage
     }
   }
 })
@@ -28,10 +29,23 @@ export const searchResult = (searchTerm) => {
   console.log(searchTerm, 'searchTerm')
   return (dispatch) => {
     fetch(`http://localhost:8080/wines?query=${searchTerm}`)
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        }
+        throw new Error('Could not perform search. Try again.')
+      })
       .then((json) => {
         console.log('json', json)
         dispatch(wines.actions.setSearchTerm(json))
+        if (json.length === 0) {
+          dispatch(wines.actions.setErrorMessage({ errorMessage: 'No results found. Try another search.' }))
+        } else {
+          dispatch(wines.actions.setErrorMessage({ errorMessage: '' }))
+        }
+      })
+      .catch((err) => {
+        dispatch(wines.actions.setErrorMessage({ errorMessage: err.toString }))
       })
   }
 }

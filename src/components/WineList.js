@@ -10,7 +10,6 @@ import { WINES_URL } from '../urls'
 export const WineList = () => {
   const [wines, setWines] = useState([]) // useState stores the json so that I can map the results
   const searchResult = useSelector((store) => store.wines.wines)
-  
   const [sort, setSort] = useState('name_asc')
 
   useEffect(() => {
@@ -29,6 +28,7 @@ export const WineList = () => {
   return (
     <>
       <SearchBar />
+      {/* {(searchResult.length === 0) && (wineSearchResults.length > 0) ? <p>No results found. Try another search.</p> : ''} */}
       <ButtonsWrapper>
         {/* Add filter buttons here */}
         <select

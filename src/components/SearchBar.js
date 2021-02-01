@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components/macro'
 // import SearchIcon from '@material-ui/icons/Search';
@@ -9,6 +9,7 @@ import styled from 'styled-components/macro'
 import { searchResult } from '../reducers/wines'
 
 export const SearchBar = () => {
+  const errorMessage = useSelector((store) => store.wines.errorMessage)
   const [searchTerm, setSearchTerm] = useState('')
   const dispatch = useDispatch()
   const history = useHistory()
@@ -39,6 +40,7 @@ export const SearchBar = () => {
           onSubmit={handleSubmit}>
             Search
         </button>
+        {errorMessage && <p>{errorMessage}</p>}
       </FormSearch>
     </SearchWrapper>
   )

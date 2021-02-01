@@ -28,7 +28,6 @@ export const WineList = () => {
   return (
     <>
       <SearchBar />
-      {/* {(searchResult.length === 0) && (wineSearchResults.length > 0) ? <p>No results found. Try another search.</p> : ''} */}
       <ButtonsWrapper>
         {/* Add filter buttons here */}
         <select

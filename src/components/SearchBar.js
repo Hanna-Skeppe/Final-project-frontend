@@ -14,7 +14,7 @@ export const SearchBar = () => {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  // See movies: Searchbar.js
+
   const handleSubmit = (event) => {
     event.preventDefault()
     if (searchTerm.length > 0) {

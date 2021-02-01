@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { ui } from './ui'
-import { USERS_URL, SESSIONS_URL } from '../urls'
+import { USERS_URL, SESSIONS_URL, USER_LOGOUT } from '../urls'
 
 const initialState = {
   login: {
@@ -109,11 +109,13 @@ export const signUp = (name, surname, email, password) => {
   }
 }
 
-// LOGOUT
+// LOGOUT (GETS error 401 'unauthorized' in console, but can still log out.
+// Why? Because accesstoken is removed before checkad & protected endpoint?
+// But it shouldn't be, because I get it from the store before the fetch???)
 export const logoutUser = () => {
   return (dispatch, getStore) => {
     const { accessToken } = getStore().user.login.accessToken
-    fetch(`${USERS_URL}/logout`, {
+    fetch(USER_LOGOUT, {
       method: 'POST',
       headers: { Authorization: accessToken }
     })

@@ -37,8 +37,10 @@ export const PopoverLogin = () => {
   };
 
   //From material-ui (for closing the popup)
-  const handleClose = () => { 
-    setAnchorEl(null)
+  const handleClose = () => {
+    if (failed) {
+      setAnchorEl(null)
+    } 
   }
 
   // From material-ui 

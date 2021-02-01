@@ -1,10 +1,10 @@
 /* eslint-disable camelcase */
 import React from 'react'
 import styled from 'styled-components/macro'
+import { NavLink } from 'react-router-dom'
 
 import { CardContainer, CardImageWrapper } from './lib/Containers'
 import { CardTitle } from './lib/Text'
-import { CardLink } from './lib/Links'
 
 export const WineCard = ({
   name,
@@ -21,7 +21,6 @@ export const WineCard = ({
   importer,
   producer
 }) => {
-  // console.log('name', name, 'producer', producer)
   // add loadingspinner (lottie animation or gif)
   return (
     <CardContainer>
@@ -106,3 +105,13 @@ const CardText = styled.p`
   text-align: left;
   margin: 0;
 `
+
+const CardLink = styled(NavLink)`
+  font-weight: bold;
+  color: #000;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color: #C9C4C4;
+  }
+  `

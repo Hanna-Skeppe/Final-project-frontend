@@ -5,6 +5,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import { user } from './reducers/user'
 import { ui } from './reducers/ui'
+import { wines } from './reducers/wines'
 import { NavbarMain } from './components/NavbarMain'
 import { Home } from './pages/Home'
 import { ProducersPage } from './pages/ProducersPage'
@@ -12,7 +13,7 @@ import { UserPage } from './pages/UserPage'
 import { RegistrationPage } from './pages/RegistrationPage'
 
 const reducer = combineReducers({
-  // wines: wines.reducer,
+  wines: wines.reducer,
   // producers: producers.reducer,
   user: user.reducer,
   ui: ui.reducer

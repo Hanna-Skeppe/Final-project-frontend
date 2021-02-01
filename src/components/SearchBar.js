@@ -1,9 +1,10 @@
+/* eslint-disable */
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components/macro'
-//import SearchIcon from '@material-ui/icons/Search';
-//import InputBase from '@material-ui/core/InputBase';
+// import SearchIcon from '@material-ui/icons/Search';
+// import InputBase from '@material-ui/core/InputBase';
 
 import { searchResult } from '../reducers/wines'
 
@@ -38,18 +39,6 @@ export const SearchBar = () => {
           onSubmit={handleSubmit}>
             Search
         </button>
-        {/* <select
-          onChange={(event) => {
-            // dispatch(wines.actions.setQuery('')) // Not defined yet!
-          }}
-        >
-          <option value="">Filter by type</option>
-          <option value="red">Red</option>
-          <option value="white">White</option>
-          <option value="orange">Orange</option>
-          {/* <option value="rosé">Rosé</option>
-          <option value="sparkling">Sparkling</option> */}
-        {/* </select> */}
       </FormSearch>
     </SearchWrapper>
   )

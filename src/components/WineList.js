@@ -10,6 +10,7 @@ import { WINES_URL } from '../urls'
 export const WineList = () => {
   const [wines, setWines] = useState([]) // useState stores the json so that I can map the results
   const searchResult = useSelector((store) => store.wines.wines)
+  
   const [sort, setSort] = useState('name_asc')
 
   useEffect(() => {
@@ -19,12 +20,11 @@ export const WineList = () => {
   }, [sort])
 
   let wineSearchResults = wines
-  if (searchResult > 0) {
+  if (searchResult.length > 0) {
     wineSearchResults = searchResult
   }
   console.log('searchResult:', searchResult)
   console.log('wineSearchResults', wineSearchResults)
-  
 
   return (
     <>
@@ -33,8 +33,7 @@ export const WineList = () => {
         {/* Add filter buttons here */}
         <select
           type="text"
-          onChange={(event) => setSort(event.target.value)}
-        >
+          onChange={(event) => setSort(event.target.value)}>
           <option value="name_asc">Sort by...</option>
           <option value="name_desc">Name (desc.)</option>
           <option value="name_asc">Name (asc)</option>
@@ -45,7 +44,7 @@ export const WineList = () => {
         </select>
       </ButtonsWrapper>
       <section>
-        {wineSearchResults && wines.map((wine) => (
+        {wineSearchResults && wineSearchResults.map((wine) => (
           <WineCard
             key={wine._id}
             {...wine} />

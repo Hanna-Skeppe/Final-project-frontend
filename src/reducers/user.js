@@ -9,7 +9,10 @@ const initialState = {
     accessToken: localStorage.accessToken || null,
     userId: localStorage.userId || '',
     errorMessage: ''
-  }
+  },
+  // userActions: {
+  //   favoriteWines: ''
+  // }
 }
 
 export const user = createSlice({
@@ -39,7 +42,10 @@ export const user = createSlice({
     setErrorMessage: (store, action) => {
       const { errorMessage } = action.payload
       store.login.errorMessage = errorMessage
-    }
+    },
+    // setFavoriteWines: (store, action) => {
+    //   store.user.userActions.favoriteWines = action.payload
+    // }
   }
 })
 
@@ -124,9 +130,9 @@ export const logoutUser = () => {
       })
     dispatch(user.actions.setName({ name: '' }))
     dispatch(user.actions.setSurname({ surname: '' }))
-    dispatch(user.actions.setUserId({ userId: null })) // Should this be 0 or null or '' ?
+    dispatch(user.actions.setUserId({ userId: null }))
     dispatch(user.actions.setErrorMessage({ errorMessage: '' }))
-    dispatch(user.actions.setAccessToken({ accessToken: null })) // Should this be 0 or null or '' ?
+    dispatch(user.actions.setAccessToken({ accessToken: null }))
     localStorage.removeItem('accessToken')
     localStorage.removeItem('name')
     localStorage.removeItem('surname')

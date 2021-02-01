@@ -11,6 +11,3 @@ export const Home = () => {
     </>
   )
 }
-
-//  ADD: <SearchField />
-// ADD: buttons to sort and filter winelist

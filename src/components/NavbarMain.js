@@ -16,10 +16,10 @@ export const NavbarMain = () => {
   const name = useSelector((store) => store.user.login.name)
   const surname = useSelector((store) => store.user.login.surname)
   
-  console.log('accessToken (Seems to work on login):', accessToken) 
-  console.log('name - Prints out on reload after login. After login its empty. Why?:', name)
-  console.log('surname - Prints out after reload after login. Why?', surname)
-  console.log('userId. (seems to work on login) Prints out 600edc5cf281241add950c9b:', userId)
+  console.log('accessToken:', accessToken) 
+  console.log('name:', name)
+  console.log('surname:', surname)
+  console.log('userId:', userId)
   
   return (
     <NavbarContainer>

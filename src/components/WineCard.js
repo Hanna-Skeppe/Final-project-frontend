@@ -27,7 +27,11 @@ export const WineCard = ({
   const userId = useSelector((store) => store.user.login.userId)
   const accessToken = useSelector((store) => store.user.login.accessToken)
   const favoriteWines = useSelector((store) => store.user.userActions.favoriteWines)
+  const wines = useSelector((store) => store.wines.wines)
+  console.log('favoriteWines, winecard', favoriteWines) // outputs empty array in console
   const dispatch = useDispatch()
+  console.log('wines, winecard', wines)
+  console.log('userId', userId)
 
   const handleAddFavorite = (event) => {
     event.preventDefault()
@@ -38,7 +42,7 @@ export const WineCard = ({
     event.preventDefault()
     dispatch(removeFavoriteWine(userId, accessToken, _id))
   }
-
+  // if (accessToken && favoriteWines.includes(_id))
   // add loadingspinner (lottie animation or gif)
   return (
     <CardContainer>
@@ -47,20 +51,20 @@ export const WineCard = ({
       </CardImageWrapper>
       <CardTextWrapper>
         <TopTextWrapper>
+          <p>{_id}</p>
           <CardTitle>{name}</CardTitle>
-          {accessToken &&
-            !favoriteWines ?
-            <button
-              type="submit"
-              onClick={handleAddFavorite}
-            >Add to favorites
-            </button>
-            :
+          {/* How do I render the buttons conditionally???? */}
+          {favoriteWines &&
             <button
               type="submit"
               onClick={handleRemoveFavorite}
             >Remove from favorites
             </button>}
+          <button
+            type="submit"
+            onClick={handleAddFavorite}
+          >Add to favorites
+          </button>
         </TopTextWrapper>
         <RatingsWrapper>
           <RatingText>Average rating: {average_rating}</RatingText>

@@ -112,9 +112,9 @@ export const signUp = (name, surname, email, password) => {
 // LOGOUT (GETS error 401 'unauthorized' in console, but can still log out.
 // Why? Because accesstoken is removed before checkad & protected endpoint?
 // But it shouldn't be, because I get it from the store before the fetch???)
-export const logoutUser = () => {
-  return (dispatch, getStore) => {
-    const { accessToken } = getStore().user.login.accessToken
+export const logoutUser = (accessToken) => {
+  // const { accessToken } = getStore().user.login.accessToken
+  return (dispatch) => {
     fetch(USER_LOGOUT, {
       method: 'POST',
       headers: { Authorization: accessToken }
@@ -142,14 +142,36 @@ export const logoutUser = () => {
   }
 }
 
+// GET FAVORITE WINES
+export const fetchFavoriteWines = (userId, accessToken) => {
+  return (dispatch) => {
+    fetch(`http://localhost:8080/users/${userId}/favorites`, {
+      method: 'GET',
+      headers: { Authorization: accessToken }
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        }
+        throw new Error(
+          'Could not get Wines'
+        )
+      })
+      .then((json) => {
+        dispatch(user.actions.setFavoriteWines(json))
+      })
+  }
+}
+
 // ADD A FAVORITE WINE
-export const addFavoriteWine = () => {
-  return (dispatch, getStore) => {
-    const { userId } = getStore().user.login.userId
-    const { accessToken } = getStore().user.login.accessToken
+export const addFavoriteWine = (userId, accessToken, wineId) => {
+  return (dispatch) => {
+    // const { userId } = getStore().user.login.userId
+    // const { accessToken } = getStore().user.login.accessToken
     fetch(`http://localhost:8080/users/${userId}/favorites`, {
       method: 'PUT',
-      headers: { Authorization: accessToken }
+      body: JSON.stringify({ _id: wineId }),
+      headers: { Authorization: accessToken, 'Content-Type': 'application/json' }
     })
       .then((res) => {
         if (res.ok) {
@@ -157,8 +179,9 @@ export const addFavoriteWine = () => {
         }
         throw new Error('Could not add wine to favorites. User must be logged in to add a favorite wine.')
       })
-      .then((json) => {
-        dispatch(user.actions.setFavoriteWines(json))
+      .then(() => {
+        dispatch(fetchFavoriteWines(userId, accessToken))
+        // dispatch(user.actions.setFavoriteWines(json))
         // dispatch(user.actions.setFavoriteWines({ favoriteWines: json }))
       })
   }
@@ -171,8 +194,8 @@ export const removeFavoriteWine = (userId, accessToken, wineId) => {
     // const { accessToken } = getStore().user.login.accessToken
     fetch(`http://localhost:8080/users/${userId}/favorites`, {
       method: 'DELETE',
-      body: JSON.stringify({ _id: wineId}),
-      headers: { Authorization: accessToken }
+      body: JSON.stringify({ _id: wineId }),
+      headers: { Authorization: accessToken, 'Content-Type': 'application/json' }
     })
       .then((res) => {
         if (res.ok) {
@@ -180,8 +203,8 @@ export const removeFavoriteWine = (userId, accessToken, wineId) => {
         }
         throw new Error('Could not remove wine from favorites. User must be logged in to remove favorite wine.')
       })
-      .then((json) => {
-        dispatch(user.actions.setFavoriteWines(json))
+      .then(() => {
+        dispatch(fetchFavoriteWines(userId, accessToken))
       })
   }
 }

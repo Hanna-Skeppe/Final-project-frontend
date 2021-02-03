@@ -57,7 +57,7 @@ export const PopoverLogin = () => {
   const handleKeyPressLogin = (event) => { // Haven't tested to login on keypress yet
     if (event.key === 'Enter') {
       event.preventDefault()
-      dispatch(loginUser({ email, password })) 
+      dispatch(loginUser(email, password)) 
       history.push(`/`)
     }
   }

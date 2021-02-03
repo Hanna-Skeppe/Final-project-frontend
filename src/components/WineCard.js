@@ -1,12 +1,15 @@
 /* eslint-disable camelcase */
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components/macro'
 import { NavLink } from 'react-router-dom'
 
+import { addFavoriteWine, removeFavoriteWine } from 'reducers/user'
 import { CardContainer, CardImageWrapper } from './lib/Containers'
 import { CardTitle } from './lib/Text'
 
 export const WineCard = ({
+  _id,
   name,
   image_url,
   average_rating,
@@ -21,6 +24,21 @@ export const WineCard = ({
   importer,
   producer
 }) => {
+  const userId = useSelector((store) => store.user.login.userId)
+  const accessToken = useSelector((store) => store.user.login.accessToken)
+  const favoriteWines = useSelector((store) => store.user.userActions.favoriteWines)
+  const dispatch = useDispatch()
+
+  const handleAddFavorite = (event) => {
+    event.preventDefault()
+    dispatch(addFavoriteWine(userId, accessToken, _id))
+  }
+
+  const handleRemoveFavorite = (event) => {
+    event.preventDefault()
+    dispatch(removeFavoriteWine(userId, accessToken, _id))
+  }
+
   // add loadingspinner (lottie animation or gif)
   return (
     <CardContainer>
@@ -28,8 +46,26 @@ export const WineCard = ({
         <CardImage src={image_url} alt={name} />
       </CardImageWrapper>
       <CardTextWrapper>
-        <CardTitle>{name}</CardTitle>
-        <RatingText>Average rating: {average_rating}</RatingText>
+        <TopTextWrapper>
+          <CardTitle>{name}</CardTitle>
+          {accessToken &&
+            !favoriteWines ?
+            <button
+              type="submit"
+              onClick={handleAddFavorite}
+            >Add to favorites
+            </button>
+            :
+            <button
+              type="submit"
+              onClick={handleRemoveFavorite}
+            >Remove from favorites
+            </button>}
+        </TopTextWrapper>
+        <RatingsWrapper>
+          <RatingText>Average rating: {average_rating}</RatingText>
+          <RatingText>Rate this wine: ⭐️ ⭐️ ⭐️ ⭐️ ⭐️</RatingText>
+        </RatingsWrapper>
         <InfoTextWrapper>
           <TextSubWrapper>
             <CardTextTitle>Country:</CardTextTitle>
@@ -71,9 +107,19 @@ const CardImage = styled.img`
   object-fit: contain;
   object-position: center center;
 `
+
+const TopTextWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+const RatingsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
 const CardTextWrapper = styled.div`
   margin: 10px;
-  width: auto;
+  width: 100%;
   display: flex;
   flex-direction: column;
 `
@@ -84,6 +130,7 @@ const InfoTextWrapper = styled.div`
 const RatingText = styled.p`
   font-weight: 700;
   font-size: 22px;
+  margin: 10px;
   font-family: 'Montserrat', sans-serif;
   text-align: left;
 `

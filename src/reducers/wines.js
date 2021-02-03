@@ -13,6 +13,10 @@ export const wines = createSlice({
   name: 'wines',
   initialState,
   reducers: {
+    setWinesList: (store, action) => {
+      store.wines = action.payload
+      console.log('action.payload: setWinesList', action.payload)
+    },
     setSearchTerm: (store, action) => {
       store.wines = action.payload
       console.log('action.payload', action.payload)

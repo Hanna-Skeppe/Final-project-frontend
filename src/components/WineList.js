@@ -1,24 +1,34 @@
 /* eslint-disable no-underscore-dangle */
 import styled from 'styled-components/macro'
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { SearchBar } from './SearchBar'
 import { WineCard } from './WineCard'
 import { WINES_URL } from '../urls'
+import { wines } from '../reducers/wines'
 
 export const WineList = () => {
-  const [wines, setWines] = useState([]) // useState stores the json so that I can map the results
+  const [winesList, setWinesList] = useState([]) // useState stores the json so that I can map the results
   const searchResult = useSelector((store) => store.wines.wines)
   const [sort, setSort] = useState('name_asc')
+  const dispatch = useDispatch()
 
   useEffect(() => {
     fetch(`${WINES_URL}/?sort=${sort}`) // Do I have to include query & sort here?
-      .then((res) => res.json())
-      .then((json) => setWines(json))
-  }, [sort])
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        }
+        throw new Error('Could not get wines')
+      })
+      .then((json) => {
+        setWinesList(json)
+        dispatch(wines.actions.setWinesList(json)) // How can I update the Wines-store here?
+      })
+  }, [sort, dispatch])
 
-  let wineSearchResults = wines
+  let wineSearchResults = winesList
   if (searchResult.length > 0) {
     wineSearchResults = searchResult
   }

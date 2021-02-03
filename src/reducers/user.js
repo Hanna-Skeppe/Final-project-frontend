@@ -10,9 +10,9 @@ const initialState = {
     userId: localStorage.userId || '',
     errorMessage: ''
   },
-  // userActions: {
-  //   favoriteWines: ''
-  // }
+  userActions: {
+    favoriteWines: []
+  }
 }
 
 export const user = createSlice({
@@ -43,9 +43,9 @@ export const user = createSlice({
       const { errorMessage } = action.payload
       store.login.errorMessage = errorMessage
     },
-    // setFavoriteWines: (store, action) => {
-    //   store.user.userActions.favoriteWines = action.payload
-    // }
+    setFavoriteWines: (store, action) => {
+      store.userActions.favoriteWines = action.payload
+    }
   }
 })
 
@@ -139,5 +139,49 @@ export const logoutUser = () => {
     localStorage.removeItem('name')
     localStorage.removeItem('surname')
     localStorage.removeItem('userId')
+  }
+}
+
+// ADD A FAVORITE WINE
+export const addFavoriteWine = () => {
+  return (dispatch, getStore) => {
+    const { userId } = getStore().user.login.userId
+    const { accessToken } = getStore().user.login.accessToken
+    fetch(`http://localhost:8080/users/${userId}/favorites`, {
+      method: 'PUT',
+      headers: { Authorization: accessToken }
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        }
+        throw new Error('Could not add wine to favorites. User must be logged in to add a favorite wine.')
+      })
+      .then((json) => {
+        dispatch(user.actions.setFavoriteWines(json))
+        // dispatch(user.actions.setFavoriteWines({ favoriteWines: json }))
+      })
+  }
+}
+
+// REMOVE A FAVORITE WINE
+export const removeFavoriteWine = (userId, accessToken, wineId) => {
+  return (dispatch) => {
+    // const { userId } = getStore().user.login.userId
+    // const { accessToken } = getStore().user.login.accessToken
+    fetch(`http://localhost:8080/users/${userId}/favorites`, {
+      method: 'DELETE',
+      body: JSON.stringify({ _id: wineId}),
+      headers: { Authorization: accessToken }
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        }
+        throw new Error('Could not remove wine from favorites. User must be logged in to remove favorite wine.')
+      })
+      .then((json) => {
+        dispatch(user.actions.setFavoriteWines(json))
+      })
   }
 }

@@ -50,10 +50,6 @@ export const UserPage = () => {
             {...wine} />
         ))}
       </section>
-      <div>
-        {accessToken &&
-          <p>This is the userpage! If you can see this you have an accessToken! </p>}
-      </div>
     </>
   )
 }

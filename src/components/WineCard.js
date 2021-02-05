@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
-import React from 'react'
+/* eslint-disable no-underscore-dangle */
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components/macro'
 import { NavLink } from 'react-router-dom'
@@ -27,11 +28,9 @@ export const WineCard = ({
   const userId = useSelector((store) => store.user.login.userId)
   const accessToken = useSelector((store) => store.user.login.accessToken)
   const favoriteWines = useSelector((store) => store.user.userActions.favoriteWines)
-  const wines = useSelector((store) => store.wines.wines)
-  console.log('favoriteWines, winecard', favoriteWines) // outputs empty array in console
+  // const wines = useSelector((store) => store.wines.wines)
   const dispatch = useDispatch()
-  console.log('wines, winecard', wines)
-  console.log('userId', userId)
+  const [isFavorite, setIsFavorite] = useState(false)
 
   const handleAddFavorite = (event) => {
     event.preventDefault()
@@ -42,8 +41,20 @@ export const WineCard = ({
     event.preventDefault()
     dispatch(removeFavoriteWine(userId, accessToken, _id))
   }
-  // if (accessToken && favoriteWines.includes(_id))
-  // add loadingspinner (lottie animation or gif)
+
+  console.log(favoriteWines.includes(_id))
+  console.log(_id)
+
+  useEffect(() => {
+    favoriteWines.map((wine) => {
+      if (wine._id === _id) {
+        return (
+          setIsFavorite(true)
+        )
+      }
+    })
+  }, [favoriteWines, _id, isFavorite])
+
   return (
     <CardContainer>
       <CardImageWrapper>
@@ -51,20 +62,35 @@ export const WineCard = ({
       </CardImageWrapper>
       <CardTextWrapper>
         <TopTextWrapper>
-          <p>{_id}</p>
           <CardTitle>{name}</CardTitle>
-          {/* How do I render the buttons conditionally???? */}
-          {favoriteWines &&
-            <button
-              type="submit"
-              onClick={handleRemoveFavorite}
-            >Remove from favorites
-            </button>}
-          <button
-            type="submit"
-            onClick={handleAddFavorite}
-          >Add to favorites
-          </button>
+          {accessToken &&
+            <>
+              {/* {favoriteWines.map((favorite) => {
+                if (favorite._id === _id) {
+                  return (
+                    <button
+                      key={favorite._id}
+                      type="submit"
+                      onClick={handleRemoveFavorite}
+                    >Remove from favorites
+                    </button>
+                  )
+                }
+              }
+              )} */}
+              {isFavorite &&
+                <button
+                  type="submit"
+                  onClick={handleRemoveFavorite}
+                >Remove from favorites
+                </button>}
+              {!isFavorite &&
+                <button
+                  type="submit"
+                  onClick={handleAddFavorite}
+                >Add to favorites
+                </button>}
+            </>}
         </TopTextWrapper>
         <RatingsWrapper>
           <RatingText>Average rating: {average_rating}</RatingText>
@@ -101,7 +127,7 @@ export const WineCard = ({
           </TextSubWrapper>
         </InfoTextWrapper>
       </CardTextWrapper>
-    </CardContainer>
+    </CardContainer >
   )
 }
 

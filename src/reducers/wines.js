@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit'
 
 // import { WINES_URL } from '../urls'
 
-// The wines-store/state is populated with all wines when I do a search.
 const initialState = {
   wines: [],
   errorMessage: ''

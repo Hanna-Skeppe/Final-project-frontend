@@ -7,13 +7,17 @@ import { SearchBar } from './SearchBar'
 import { WineCard } from './WineCard'
 import { WINES_URL } from '../urls'
 import { wines } from '../reducers/wines'
+import { fetchFavoriteWines } from '../reducers/user'
 
 export const WineList = () => {
   const [winesList, setWinesList] = useState([]) // useState stores the json so that I can map the results
   const searchResult = useSelector((store) => store.wines.wines)
   const [sort, setSort] = useState('name_asc')
   const dispatch = useDispatch()
-
+  // const favoriteWines = useSelector((store) => store.user.userActions.favoriteWines)
+  // console.log('Winelist favoriteWines', favoriteWines)
+  const accessToken = useSelector((store) => store.user.login.accessToken)
+  const userId = useSelector((store) => store.user.login.userId)
   useEffect(() => {
     fetch(`${WINES_URL}/?sort=${sort}`) // Do I have to include query & sort here?
       .then((res) => {
@@ -24,9 +28,10 @@ export const WineList = () => {
       })
       .then((json) => {
         setWinesList(json)
-        dispatch(wines.actions.setWinesList(json)) // How can I update the Wines-store here?
+        dispatch(wines.actions.setWinesList(json))
+        dispatch(fetchFavoriteWines(userId, accessToken)) // How can I update the Wines-store here?
       })
-  }, [sort, dispatch])
+  }, [sort, dispatch, userId, accessToken])
 
   let wineSearchResults = winesList
   if (searchResult.length > 0) {

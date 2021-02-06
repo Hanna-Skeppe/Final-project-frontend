@@ -23,7 +23,7 @@ export const PopoverLogin = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const classes = useStyles() // From material-ui 
-  const [anchorEl, setAnchorEl] = useState(null) // From material-ui 
+  const [anchorEl, setAnchorEl] = useState(null) 
   
   const history = useHistory()
   const dispatch = useDispatch()

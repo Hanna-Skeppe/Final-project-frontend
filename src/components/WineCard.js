@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 /* eslint-disable camelcase */
 /* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from 'react'
@@ -5,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components/macro'
 import { NavLink } from 'react-router-dom'
 
-import { addFavoriteWine, removeFavoriteWine } from 'reducers/user'
+import { fetchFavoriteWines, addFavoriteWine, removeFavoriteWine } from 'reducers/user'
 import { CardContainer, CardImageWrapper } from './lib/Containers'
 import { CardTitle } from './lib/Text'
 
@@ -35,17 +36,18 @@ export const WineCard = ({
   const handleAddFavorite = (event) => {
     event.preventDefault()
     dispatch(addFavoriteWine(userId, accessToken, _id))
+    setIsFavorite(true)
   }
 
   const handleRemoveFavorite = (event) => {
     event.preventDefault()
     dispatch(removeFavoriteWine(userId, accessToken, _id))
+    setIsFavorite(false) // added this here but did not affect text on button on remove.Why?
+    // dispatch(fetchFavoriteWines(userId, accessToken)) // this did not work to change text on button on remove
   }
 
-  console.log(favoriteWines.includes(_id))
-  console.log(_id)
-
   useEffect(() => {
+    // dispatch(fetchFavoriteWines(userId, accessToken)) // --> I get an infinite loop if i comment in this! <--
     favoriteWines.map((wine) => {
       if (wine._id === _id) {
         return (
@@ -53,7 +55,8 @@ export const WineCard = ({
         )
       }
     })
-  }, [favoriteWines, _id, isFavorite])
+  }, [isFavorite, accessToken, userId, favoriteWines, dispatch, _id]) // Why doesn't this trigger when favoriteWines is changed?
+  // [favoriteWines, _id, isFavorite, accessToken, dispatch, userId]
 
   return (
     <CardContainer>
@@ -81,7 +84,7 @@ export const WineCard = ({
               {isFavorite &&
                 <button
                   type="submit"
-                  onClick={handleRemoveFavorite}
+                  onClick={handleRemoveFavorite} // Why doesn't this button work on the first click on home? On second click the remove-thunk is called. Why? 
                 >Remove from favorites
                 </button>}
               {!isFavorite &&
@@ -114,6 +117,7 @@ export const WineCard = ({
             <CardText>{origin}</CardText>
             <CardText>
               <CardLink to="/producers">
+                {/* replace this with a link to individual produer page */}
                 {producer.producer_name}
               </CardLink>
             </CardText>

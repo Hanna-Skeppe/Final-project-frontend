@@ -7,8 +7,6 @@ import { ProducerCard } from '../components/ProducerCard'
 // Where do I do the fetch to get wines from single producer? 
 // In another component! (Single producer)
 // Producers-Header
-// Search-bar
-// filter and sort buttons
 
 export const ProducersPage = () => {
   const [producers, setProducers] = useState([])

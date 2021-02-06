@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-// import { WINES_URL } from '../urls'
+import { WINES_URL } from '../urls'
+import { fetchFavoriteWines } from './user'
 
 const initialState = {
   wines: [],
@@ -26,6 +27,28 @@ export const wines = createSlice({
     }
   }
 })
+
+export const fetchWineList = (sort) => {
+  return (dispatch) => {
+    fetch(`${WINES_URL}/?sort=${sort}`) // Do I have to include query & sort here?
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        }
+        throw new Error('Could not get wines')
+      })
+      .then((json) => {
+        // setWinesList(json)
+        dispatch(wines.actions.setWinesList(json))
+      })
+      // .then(() => {
+      //   if (accessToken) {
+      //     dispatch(fetchFavoriteWines(userId, accessToken))
+      //   }
+      // })
+      // console.log(favoriteWines)
+  }
+}
 
 // takes searchTerm as a prop/argument and send search result to Winelist.
 export const searchResult = (searchTerm) => {

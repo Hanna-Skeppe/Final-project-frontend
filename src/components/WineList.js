@@ -1,37 +1,61 @@
+/* eslint-disable comma-dangle */
 /* eslint-disable no-underscore-dangle */
 import styled from 'styled-components/macro'
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { makeStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+// import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 import { SearchBar } from './SearchBar'
 import { WineCard } from './WineCard'
-import { WINES_URL } from '../urls'
-import { wines } from '../reducers/wines'
+// import { WINES_URL } from '../urls'
+// import { wines } from '../reducers/wines'
 import { fetchFavoriteWines } from '../reducers/user'
+import { fetchWineList } from '../reducers/wines'
+
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+}));
 
 export const WineList = () => {
+  const classes = useStyles();
   const [winesList, setWinesList] = useState([]) // useState stores the json so that I can map the results
   const searchResult = useSelector((store) => store.wines.wines)
-  const [sort, setSort] = useState('name_asc')
+  const [sort, setSort] = useState('')
   const dispatch = useDispatch()
-  // const favoriteWines = useSelector((store) => store.user.userActions.favoriteWines)
+  const favoriteWines = useSelector((store) => store.user.userActions.favoriteWines)
   // console.log('Winelist favoriteWines', favoriteWines)
   const accessToken = useSelector((store) => store.user.login.accessToken)
   const userId = useSelector((store) => store.user.login.userId)
+
+  // const [favoriteWines, setFavoriteWines] = useState([])
+
+  // const getFavorites = () => {
+  //   // const { accessToken } = getStore().user.login.accessToken
+  //   if (accessToken) {
+  //     dispatch(fetchFavoriteWines(userId, accessToken))
+  //   }
+  // }
+
+
   useEffect(() => {
-    fetch(`${WINES_URL}/?sort=${sort}`) // Do I have to include query & sort here?
-      .then((res) => {
-        if (res.ok) {
-          return res.json()
-        }
-        throw new Error('Could not get wines')
-      })
-      .then((json) => {
-        setWinesList(json)
-        dispatch(wines.actions.setWinesList(json))
-        dispatch(fetchFavoriteWines(userId, accessToken)) // How can I update the Wines-store here?
-      })
-  }, [sort, dispatch, userId, accessToken])
+    dispatch(fetchWineList(sort))
+    if (accessToken && userId) { // tested to remove dispatch fetch favorite... (and dispatch from dependencies) and adding fetch favorites on winecard instead--> gets infinite loop
+      dispatch(fetchFavoriteWines(userId, accessToken))
+      // getFavorites() // (no difference if I call getFavorites above or include dispatch in useEffect instead)
+    }
+  }, [sort, userId, dispatch, accessToken])
+  // [sort, dispatch, userId, accessToken]
 
   let wineSearchResults = winesList
   if (searchResult.length > 0) {
@@ -40,22 +64,35 @@ export const WineList = () => {
   console.log('searchResult:', searchResult)
   console.log('wineSearchResults', wineSearchResults)
 
+  const handleSortChange = (event) => {
+    setSort(event.target.value)
+  }
+
   return (
     <>
       <SearchBar />
       <ButtonsWrapper>
         {/* Add filter buttons here */}
-        <select
-          type="text"
-          onChange={(event) => setSort(event.target.value)}>
-          <option value="name_asc">Sort by...</option>
-          <option value="name_desc">Name (desc.)</option>
-          <option value="name_asc">Name (asc)</option>
-          <option value="average_rating_desc">Highest rated</option>
-          <option value="average_rating_asc">Lowest rated</option>
-          <option value="average_price_desc">Highest avg. price</option>
-          <option value="average_price_asc">Lowest avg. price</option>
-        </select>
+        <FormControl variant="outlined" className={classes.formControl}>
+          <InputLabel id="demo-simple-select-outlined-label">Sort</InputLabel>
+          <Select
+            labelId="demo-simple-select-outlined-label"
+            id="demo-simple-select-outlined"
+            value={sort}
+            onChange={handleSortChange}
+            label="Sort"
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value="name_desc">Name (desc.)</MenuItem>
+            <MenuItem value="name_asc">Name (asc)</MenuItem>
+            <MenuItem value="average_rating_desc">Highest rated</MenuItem>
+            <MenuItem value="average_rating_asc">Lowest rated</MenuItem>
+            <MenuItem value="average_price_desc">Highest avg. price</MenuItem>
+            <MenuItem value="average_price_asc">Lowest avg. price</MenuItem>
+          </Select>
+        </FormControl>
       </ButtonsWrapper>
       <section>
         {wineSearchResults && wineSearchResults.map((wine) => (

@@ -6,7 +6,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-// import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
@@ -33,7 +32,7 @@ export const WineList = () => {
   const searchResult = useSelector((store) => store.wines.wines)
   const [sort, setSort] = useState('')
   const dispatch = useDispatch()
-  const favoriteWines = useSelector((store) => store.user.userActions.favoriteWines)
+  // const favoriteWines = useSelector((store) => store.user.userActions.favoriteWines)
   // console.log('Winelist favoriteWines', favoriteWines)
   const accessToken = useSelector((store) => store.user.login.accessToken)
   const userId = useSelector((store) => store.user.login.userId)
@@ -41,7 +40,6 @@ export const WineList = () => {
   // const [favoriteWines, setFavoriteWines] = useState([])
 
   // const getFavorites = () => {
-  //   // const { accessToken } = getStore().user.login.accessToken
   //   if (accessToken) {
   //     dispatch(fetchFavoriteWines(userId, accessToken))
   //   }
@@ -49,18 +47,18 @@ export const WineList = () => {
 
 
   useEffect(() => {
-    dispatch(fetchWineList(sort))
+    dispatch(fetchWineList(sort)) // Testing to comment out and replace with the new thunk. (to combine sort & search). Did not work.
     if (accessToken && userId) { // tested to remove dispatch fetch favorite... (and dispatch from dependencies) and adding fetch favorites on winecard instead--> gets infinite loop
       dispatch(fetchFavoriteWines(userId, accessToken))
       // getFavorites() // (no difference if I call getFavorites above or include dispatch in useEffect instead)
     }
   }, [sort, userId, dispatch, accessToken])
-  // [sort, dispatch, userId, accessToken]
 
   let wineSearchResults = winesList
   if (searchResult.length > 0) {
     wineSearchResults = searchResult
   }
+  console.log(winesList)
   console.log('searchResult:', searchResult)
   console.log('wineSearchResults', wineSearchResults)
 
@@ -73,6 +71,7 @@ export const WineList = () => {
       <SearchBar />
       <ButtonsWrapper>
         {/* Add filter buttons here */}
+        {(searchResult.length >= 27) && 
         <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel id="demo-simple-select-outlined-label">Sort</InputLabel>
           <Select
@@ -92,7 +91,7 @@ export const WineList = () => {
             <MenuItem value="average_price_desc">Highest avg. price</MenuItem>
             <MenuItem value="average_price_asc">Lowest avg. price</MenuItem>
           </Select>
-        </FormControl>
+        </FormControl>}
       </ButtonsWrapper>
       <section>
         {wineSearchResults && wineSearchResults.map((wine) => (

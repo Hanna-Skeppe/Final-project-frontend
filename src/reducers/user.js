@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { ui } from './ui'
 import { USERS_URL, SESSIONS_URL, USER_LOGOUT } from '../urls'
+// import { fetchWineList } from './wines'
 
 const initialState = {
   login: {

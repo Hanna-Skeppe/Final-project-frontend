@@ -3,6 +3,7 @@ import { Provider } from 'react-redux'
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
+import { producers } from './reducers/producers'
 import { user } from './reducers/user'
 import { ui } from './reducers/ui'
 import { wines } from './reducers/wines'
@@ -14,7 +15,7 @@ import { RegistrationPage } from './pages/RegistrationPage'
 
 const reducer = combineReducers({
   wines: wines.reducer,
-  // producers: producers.reducer,
+  producers: producers.reducer,
   user: user.reducer,
   ui: ui.reducer
 })

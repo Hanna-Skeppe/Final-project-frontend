@@ -1,5 +1,5 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable spaced-comment */
-
 import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
@@ -10,15 +10,13 @@ import {
   CardImageWrapper
 } from '../components/lib/Containers'
 
-//Heading: all wines from {producername}
-
 export const WinesFromSingleProducerPage = () => {
   const [producerWines, setProducerWines] = useState()
   const [singleProducer, setSingleProducer] = useState()
   const { id } = useParams()
 
   useEffect(() => {
-    const SINGLE_PRODUCER_WINES_URL = `http://localhost:8080/producers/${id}/wines` // How do I get the _id in here? It's undefined now. Props?
+    const SINGLE_PRODUCER_WINES_URL = `http://localhost:8080/producers/${id}/wines`
 
     fetch(SINGLE_PRODUCER_WINES_URL, {
       method: 'GET',
@@ -37,7 +35,7 @@ export const WinesFromSingleProducerPage = () => {
   }, [id])
 
   useEffect(() => {
-    const SINGLE_PRODUCER_URL = `http://localhost:8080/producers/${id}` // How do I get the _id in here? It's undefined now. Props?
+    const SINGLE_PRODUCER_URL = `http://localhost:8080/producers/${id}`
 
     fetch(SINGLE_PRODUCER_URL, {
       method: 'GET',

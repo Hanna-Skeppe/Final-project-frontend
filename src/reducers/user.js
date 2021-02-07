@@ -177,11 +177,8 @@ export const signUp = (name, surname, email, password) => {
   }
 }
 
-// LOGOUT (GETS error 401 'unauthorized' in console, but can still log out.
-// Why? Because accesstoken is removed before checkad & protected endpoint?
-// But it shouldn't be, because I get it from the store before the fetch???)
+// LOGOUT
 export const logoutUser = (accessToken) => {
-  // const { accessToken } = getStore().user.login.accessToken
   return (dispatch) => {
     fetch(USER_LOGOUT, {
       method: 'POST',

@@ -4,59 +4,43 @@ import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/macro'
 
-import { signUp } from '../reducers/user'
+import { loginUser } from '../reducers/user'
 
-export const RegistrationPage = () => {
-  const [name, setName] = useState('')
-  const [surname, setSurname] = useState('')
+export const LoginPageMobile = () => {
+  
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
-  const [registered, setRegistered] = useState(false)
+  const failed = useSelector((store) => store.ui.isLoginFailed) 
 
   const errorMessage = useSelector(store => store.user.login.errorMessage)
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => { 
     event.preventDefault()
-    dispatch(signUp(name, surname, email, password))
-    setName('')
-    setSurname('')
+    dispatch(loginUser(email, password)) 
     setEmail('')
     setPassword('')
-    setRegistered(true)
+    history.push(`/`)
   }
 
-  const redirectHome = () => {
-    history.push(`/`)
+  const handleKeyPressLogin = (event) => { 
+    if (event.key === 'Enter') {
+      event.preventDefault()
+      dispatch(loginUser(email, password)) 
+      setEmail('')
+      setPassword('')
+      history.push(`/`)
+    }
   }
 
   return (
     <FormContainer>
       <HeaderTextContainer> 
-      {registered
-        ? <PageHeader>Registration was successful. You are now logged in!</PageHeader>
-        : <PageHeader>Create Account</PageHeader>}
+      <PageHeader>Login</PageHeader>}
       </HeaderTextContainer>
-      {!registered && (
+      {/* {!registered && ( */}
         <Form onSubmit={handleSubmit}>
-          <Label>
-            * Name
-            <Input
-              type="text"
-              required="true"
-              value={name}
-              placeholder="Type your name"
-              onChange={(event) => setName(event.target.value)} />
-          </Label>
-          <Label>
-            Surname
-            <Input
-              type="text"
-              value={surname}
-              placeholder="Type your surname"
-              onChange={(event) => setSurname(event.target.value)} />
-          </Label>
           <Label>
             * Email
             <Input
@@ -75,18 +59,19 @@ export const RegistrationPage = () => {
             value={password}
             minLength={5}
             placeholder="Type your password (min. 6 characters)."
-            onChange={event => setPassword(event.target.value)} />
+            onChange={event => setPassword(event.target.value)} 
+            onKeyPress={handleKeyPressLogin}/>
           </Label>
           <Button
             type="submit"
-            disabled={!name || !email || password.length < 5}
+            disabled={!email || password.length < 5}
             onSubmit={handleSubmit}
           >
-            Sign Up
+            Log in
           </Button>
-        </Form>)}
+        </Form>
         {errorMessage && <h3>{errorMessage}</h3>}
-        {registered && <Button type="button" onClick={redirectHome}>Back To Home</Button>}
+        {failed && <ErrorMessage>Login failed. Try again.</ErrorMessage>}
     </FormContainer>
   )
 }

@@ -93,7 +93,7 @@ export const PopoverLogin = () => {
             Email
             <Input
               type="email"
-              required
+              required="true"
               value={email}
               placeholder="example@email.com"
               onChange={(event) => setEmail(event.target.value.toLowerCase())}
@@ -103,7 +103,7 @@ export const PopoverLogin = () => {
             Password
             <Input
               type="password"
-              required
+              required="true"
               value={password}
               placeholder="type your password (min. 5 characters)"
               onChange={(event) => setPassword(event.target.value)}

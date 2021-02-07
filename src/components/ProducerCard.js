@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
 import React from 'react'
 import styled from 'styled-components/macro'
-// import { Link } from 'react-router-dom'
 
 import { CardLink } from './lib/Links'
 
@@ -34,7 +33,7 @@ export const ProducerCard = ({
     </CardContainer>
   )
 }
-// include lik to single producer-page on card.
+
 const TextDiv = styled.div`
   display: flex;
   flex-direction: column;

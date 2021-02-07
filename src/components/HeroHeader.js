@@ -2,8 +2,6 @@ import styled from 'styled-components/macro'
 import React from 'react'
 import video from '../videos/green_grapes.mp4'
 
-// import { HeroHeaderText } from './lib/Text'
-
 export const HeroHeader = () => {
   return (
     <HeroContainer>

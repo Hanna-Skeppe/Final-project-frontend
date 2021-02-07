@@ -17,7 +17,7 @@ export const HeroHeader = () => {
 }
 
 const HeroContainer = styled.section`
-  height: 70vh;
+  height: 50vh;
   width: 100vw;
   position: relative;
   display: flex;

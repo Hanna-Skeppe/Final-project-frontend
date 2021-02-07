@@ -1,12 +1,10 @@
 /* eslint-disable */
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 import { NavbarContainer } from './lib/Containers'
 import { NavSpan } from './lib/Text'
 import { NavbarLink } from './lib/Links'
-// import { user } from '../reducers/user'
-// import { ui } from '../reducers/ui'
 import { PopoverLogin } from './PopoverLogin'
 import { Logout } from './Logout'
 
@@ -38,7 +36,7 @@ export const NavbarMain = () => {
       </Link>
       <span>|</span> */}
       <>
-      <NavbarLink to="/producers" activeStyle={{ color: '#C9C4C4', textDecoration: 'underline' }} >
+      <NavbarLink to="/producers" exact={true} activeStyle={{ color: '#C9C4C4', textDecoration: 'underline' }} >
         Wine Producers
       </NavbarLink>
       </>
@@ -52,7 +50,7 @@ export const NavbarMain = () => {
           <NavSpan>|</NavSpan>
           <Logout />
           <NavSpan>|</NavSpan>
-          <NavbarLink to="/users/:id/collection" activeStyle={{ color: '#C9C4C4', textDecoration: 'underline' }}>
+          <NavbarLink to={`/users/${userId}/collection`} activeStyle={{ color: '#C9C4C4', textDecoration: 'underline' }}>
             {name}'s Page
           </NavbarLink>
         </>}

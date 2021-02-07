@@ -4,7 +4,7 @@ import { PRODUCERS_URL } from '../urls'
 // EXAMPLE: http://localhost:8080/producers/600d890d1a4d7a09c404308/wines
 
 const initialState = {
-  producers: [{}],
+  producers: [],
   errorMessage: ''
 }
 

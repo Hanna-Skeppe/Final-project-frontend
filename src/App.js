@@ -10,6 +10,7 @@ import { wines } from './reducers/wines'
 import { NavbarMain } from './components/NavbarMain'
 import { Home } from './pages/Home'
 import { ProducersPage } from './pages/ProducersPage'
+import { WinesFromSingleProducerPage } from './pages/WinesFromSingleProducerPage'
 import { UserPage } from './pages/UserPage'
 import { RegistrationPage } from './pages/RegistrationPage'
 
@@ -25,16 +26,17 @@ const store = configureStore({ reducer })
 export const App = () => {
   return (
     /*
-      <Route path="/producers/:id/wines" exact component={SingleProducerPage} />
+      <Route path="/producers/:id/" exact component={SingleProducerPage} />
      */
     <Provider store={store}>
       <BrowserRouter>
         <NavbarMain />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/register" component={RegistrationPage} />
-          <Route path="/producers" component={ProducersPage} />
-          <Route path="/users/:id/collection" component={UserPage} />
+          <Route path="/register" exact component={RegistrationPage} />
+          <Route path="/producers" exact component={ProducersPage} />
+          <Route path="/singleproducer/:id/wines" exact component={WinesFromSingleProducerPage} />
+          <Route path="/users/:id/collection" exact component={UserPage} />
         </Switch>
       </BrowserRouter>
     </Provider>

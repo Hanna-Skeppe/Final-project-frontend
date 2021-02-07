@@ -36,7 +36,7 @@ export const WineList = () => {
   // console.log('Winelist favoriteWines', favoriteWines)
   const accessToken = useSelector((store) => store.user.login.accessToken)
   const userId = useSelector((store) => store.user.login.userId)
-
+  
   // const [favoriteWines, setFavoriteWines] = useState([])
 
   // const getFavorites = () => {

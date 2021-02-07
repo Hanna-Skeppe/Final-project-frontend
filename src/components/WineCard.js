@@ -116,8 +116,7 @@ export const WineCard = ({
             <CardText>{country}</CardText>
             <CardText>{origin}</CardText>
             <CardText>
-              <CardLink to="/producers">
-                {/* replace this with a link to individual produer page */}
+              <CardLink to={`/singleproducer/${producer._id}/wines`}>
                 {producer.producer_name}
               </CardLink>
             </CardText>

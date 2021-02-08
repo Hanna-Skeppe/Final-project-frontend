@@ -32,25 +32,14 @@ export const WineList = () => {
   const searchResult = useSelector((store) => store.wines.wines)
   const [sort, setSort] = useState('')
   const dispatch = useDispatch()
-  // const favoriteWines = useSelector((store) => store.user.userActions.favoriteWines)
-  // console.log('Winelist favoriteWines', favoriteWines)
   const accessToken = useSelector((store) => store.user.login.accessToken)
   const userId = useSelector((store) => store.user.login.userId)
-  
-  // const [favoriteWines, setFavoriteWines] = useState([])
-
-  // const getFavorites = () => {
-  //   if (accessToken) {
-  //     dispatch(fetchFavoriteWines(userId, accessToken))
-  //   }
-  // }
-
+  const favoriteWines = useSelector((store) => store.user.userActions.favoriteWines)
 
   useEffect(() => {
-    dispatch(fetchWineList(sort)) // Testing to comment out and replace with the new thunk. (to combine sort & search). Did not work.
-    if (accessToken && userId) { // tested to remove dispatch fetch favorite... (and dispatch from dependencies) and adding fetch favorites on winecard instead--> gets infinite loop
+    dispatch(fetchWineList(sort))
+    if (accessToken && userId) {
       dispatch(fetchFavoriteWines(userId, accessToken))
-      // getFavorites() // (no difference if I call getFavorites above or include dispatch in useEffect instead)
     }
   }, [sort, userId, dispatch, accessToken])
 
@@ -93,16 +82,24 @@ export const WineList = () => {
           </Select>
         </FormControl>}
       </ButtonsWrapper>
-      <section>
+      <WineListWrapper>
         {wineSearchResults && wineSearchResults.map((wine) => (
           <WineCard
+            isFavorite={favoriteWines.find((favorite) => favorite._id === wine._id)}
             key={wine._id}
             {...wine} />
         ))}
-      </section>
+      </WineListWrapper>
     </>
   )
 }
+
+const WineListWrapper = styled.section`
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+`
+
 
 const ButtonsWrapper = styled.div`
   width: 100vw;

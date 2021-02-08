@@ -1,16 +1,17 @@
 /* eslint-disable operator-linebreak */
 /* eslint-disable camelcase */
 /* eslint-disable no-underscore-dangle */
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components/macro'
 import { NavLink } from 'react-router-dom'
 
-import { fetchFavoriteWines, addFavoriteWine, removeFavoriteWine } from 'reducers/user'
+import { addFavoriteWine, removeFavoriteWine } from 'reducers/user'
 import { CardContainer, CardImageWrapper } from './lib/Containers'
 import { CardTitle } from './lib/Text'
 
 export const WineCard = ({
+  isFavorite,
   _id,
   name,
   image_url,
@@ -28,35 +29,17 @@ export const WineCard = ({
 }) => {
   const userId = useSelector((store) => store.user.login.userId)
   const accessToken = useSelector((store) => store.user.login.accessToken)
-  const favoriteWines = useSelector((store) => store.user.userActions.favoriteWines)
-  // const wines = useSelector((store) => store.wines.wines)
   const dispatch = useDispatch()
-  const [isFavorite, setIsFavorite] = useState(false)
 
   const handleAddFavorite = (event) => {
     event.preventDefault()
     dispatch(addFavoriteWine(userId, accessToken, _id))
-    setIsFavorite(true)
   }
 
   const handleRemoveFavorite = (event) => {
     event.preventDefault()
     dispatch(removeFavoriteWine(userId, accessToken, _id))
-    setIsFavorite(false) // added this here but did not affect text on button on remove.Why?
-    // dispatch(fetchFavoriteWines(userId, accessToken)) // this did not work to change text on button on remove
   }
-
-  useEffect(() => {
-    // dispatch(fetchFavoriteWines(userId, accessToken)) // --> I get an infinite loop if i comment in this! <--
-    favoriteWines.map((wine) => {
-      if (wine._id === _id) {
-        return (
-          setIsFavorite(true)
-        )
-      }
-    })
-  }, [isFavorite, accessToken, userId, favoriteWines, dispatch, _id]) // Why doesn't this trigger when favoriteWines is changed?
-  // [favoriteWines, _id, isFavorite, accessToken, dispatch, userId]
 
   return (
     <CardContainer>
@@ -68,23 +51,10 @@ export const WineCard = ({
           <CardTitle>{name}</CardTitle>
           {accessToken &&
             <>
-              {/* {favoriteWines.map((favorite) => {
-                if (favorite._id === _id) {
-                  return (
-                    <button
-                      key={favorite._id}
-                      type="submit"
-                      onClick={handleRemoveFavorite}
-                    >Remove from favorites
-                    </button>
-                  )
-                }
-              }
-              )} */}
               {isFavorite &&
                 <button
                   type="submit"
-                  onClick={handleRemoveFavorite} // Why doesn't this button work on the first click on home? On second click the remove-thunk is called. Why? 
+                  onClick={handleRemoveFavorite}
                 >Remove from favorites
                 </button>}
               {!isFavorite &&

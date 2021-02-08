@@ -46,6 +46,7 @@ export const UserPage = () => {
       <section>
         {accessToken && favoriteWines.map((wine) => (
           <WineCard
+            isFavorite="true"
             key={wine._id}
             {...wine} />
         ))}

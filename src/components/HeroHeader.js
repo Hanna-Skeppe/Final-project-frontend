@@ -35,7 +35,7 @@ const HeroOverlay = styled.div`
 const HeroHeaderText = styled.h1`
   font-family: 'Montserrat', sans-serif;
   color: #fff;
-  font-size: 128px;
+  font-size: 98px;
   font-weight: 600;
   text-align: center;
   letter-spacing: 2px;

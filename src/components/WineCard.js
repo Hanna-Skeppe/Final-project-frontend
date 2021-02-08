@@ -52,17 +52,17 @@ export const WineCard = ({
           {accessToken &&
             <>
               {isFavorite &&
-                <button
+                <FavoriteButton
                   type="submit"
                   onClick={handleRemoveFavorite}
                 >Remove from favorites
-                </button>}
+                </FavoriteButton>}
               {!isFavorite &&
-                <button
+                <FavoriteButton
                   type="submit"
                   onClick={handleAddFavorite}
                 >Add to favorites
-                </button>}
+                </FavoriteButton>}
             </>}
         </TopTextWrapper>
         <RatingsWrapper>
@@ -165,3 +165,24 @@ const CardLink = styled(NavLink)`
     color: #C9C4C4;
   }
   `
+
+const FavoriteButton = styled.button`
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  background: #7d5143;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 8px 8px 8px 0;
+  padding: 16px;
+  letter-spacing: 1px;
+  transition: .5s ease;
+  &:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    background: #7d5143;
+  }
+`
+

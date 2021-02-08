@@ -7,6 +7,7 @@ import { NavSpan } from './lib/Text'
 import { NavbarLink } from './lib/Links'
 import { PopoverLogin } from './PopoverLogin'
 import { Logout } from './Logout'
+import { Hamburger } from './Hamburger'
 
 export const NavbarMain = () => {
   const accessToken = useSelector((store) => store.user.login.accessToken)
@@ -22,6 +23,7 @@ export const NavbarMain = () => {
   return (
     <NavbarContainer>
       <>
+      <Hamburger />
       <NavbarLink to="/" exact={true} activeStyle={{ color: '#C9C4C4', textDecoration: 'underline' }}> 
         Home
       </NavbarLink>

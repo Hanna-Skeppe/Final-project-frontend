@@ -15,6 +15,9 @@ text-decoration: none;
   text-decoration: underline;
   color: #C9C4C4;
 }
+@media(max-width: 768px) {
+  display: none;
+}
 `
 
 export const CardLink = styled(NavLink)`

@@ -70,7 +70,7 @@ const ProducerHeaderText = styled.h1`
   text-shadow: 3px 3px 8px rgba(90,87,87,0.6);
   word-wrap; wrap;
   margin: auto;
-  z-index: 999;
+  z-index: 8;
   max-width: 85vw;
   @media(max-width: 768px) {
     max-width: 90vw;

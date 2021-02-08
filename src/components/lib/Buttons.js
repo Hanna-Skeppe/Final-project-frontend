@@ -25,6 +25,9 @@ export const LogInOutButton = styled.button.attrs({ activeClassName })`
     text-decoration: underline;
     color: #C9C4C4;
   }
+  @media(max-width: 768px) {
+    display: none;
+  }
   &.${activeClassName} {
     color: #C9C4C4;
   }

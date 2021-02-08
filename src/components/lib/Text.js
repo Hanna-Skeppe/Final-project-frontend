@@ -16,6 +16,9 @@ import styled from 'styled-components/macro'
 export const NavSpan = styled.span` 
   color: #fff;
   font-weight: bold;
+  @media(max-width: 768px) {
+    display: none;
+  }
 `
 
 export const CardTitle = styled.h3`

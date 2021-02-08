@@ -1,11 +1,15 @@
 import styled from 'styled-components/macro'
 
-export const NavbarContainer = styled.div`
- display: flex;
- align-items: center;
- height: 70px;
- justify-content: center;
- background: #879A6E;
+export const NavbarContainer = styled.header`
+  display: flex;
+  align-items: center;
+  height: 70px;
+  justify-content: center;
+  // background: #879A6E;
+  background: rgba(135, 154, 110, 0.8);
+  z-index: 7;
+  width: 100vw;
+  position: fixed;
 `
 export const CardContainer = styled.div`
   display: flex;

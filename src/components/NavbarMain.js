@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React from 'react'
 import { useSelector } from 'react-redux'
+import styled from 'styled-components/macro'
 
 import { NavbarContainer } from './lib/Containers'
 import { NavSpan } from './lib/Text'
@@ -22,6 +23,7 @@ export const NavbarMain = () => {
   
   return (
     <NavbarContainer>
+      <Nav> 
       <>
       <Hamburger />
       <NavbarLink to="/" exact={true} activeStyle={{ color: '#C9C4C4', textDecoration: 'underline' }}> 
@@ -56,8 +58,15 @@ export const NavbarMain = () => {
             {name}'s Page
           </NavbarLink>
         </>}
+        </Nav> 
     </NavbarContainer>
   )
 }
+
+const Nav = styled.nav`
+  top: 0px;
+  margin: 0px;
+  overflow: hidden;
+`
 
 

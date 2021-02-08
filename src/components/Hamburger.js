@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
 
 import { Logout } from './Logout'
@@ -9,7 +9,6 @@ export const HamburgerMenu = ({ open, setOpen }) => {
   const name = useSelector((store) => store.user.login.name)
   const accessToken = useSelector((store) => store.user.login.accessToken)
   const userId = useSelector((store) => store.user.login.userId)
-  const dispatch = useDispatch()
 
   return (
     <>

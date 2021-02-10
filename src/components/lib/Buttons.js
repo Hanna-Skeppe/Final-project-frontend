@@ -23,7 +23,8 @@ export const LogInOutButton = styled.button.attrs({ activeClassName })`
   &:hover {
     cursor: pointer;
     text-decoration: underline;
-    color: #C9C4C4;
+    // color: #C9C4C4;
+    color: #ce796b;
   }
   @media(max-width: 768px) {
     display: none;

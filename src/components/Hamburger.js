@@ -79,8 +79,8 @@ export const Hamburger = () => {
 
 export const HamburgerWrap = styled.div`
   display: inline-block;
-  z-index: 10;
-@media(min-width: 768px) {
+  z-index: 15;
+@media(min-width: 769px) {
   display: none;
 }
 `
@@ -96,14 +96,14 @@ export const StyledBurger = styled.button`
   left: 2rem;
   padding: 0;
   position: absolute;
-  top: 2.5%;
+  top: 18px;
   width: 2rem;
-  z-index: 12;
+  z-index: 16;
   &:focus {
     outline: none;
   }
   div {
-    background: ${({ open }) => (open ? '#EFFFFA' : '#EFFFFA')};
+    background: ${({ open }) => (open ? '#ffffff' : '#ffffff')};
     border-radius: 10px;
     height: 0.25rem;
     position: relative;
@@ -124,7 +124,7 @@ export const StyledBurger = styled.button`
 `
 
 export const StyledMenu = styled.nav`
-  background: #879a6e;
+  background: #44515f;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -136,13 +136,13 @@ export const StyledMenu = styled.nav`
   top: 0;
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
   transition: transform 0.3s ease-in-out;
-  z-index: 10;
+  z-index: 15;
   width: 75%;
   @media(max-width: 500px) {
     width: 100%;
   }
   a {
-    color: #EFFFFA;
+    color: #ffffff;
     font-family: 'Montserrat',sans-serif;
     font-size: 2rem;
     font-weight: bold;
@@ -151,7 +151,7 @@ export const StyledMenu = styled.nav`
     text-decoration: underline;
     transition: color 0.3s linear;
     &:hover {
-      color: #343078;
+      color: #ce796b;
     }
   }
 `

@@ -7,24 +7,28 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 
 import { searchResult } from '../reducers/wines'
 
 // from material ui:
 const useStyles = makeStyles((theme) => ({
   root: {
+    margin: 0,
     display: 'flex',
     flexWrap: 'wrap',
     fontSize: '20px',
     '& .MuiTextField-root': {
-      margin: theme.spacing(1),
+      // margin: theme.spacing(1),
+      margin: 0,
+      borderRadius: 0,
       width: '300',
       fontSize: '20px',
     },
   },
   textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
+    // marginLeft: theme.spacing(1),
+    // marginRight: theme.spacing(1),
     width: '25ch',
     fontSize: '20px',
   },
@@ -59,7 +63,7 @@ export const SearchBar = () => {
               placeholder="Search..."
               type="search"
               fullWidth
-              margin="normal"
+              // margin="normal"
               InputLabelProps={{
                 shrink: true,
               }}
@@ -68,13 +72,15 @@ export const SearchBar = () => {
               onChange={(event) => setSearchTerm(event.target.value)}
               autoComplete="off"
               spellCheck="false"
-              InputProps={{
-                startAdornment: <InputAdornment position="start"><SearchIcon /></InputAdornment>,
-              }} />
+              // InputProps={{
+              //   startAdornment: <InputAdornment position="start"><SearchIcon /></InputAdornment>,
+              // }} 
+              />
             <SearchButton
               type="submit"
               onSubmit={handleSubmit}>
-              Search
+              
+              <SearchOutlinedIcon style={{ fontSize: 36, fill: '#ffffff' }}/>
             </SearchButton>
           </InputTextDiv>
         </div>
@@ -86,7 +92,8 @@ export const SearchBar = () => {
 
 const SearchHeading = styled.h3`
   font-family: 'Montserrat', sans-serif;
-  color: #7d5143;
+  // color: #7d5143;
+  color: #827e7c;
   font-size: 2rem;
   margin: 0;
   padding: 0;
@@ -102,15 +109,18 @@ const InputTextDiv = styled.div`
 const SearchButton = styled.button`
   border: none;
   border-radius: 5px;
-  color: #fff;
-  background: #7d5143;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 20px;
-  text-transform: uppercase;
-  font-weight: 700;
+  // color: #fff;
+  // background: #7d5143;
+  // background: #827e7c; grey
+  background: #44515f;
+  // background: none;
+  // font-family: 'Montserrat', sans-serif;
+  // font-size: 20px;
+  // text-transform: uppercase;
+  // font-weight: 700;
   margin: 8px 8px 8px 0;
-  padding: 16px;
-  letter-spacing: 1px;
+  padding: 9px 16px;
+  // letter-spacing: 1px;
 `
 
 const SearchWrapper = styled.div`

@@ -5,6 +5,9 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components/macro'
 import { NavLink } from 'react-router-dom'
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
+import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 
 import { addFavoriteWine, removeFavoriteWine } from 'reducers/user'
 import { CardContainer, CardImageWrapper } from './lib/Containers'
@@ -52,16 +55,17 @@ export const WineCard = ({
           {accessToken &&
             <>
               {isFavorite &&
+              <>
                 <FavoriteButton
                   type="submit"
                   onClick={handleRemoveFavorite}
-                >Remove from favorites
-                </FavoriteButton>}
+                ><FavoriteOutlinedIcon style={{ fontSize: 48, fill: '#CE796B' }} />
+                </FavoriteButton></>}
               {!isFavorite &&
                 <FavoriteButton
                   type="submit"
                   onClick={handleAddFavorite}
-                >Add to favorites
+                ><FavoriteBorderOutlinedIcon color="disabled" style={{ fontSize: 48, fill: '#CE796B' }} />
                 </FavoriteButton>}
             </>}
         </TopTextWrapper>
@@ -103,6 +107,7 @@ export const WineCard = ({
     </CardContainer >
   )
 }
+// Darkred #811b23
 
 const CardImage = styled.img`
   width: 100%;
@@ -136,6 +141,7 @@ const RatingText = styled.p`
   margin: 10px;
   font-family: 'Montserrat', sans-serif;
   text-align: left;
+  color: #3a3a3a;
 `
 const TextSubWrapper = styled.div`
   display: flex;
@@ -148,41 +154,46 @@ const CardTextTitle = styled.p`
   margin: 0 15px 0 0;
   font-size: 18px;
   text-align: right;
+  // color: #827e7c; hm group
+  color:#44515f;
 `
 const CardText = styled.p`
   font-size: 18px;
   font-weight: 400;
   text-align: left;
   margin: 0;
+  color: #3a3a3a;
 `
 
 const CardLink = styled(NavLink)`
   font-weight: bold;
-  color: #000;
+  color: #3a3a3a;
   &:hover {
     cursor: pointer;
     text-decoration: underline;
-    color: #C9C4C4;
+    // color: #C9C4C4;
+    color: #ce796b;
   }
   `
 
 const FavoriteButton = styled.button`
   border: none;
   border-radius: 5px;
-  color: #fff;
-  background: #7d5143;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
-  text-transform: uppercase;
-  font-weight: 700;
+  //color: #fff;
+  // background: #7d5143;
+  background: transparent;
+  // font-family: 'Montserrat', sans-serif;
+  // font-size: 16px;
+  // text-transform: uppercase;
+  // font-weight: 700;
   margin: 8px 8px 8px 0;
   padding: 16px;
-  letter-spacing: 1px;
+  // letter-spacing: 1px;
   transition: .5s ease;
   &:hover {
     transform: scale(1.1);
     cursor: pointer;
-    background: #7d5143;
+    // background: #7d5143;
   }
 `
 

@@ -23,10 +23,12 @@ export const NavSpan = styled.span`
 
 export const CardTitle = styled.h3`
   font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 32px;
   text-decoration: underline;
   text-align: left;
   margin: 10px 10px 10px 30px;
+  // color: #827e7c; hm group
+  color: #44515f;
 `
 

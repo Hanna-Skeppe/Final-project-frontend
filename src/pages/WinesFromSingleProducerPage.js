@@ -2,6 +2,7 @@
 /* eslint-disable spaced-comment */
 import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components/macro'
 
 import { WineCard } from '../components/WineCard'
@@ -15,6 +16,7 @@ import {
 export const WinesFromSingleProducerPage = () => {
   const [producerWines, setProducerWines] = useState()
   const [singleProducer, setSingleProducer] = useState()
+  const favoriteWines = useSelector((store) => store.user.userActions.favoriteWines)
   const { id } = useParams()
 
   useEffect(() => {
@@ -93,6 +95,7 @@ export const WinesFromSingleProducerPage = () => {
         <div>
           {producerWines && producerWines.map((wine) => (
             <WineCard
+              isFavorite={favoriteWines.find((favorite) => favorite._id === wine._id)}
               key={wine._id}
               {...wine} />
           ))}

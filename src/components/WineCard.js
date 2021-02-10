@@ -5,7 +5,6 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components/macro'
 import { NavLink } from 'react-router-dom'
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 
@@ -55,12 +54,11 @@ export const WineCard = ({
           {accessToken &&
             <>
               {isFavorite &&
-              <>
                 <FavoriteButton
                   type="submit"
                   onClick={handleRemoveFavorite}
                 ><FavoriteOutlinedIcon style={{ fontSize: 48, fill: '#CE796B' }} />
-                </FavoriteButton></>}
+                </FavoriteButton>}
               {!isFavorite &&
                 <FavoriteButton
                   type="submit"
@@ -71,7 +69,7 @@ export const WineCard = ({
         </TopTextWrapper>
         <RatingsWrapper>
           <RatingText>Average rating: {average_rating}</RatingText>
-          <RatingText>Rate this wine: ⭐️ ⭐️ ⭐️ ⭐️ ⭐️</RatingText>
+          <RatingText>Rate this wine: <span role="img"> ⭐️  ⭐️  ⭐️  ⭐️  ⭐️ </span></RatingText>
         </RatingsWrapper>
         <InfoTextWrapper>
           <TextSubWrapper>
@@ -119,6 +117,7 @@ const CardImage = styled.img`
 const TopTextWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `
 const RatingsWrapper = styled.div`
   display: flex;
@@ -142,6 +141,10 @@ const RatingText = styled.p`
   font-family: 'Montserrat', sans-serif;
   text-align: left;
   color: #3a3a3a;
+  @media(max-width: 768px) {
+    font-size: 18px;
+    margin-top: 0;
+  }
 `
 const TextSubWrapper = styled.div`
   display: flex;
@@ -187,7 +190,7 @@ const FavoriteButton = styled.button`
   // text-transform: uppercase;
   // font-weight: 700;
   margin: 8px 8px 8px 0;
-  padding: 16px;
+  padding: 0;
   // letter-spacing: 1px;
   transition: .5s ease;
   &:hover {

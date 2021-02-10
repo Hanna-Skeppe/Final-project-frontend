@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import styled from 'styled-components/macro'
 
 import { WineCard } from 'components/WineCard'
 import { fetchFavoriteWines } from '../reducers/user'
@@ -43,14 +44,25 @@ export const UserPage = () => {
             </RedirectHomeButton>
           </>}
       </div>
-      <section>
+      <UserListWrapper>
         {accessToken && favoriteWines.map((wine) => (
           <WineCard
             isFavorite="true"
             key={wine._id}
             {...wine} />
         ))}
-      </section>
+      </UserListWrapper>
     </>
   )
 }
+
+const UserListWrapper = styled.section`
+  max-width: 70vw;
+  margin: auto;
+  @media (max-width: 1024px) {
+    max-width: 90vw;
+  }
+  @media (max-width: 768px) {
+    max-width: 95vw;
+  }
+`

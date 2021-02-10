@@ -30,5 +30,9 @@ export const CardTitle = styled.h3`
   margin: 10px 10px 10px 30px;
   // color: #827e7c; hm group
   color: #44515f;
+  @media(max-width: 768px) {
+    font-size: 26px;
+    margin: 10px;
+  }
 `
 

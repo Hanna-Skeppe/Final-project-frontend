@@ -16,13 +16,10 @@ export const NavbarContainer = styled.header`
 `
 export const CardContainer = styled.div`
   display: flex;
-  margin: 20px auto;
-  width: 90vw;
-  max-width: 1100px;
+  margin: 20px;
   height: 450px;
-
+  max-height: 100%;
   background: #f2f2f2; 
-  
   box-shadow: 3px 3px 8px rgba(90,87,87,0.6);
 `
 export const CardImageWrapper = styled.div`

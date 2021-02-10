@@ -5,11 +5,12 @@ import { useHistory } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
-import SearchIcon from '@material-ui/icons/Search';
-import InputAdornment from '@material-ui/core/InputAdornment';
+// import SearchIcon from '@material-ui/icons/Search';
+// import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 
-import { searchResult } from '../reducers/wines'
+import { wines } from '../reducers/wines'
+import { fetchWineResults } from '../reducers/wines'
 
 // from material ui:
 const useStyles = makeStyles((theme) => ({
@@ -36,18 +37,18 @@ const useStyles = makeStyles((theme) => ({
 
 export const SearchBar = () => {
   const errorMessage = useSelector((store) => store.wines.errorMessage)
-  const [searchTerm, setSearchTerm] = useState('')
   const dispatch = useDispatch()
-  const history = useHistory()
+  // const history = useHistory()
   const classes = useStyles();
-
+  const searchTerm = useSelector((store) => store.wines.searchTerm)
+  const sortOrder = useSelector((store) => store.wines.sortOrder)
 
   const handleSubmit = (event) => {
     event.preventDefault()
     if (searchTerm.length > 0) {
-      dispatch(searchResult(searchTerm))
-      setSearchTerm('')
-      history.push(`/`)
+      dispatch(fetchWineResults(searchTerm, sortOrder))
+      // dispatch(wines.actions.setSearchTerm(''))
+      // history.push(`/`)
     }
   }
 
@@ -69,7 +70,7 @@ export const SearchBar = () => {
               }}
               variant="outlined"
               value={searchTerm}
-              onChange={(event) => setSearchTerm(event.target.value)}
+              onChange={(event) => dispatch(wines.actions.setSearchTerm(event.target.value))}
               autoComplete="off"
               spellCheck="false"
               // InputProps={{

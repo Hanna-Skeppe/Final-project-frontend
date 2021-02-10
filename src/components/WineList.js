@@ -1,7 +1,7 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable no-underscore-dangle */
 import styled from 'styled-components/macro'
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -12,9 +12,9 @@ import Select from '@material-ui/core/Select';
 import { SearchBar } from './SearchBar'
 import { WineCard } from './WineCard'
 // import { WINES_URL } from '../urls'
-// import { wines } from '../reducers/wines'
+import { wines } from '../reducers/wines'
 import { fetchFavoriteWines } from '../reducers/user'
-import { fetchWineList } from '../reducers/wines'
+import { fetchWineResults } from '../reducers/wines'
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -28,45 +28,53 @@ const useStyles = makeStyles((theme) => ({
 
 export const WineList = () => {
   const classes = useStyles();
-  const [winesList, setWinesList] = useState([]) // useState stores the json so that I can map the results
+  const winesList = useSelector((store) => store.wines.wines)
   const searchResult = useSelector((store) => store.wines.wines)
-  const [sort, setSort] = useState('')
+  const searchTerm = useSelector((store) => store.wines.searchTerm)
+  const sortOrder = useSelector((store) => store.wines.sortOrder)
   const dispatch = useDispatch()
   const accessToken = useSelector((store) => store.user.login.accessToken)
   const userId = useSelector((store) => store.user.login.userId)
   const favoriteWines = useSelector((store) => store.user.userActions.favoriteWines)
+  const errorMessage = useSelector((store) => store.wines.errorMessage)
 
   useEffect(() => {
-    dispatch(fetchWineList(sort))
+    dispatch(fetchWineResults(searchTerm, sortOrder))
     if (accessToken && userId) {
       dispatch(fetchFavoriteWines(userId, accessToken))
     }
-  }, [sort, userId, dispatch, accessToken])
+  }, [sortOrder, userId, dispatch, accessToken])
 
-  let wineSearchResults = winesList
-  if (searchResult.length > 0) {
-    wineSearchResults = searchResult
-  }
+  // const wineSearchResults = winesList
+  // if (searchResult.length > 0) {
+  //   wineSearchResults = searchResult
+  // }
   console.log(winesList)
-  console.log('searchResult:', searchResult)
-  console.log('wineSearchResults', wineSearchResults)
+  // console.log('searchResult:', searchResult)
+  // console.log('wineSearchResults', wineSearchResults)
 
   const handleSortChange = (event) => {
-    setSort(event.target.value)
+    dispatch(wines.actions.setSortOrder(event.target.value))
+  }
+
+  const handleBackClick = () => {
+    window.location.reload() // is there a better way to go back to all wines without using reload?
+    dispatch(wines.actions.setSearchTerm(''))
   }
 
   return (
     <>
       <SearchBar />
       <ButtonsWrapper>
-        {/* Add filter buttons here */}
-        {(searchResult.length >= 27) && 
+        {/* Add filter buttons here  */}
+        {/* (searchResult.length >= 27)  */}
+        {searchResult &&
         <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel id="demo-simple-select-outlined-label">Sort</InputLabel>
           <Select
             labelId="demo-simple-select-outlined-label"
             id="demo-simple-select-outlined"
-            value={sort}
+            value={sortOrder}
             onChange={handleSortChange}
             label="Sort"
           >
@@ -81,9 +89,16 @@ export const WineList = () => {
             <MenuItem value="average_price_asc">Lowest avg. price</MenuItem>
           </Select>
         </FormControl>}
+        {(searchTerm.length > 0) && 
+        <button
+          type="button"
+          onClick={() => handleBackClick()}
+        >Back to all wines
+        </button>}
       </ButtonsWrapper>
+      {searchTerm && !errorMessage && (winesList.length < 26) ? <h3>Results for: {searchTerm}</h3> : ''}
       <WineListWrapper>
-        {wineSearchResults && wineSearchResults.map((wine) => (
+        {winesList && winesList.map((wine) => (
           <WineCard
             isFavorite={favoriteWines.find((favorite) => favorite._id === wine._id)}
             key={wine._id}
@@ -95,9 +110,19 @@ export const WineList = () => {
 }
 
 const WineListWrapper = styled.section`
-  margin: 0;
-  padding: 0;
-  width: 100vw;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  // grid-auto-rows: auto;
+  //grid-gap: 30px;
+  // grid-row-gap: 30px;
+  //row-gap: 30px;
+  margin: auto;
+  // padding: 0;
+  max-width: 1700px;
+  //justify-items: center;
+  @media(max-width: 1024px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `
 
 

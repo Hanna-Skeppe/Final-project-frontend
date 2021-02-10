@@ -36,3 +36,11 @@ export const LogInOutButton = styled.button.attrs({ activeClassName })`
   //   display: none;
   // }
 `
+
+export const SearchButton = styled.button`
+border: none;
+border-radius: 5px;
+background: #44515f;
+margin: 8px 8px 8px 0;
+padding: 9px 16px;
+`

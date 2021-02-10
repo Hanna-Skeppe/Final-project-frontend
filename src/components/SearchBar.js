@@ -1,7 +1,7 @@
 /* eslint-disable */
-import React, { useState } from 'react'
+import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+// import { useHistory } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
@@ -11,6 +11,9 @@ import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 
 import { wines } from '../reducers/wines'
 import { fetchWineResults } from '../reducers/wines'
+import { SearchButton } from './lib/Buttons'
+import { SearchHeading } from './lib/Text'
+import { InputTextDiv, SearchWrapper } from './lib/Containers'
 
 // from material ui:
 const useStyles = makeStyles((theme) => ({
@@ -80,7 +83,6 @@ export const SearchBar = () => {
             <SearchButton
               type="submit"
               onSubmit={handleSubmit}>
-              
               <SearchOutlinedIcon style={{ fontSize: 36, fill: '#ffffff' }}/>
             </SearchButton>
           </InputTextDiv>
@@ -90,50 +92,6 @@ export const SearchBar = () => {
     </SearchWrapper>
   )
 }
-
-const SearchHeading = styled.h3`
-  font-family: 'Montserrat', sans-serif;
-  // color: #7d5143;
-  color: #827e7c;
-  font-size: 2rem;
-  margin: 0;
-  padding: 0;
-`
-
-const InputTextDiv = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  align-items: center;
-`
-
-const SearchButton = styled.button`
-  border: none;
-  border-radius: 5px;
-  // color: #fff;
-  // background: #7d5143;
-  // background: #827e7c; grey
-  background: #44515f;
-  // background: none;
-  // font-family: 'Montserrat', sans-serif;
-  // font-size: 20px;
-  // text-transform: uppercase;
-  // font-weight: 700;
-  margin: 8px 8px 8px 0;
-  padding: 9px 16px;
-  // letter-spacing: 1px;
-`
-
-const SearchWrapper = styled.div`
-  margin-top: 50px;
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
-  height: 15vh;
-  align-items: center;
-  justify-content: center;
- 
-`
 
 const FormSearch = styled.form`
   background: none;

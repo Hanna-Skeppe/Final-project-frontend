@@ -1,5 +1,18 @@
 import styled from 'styled-components/macro'
 
+// General styles:
+export const HeaderOverlay = styled.div`
+  background-color: #888888;
+  opacity: 0.40;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 4;
+`
+
+// Navbar styles:
 export const NavbarContainer = styled.header`
   display: flex;
   align-items: center;
@@ -26,6 +39,33 @@ export const CardImageWrapper = styled.div`
   width: 20%;
   margin: 10px;
   background: #f2f2f2; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+// Searchbar styles:
+export const InputTextDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+`
+
+export const SearchWrapper = styled.div`
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 15vh;
+  align-items: center;
+  justify-content: center;
+`
+// Sub-pages styles:
+export const SubHeaderContainer = styled.section`
+  height: 40vh;
+  width: 100vw;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,6 +1,7 @@
 import styled from 'styled-components/macro'
 import React from 'react'
 import video from '../videos/green_grapes.mp4'
+import { HeaderOverlay } from './lib/Containers'
 
 export const HeroHeader = () => {
   return (
@@ -8,7 +9,7 @@ export const HeroHeader = () => {
       <Video autoPlay="autoplay" loop="loop" muted>
         <source src={video} type="video/mp4" />
       </Video>
-      <HeroOverlay />
+      <HeaderOverlay />
       <HeroHeaderText>Natural Wine Finder</HeroHeaderText>
     </HeroContainer>
   )
@@ -22,28 +23,31 @@ const HeroContainer = styled.section`
   align-items: center;
   justify-content: center;
 `
-const HeroOverlay = styled.div`
-  background-color: #888888;
-  opacity: 0.40;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 4;
-`
+
 const HeroHeaderText = styled.h1`
   font-family: 'Montserrat', sans-serif;
   color: #fff;
-  font-size: 98px;
+  font-size: 92px;
   font-weight: 600;
   text-align: center;
   letter-spacing: 2px;
   text-shadow: 3px 3px 8px rgba(90,87,87,0.6);
   word-wrap; wrap;
-  margin: auto;
+  margin: 20vh auto auto auto;
   z-index: 8;
   max-width: 70vw;
+  @media(max-width: 1024px) {
+    font-size: 72px;
+    margin-top: 21vh;
+  }
+  @media(max-width: 768px) {
+    font-size: 48px;
+    margin-top: 22vh;
+  }
+  @media(max-width: 500px) {
+    font-size: 32px;
+    margin-top: 24vh;
+  }
 `
 
 const Video = styled.video`

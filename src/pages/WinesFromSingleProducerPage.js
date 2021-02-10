@@ -10,7 +10,9 @@ import { WineCard } from '../components/WineCard'
 import img from '../assets/singleproducerheader.jpg'
 import {
   CardContainer,
-  CardImageWrapper
+  CardImageWrapper,
+  SubHeaderContainer,
+  HeaderOverlay
 } from '../components/lib/Containers'
 
 export const WinesFromSingleProducerPage = () => {
@@ -63,9 +65,9 @@ export const WinesFromSingleProducerPage = () => {
       <section>
         {singleProducer &&
           <>
-            <SingleProducerHeaderContainer>
+            <SubHeaderContainer>
               <SingleProducerHeaderImage src={img} alt="person holding red grapes" />
-              <SingleProducerHeaderOverlay />
+              <HeaderOverlay />
               <SingleProducerHeaderText>{singleProducer.producer_name}</SingleProducerHeaderText>
               <BackLink to="/">
                 <h3>Home</h3>
@@ -73,7 +75,7 @@ export const WinesFromSingleProducerPage = () => {
               <BackLinkProducers to="/producers">
                 <h3>All producers</h3>
               </BackLinkProducers>
-            </SingleProducerHeaderContainer>
+            </SubHeaderContainer>
 
             <CardContainer>
               <CardImageWrapper>
@@ -105,21 +107,6 @@ export const WinesFromSingleProducerPage = () => {
     </>
   )
 }
-
-const SingleProducerHeaderContainer = styled.section`
-  height: 40vh;
-  width: 100vw;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  @media(max-width: 768px) {
-    height: 30vh;
-  }
-  @media(max-width: 500px) {
-    height: 25vh;
-  }
-`
 
 const BackLink = styled(Link)`
   position: absolute;

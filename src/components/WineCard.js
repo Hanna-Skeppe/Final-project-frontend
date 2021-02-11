@@ -154,6 +154,9 @@ const RatingText = styled.p`
     font-size: 18px;
     margin-top: 0;
   }
+  @media(max-width: 560px) {
+    font-size: 16px;
+  }
 `
 const TextSubWrapper = styled.div`
   display: flex;

@@ -63,6 +63,7 @@ const UserListWrapper = styled.section`
     max-width: 90vw;
   }
   @media (max-width: 768px) {
-    max-width: 95vw;
+    max-width: 100vw;
+    margin-top: 20px;
   }
 `

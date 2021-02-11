@@ -97,14 +97,14 @@ export const WineList = () => {
         </ClearButton>}
       </ButtonsWrapper>
       {searchTerm && !errorMessage && (winesList.length < 26) ? <SearchText>Results for: {searchTerm}</SearchText> : ''}
-      <WineListWrapper>
+      <ListWrapper>
         {winesList && winesList.map((wine) => (
           <WineCard
             isFavorite={favoriteWines.find((favorite) => favorite._id === wine._id)}
             key={wine._id}
             {...wine} />
         ))}
-      </WineListWrapper>
+      </ListWrapper>
     </>
   )
 }
@@ -129,8 +129,7 @@ const SearchText = styled.p`
   color: #827e7c;
 `
 
-
-const WineListWrapper = styled.section`
+const ListWrapper = styled.section`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   // grid-auto-rows: auto;

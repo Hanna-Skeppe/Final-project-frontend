@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import styled from 'styled-components/macro'
 
 
 import { HeaderProducer } from '../components/HeaderProducer'
@@ -18,15 +19,37 @@ export const ProducersPage = () => {
 
   return (
     <>
-      
       <HeaderProducer />
-      {/* Insert Producers-Header here */}
-      {(producerList.length >= 1) && producerList.map((producer) => ( // solved error in console about key with .length so that map wil not happen until after producerList is fetched
-        <section key={producer._id}>
+      <ListWrapper>
+        {(producerList.length >= 1) && producerList.map((producer) => ( // solved error in console about key with .length so that map wil not happen until after producerList is fetched
           <ProducerCard
+            key={producer._id}
             {...producer} />
-        </section>
-      ))}
+        ))}
+      </ListWrapper>
     </>
   )
 }
+
+const ListWrapper = styled.section`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  // grid-auto-rows: auto;
+  //grid-gap: 30px;
+  // grid-row-gap: 30px;
+  //row-gap: 30px;
+  margin: auto;
+  // padding: 0;
+  max-width: 1700px;
+  //justify-items: center;
+  @media(max-width: 1024px) {
+    grid-template-columns: repeat(1, 1fr);
+    max-width: 85vw;
+  }
+  @media(max-width: 768px) {
+    max-width: 95vw;
+  }
+  @media(max-width: 560px) {
+    max-width: 100vw;
+  }
+`

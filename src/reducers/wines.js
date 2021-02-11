@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 import { WINES_URL } from '../urls'
-// import { fetchFavoriteWines } from './user'
 
 const initialState = {
   wines: [],
@@ -33,6 +32,7 @@ export const wines = createSlice({
   }
 })
 
+// REMOVE THIS (I use fetchWineResults instead)
 export const fetchWineList = (sort) => {
   return (dispatch) => {
     fetch(`${WINES_URL}/?sort=${sort}`)
@@ -55,11 +55,12 @@ export const fetchWineList = (sort) => {
   }
 }
 
+// REMOVE THIS (I use fetchWineResults instead)
 // takes searchTerm as a prop/argument and send search result to Winelist.
-export const searchResult = (searchTerm) => { // changed this to include sort.
+export const searchResult = (searchTerm) => {
   console.log(searchTerm, 'searchTerm')
   return (dispatch) => {
-    fetch(`http://localhost:8080/wines?query=${searchTerm}`) // changed this to include sort.
+    fetch(`http://localhost:8080/wines?query=${searchTerm}`)
       .then((res) => {
         if (res.ok) {
           return res.json()
@@ -69,7 +70,6 @@ export const searchResult = (searchTerm) => { // changed this to include sort.
       .then((json) => {
         console.log('json', json)
         dispatch(wines.actions.setSearchTerm(json))
-        // dispatch(wines.actions.setWinesList(json)) // tried to add this to solve sorting searchresult. Did not work. Still disappears when sorting.
         if (json.length === 0) {
           dispatch(wines.actions.setErrorMessage({ errorMessage: 'No results found. Try another search.' }))
         } else {
@@ -82,7 +82,7 @@ export const searchResult = (searchTerm) => { // changed this to include sort.
   }
 }
 
-// TRYING TO COMBINE THE TWO THUNKS IN TO ONE: (both search and sort) Did not get it to work
+// THIS IS THE THUNK I AM USING NOW THAT COMBINES BORTH SEARCH AND SORT:
 export const fetchWineResults = (searchTerm, sort) => { 
   console.log('searchTerm:', searchTerm, 'sort:', sort)
   return (dispatch) => {
@@ -95,7 +95,6 @@ export const fetchWineResults = (searchTerm, sort) => {
       })
       .then((json) => {
         console.log('json', json)
-        // dispatch(wines.actions.setSearchTerm(json))
         dispatch(wines.actions.setWinesList(json))
         if (json.length === 0) {
           dispatch(wines.actions.setErrorMessage({ errorMessage: `No results found for: "${searchTerm}". Try another search.` }))

@@ -11,10 +11,8 @@ import Select from '@material-ui/core/Select';
 
 import { SearchBar } from './SearchBar'
 import { WineCard } from './WineCard'
-// import { WINES_URL } from '../urls'
-import { wines } from '../reducers/wines'
 import { fetchFavoriteWines } from '../reducers/user'
-import { fetchWineResults } from '../reducers/wines'
+import { wines, fetchWineResults } from '../reducers/wines'
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -45,20 +43,14 @@ export const WineList = () => {
     }
   }, [sortOrder, userId, dispatch, accessToken])
 
-  // const wineSearchResults = winesList
-  // if (searchResult.length > 0) {
-  //   wineSearchResults = searchResult
-  // }
-  console.log(winesList)
-  // console.log('searchResult:', searchResult)
-  // console.log('wineSearchResults', wineSearchResults)
+  // console.log(winesList)
 
   const handleSortChange = (event) => {
     dispatch(wines.actions.setSortOrder(event.target.value))
   }
 
   const handleBackClick = () => {
-    window.location.reload() // is there a better way to go back to all wines without using reload?
+    // window.location.reload() // works without reload it seems
     dispatch(wines.actions.setSearchTerm(''))
   }
 
@@ -67,7 +59,6 @@ export const WineList = () => {
       <SearchBar />
       <ButtonsWrapper>
         {/* Add filter buttons here  */}
-        {/* (searchResult.length >= 27)  */}
         {searchResult &&
         <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel id="demo-simple-select-outlined-label">Sort</InputLabel>
@@ -89,7 +80,7 @@ export const WineList = () => {
             <MenuItem value="average_price_asc">Lowest avg. price</MenuItem>
           </Select>
         </FormControl>}
-        {(searchTerm.length > 0) && 
+        {(searchTerm.length > 0) &&
         <ClearButton
           type="button"
           onClick={() => handleBackClick()}
@@ -119,7 +110,6 @@ const ClearButton = styled.button`
   margin: 8px;
 `
 
-
 const SearchText = styled.p`
   text-align: center;
   margin: 0 0 15px 0;
@@ -132,14 +122,8 @@ const SearchText = styled.p`
 const ListWrapper = styled.section`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  // grid-auto-rows: auto;
-  //grid-gap: 30px;
-  // grid-row-gap: 30px;
-  //row-gap: 30px;
   margin: auto;
-  // padding: 0;
   max-width: 1700px;
-  //justify-items: center;
   @media(max-width: 1024px) {
     grid-template-columns: repeat(1, 1fr);
     max-width: 85vw;

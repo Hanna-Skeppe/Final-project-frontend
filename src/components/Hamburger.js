@@ -1,14 +1,24 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
-import { useSelector } from 'react-redux'
-import { Link } from "react-router-dom"
+import { useSelector, useDispatch } from 'react-redux'
+import { Link, useHistory } from 'react-router-dom'
+import { logoutUser } from '../reducers/user'
 
-import { Logout } from './Logout'
+// import { Logout } from './Logout'
 
 export const HamburgerMenu = ({ open, setOpen }) => {
   const name = useSelector((store) => store.user.login.name)
   const accessToken = useSelector((store) => store.user.login.accessToken)
   const userId = useSelector((store) => store.user.login.userId)
+  const dispatch = useDispatch()
+  const history = useHistory()
+
+  const handleLogout = (event) => { 
+    event.preventDefault()
+    dispatch(logoutUser(accessToken)) // 'logoutUser' is the thunk-function in user reducer
+    history.push(`/`)
+  }
+
 
   return (
     <>
@@ -38,7 +48,11 @@ export const HamburgerMenu = ({ open, setOpen }) => {
         </>}
         {accessToken &&
         <>
-          <Logout />
+          <LogoutButton
+            type="submit"
+            onClick={handleLogout}
+          >Logout
+          </LogoutButton>
           <Link
             to={`/users/${userId}/collection`}
             onClick={() => setOpen(!open)}
@@ -132,7 +146,8 @@ export const StyledMenu = styled.nav`
   left: 0;
   padding: 1.5rem;
   position: absolute;
-  text-align: left;
+  align-items: flex-start;
+  // text-align: left;
   top: 0;
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
   transition: transform 0.3s ease-in-out;
@@ -154,4 +169,21 @@ export const StyledMenu = styled.nav`
       color: #ce796b;
     }
   }
+`
+const LogoutButton = styled.button`
+  background: #44515f;
+  border: none;
+  color: #ffffff;
+  font-family: 'Montserrat',sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 0.2rem;
+  padding: 1.3rem 0;
+  float: left;
+  text-decoration: underline;
+  transition: color 0.3s linear;
+  &:hover {
+    color: #ce796b;
+  }
+}
 `

@@ -13,7 +13,6 @@ text-decoration: none;
 &:hover {
   cursor: pointer;
   text-decoration: underline;
-  // color: #C9C4C4;
   color: #ce796b;
 }
 @media(max-width: 768px) {

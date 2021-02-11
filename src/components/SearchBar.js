@@ -109,20 +109,3 @@ const FormSearch = styled.form`
     width: 100vw;
   }
 `
-
-// const SearchInput = styled.input`
-//   background: #EFEDED;
-//   border: 1px solid #000;
-//   color: #000;
-//   font-size: 18px;
-//   width: 600px;
-//   height: 40px;
-//   &::placeholder {
-//     color: #000;
-//     font-family: 'Montserrat', sans-serif;
-//     text-align: bottom;
-//   }
-//   @media(max-width: 768px) {
-//     width: 320px;
-//   }
-// `

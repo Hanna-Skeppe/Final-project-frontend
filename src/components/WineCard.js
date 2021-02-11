@@ -80,7 +80,7 @@ export const WineCard = ({
             <CardTextTitle>Year:</CardTextTitle>
             <CardTextTitle>Grape:</CardTextTitle>
             <CardTextTitle>Added sulfites:</CardTextTitle>
-            <CardTextTitle>Average Price (SEK):</CardTextTitle>
+            <CardTextTitle>Average Price:</CardTextTitle>
             <CardTextTitle>Goes well with:</CardTextTitle>
             <CardTextTitle>Importer:</CardTextTitle>
           </TextSubWrapper>
@@ -96,7 +96,7 @@ export const WineCard = ({
             <CardText>{year}</CardText>
             <CardText>{grape}</CardText>
             <CardText>{added_sulfites}</CardText>
-            <CardText>{average_price}</CardText>
+            <CardText>{average_price} (SEK)</CardText>
             <CardText>{goes_well_with}</CardText>
             <CardText>{importer}</CardText>
           </TextSubWrapper>
@@ -133,7 +133,9 @@ const CardTextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   @media(max-width: 1024px) {
-    width: 80%;
+    // width: 80%;
+    width: 86%;
+    margin: 5px;
   }
   @media(max-width: 560px) {
     margin-bottom: 15px;

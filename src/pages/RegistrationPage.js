@@ -97,15 +97,15 @@ const HeaderTextContainer = styled.div`
   justify-content: center;
   margin: 70px auto 20px auto;
   @media(max-width: 1024px) {
-    margin: 60px auto;
+    margin: 0 auto;
   }
-  @media(max-width: 500px) {
-    margin: 30px auto;
-  }
+  // @media(max-width: 500px) {
+  //   margin: 0 auto;
+  // }
 `
 const PageHeader = styled.h2`
   font-size: 2rem;
-  margin: 0;
+  margin: 90px 0 0 0;
   color: #7a7a7a;
 `
 

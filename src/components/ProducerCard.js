@@ -1,9 +1,7 @@
 /* eslint-disable camelcase */
 import React from 'react'
 import styled from 'styled-components/macro'
-import { NavLink } from 'react-router-dom'
-
-// import { CardLink } from './lib/Links'
+import { Link } from 'react-router-dom'
 
 // import {
 //   // CardContainer,
@@ -17,7 +15,6 @@ export const ProducerCard = ({
   url,
   _id
 }) => {
-  // console.log(_id)
   return (
     <CardContainer>
       <CardTopWrapper> 
@@ -30,29 +27,39 @@ export const ProducerCard = ({
         <CardImage src={producer_image_url} alt={producer_name} />
       </CardImageWrapper>
       <TextDiv>
-        {/* <CardText>Country: {producer_country}</CardText> */}
-        <a href={url} target="_blank" rel="noopener noreferrer">Producer homepage</a>
-        <CardLink to={`/singleproducer/${_id}/wines`} exact>
+        <CardLinkProducer to={`/singleproducer/${_id}/wines`} exact>
           All wines from this producer
-        </CardLink>
-        <p><div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div></p>
+        </CardLinkProducer>
+        <CardLinkProducer to={url}>Producer homepage</CardLinkProducer>
+        <CreditsWrapper>
+          Icons made by 
+          <LinkCredit href="https://www.freepik.com" title="Freepik">Freepik</LinkCredit>
+          from
+          <LinkCredit href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</LinkCredit>
+        </CreditsWrapper>
       </TextDiv>
     </CardContainer>
   )
 }
 
 const CardContainer = styled.div`
+  height: 550px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   margin: 20px;
-  height: 450px;
   max-height: 100%;
   background: #f2f2f2; 
   box-shadow: 3px 3px 8px rgba(90,87,87,0.6);
+  @media(max-width: 1500px) {
+    height: 525px;
+  }
+  @media(max-width: 1024px) {
+    margin: 10px;
+  }
   @media(max-width: 560px) {
     margin: 10px;
     justify-content: center;
-    align-items: flex-end;
     height: auto;
   }
 `
@@ -63,35 +70,27 @@ const CardTopWrapper = styled.div`
   align-items: center;
 `
 
-
 const CardImageWrapper = styled.div`
-  width: 30%;
+  width: 55%;
   margin: 10px;
   background: #f2f2f2;
   align-self: center;
-  @media(max-width: 1024px) {
-    width: 25%;
-  }
   @media(max-width: 560px) {
-    width: 12%;
     margin: 0 0 15px 0;
   }
 `
 const FlagIcon = styled.img`
   width: 35px;
   height: 35px;
-  margin: 10px;
-  margin-left: 30px;
+  margin: 20px 20px 20px 10px;
   border-radius: 10px;
-  // border: 1px solid black;
-  // box-shadow: 3px 3px 8px rgba(90,87,87,0.6);
 `
 
 const TextDiv = styled.div`
   display: flex;
   flex-direction: column;
-  line-height: 30px;
-  margin: 20px;
+  line-height: 1.7;
+  margin: 0 20px 20px 20px;
   @media(max-width: 1024px) {
     margin: 0 20px 20px 20px;
   }
@@ -99,32 +98,57 @@ const TextDiv = styled.div`
 const ProducerCardHeading = styled.h3`
   font-size: 26px;
   color: #495867;
+  margin: 20px 10px;
   text-align: center;
   @media(max-width: 1024px) {
     margin: 20px;
+    font-size: 22px;
   }
-  
 `
-const CardText = styled.p`
-  color: #3a3a3a;
-`
-
 
 const CardImage = styled.img`
   width: 100%;
   height: 100%;
+  max-height: 315px;
   object-fit: cover;
-  object-position: center center;
+  object-position: top center;
   border: 10px solid #fff; 
   box-shadow: 3px 3px 8px rgba(90,87,87,0.6);
+  transition: transform .8s ease-in-out;
+  &:hover {
+    transform: rotate(6deg);
+  }
 `
 
-const CardLink = styled(NavLink)`
+const CardLinkProducer = styled(Link)`
   font-weight: bold;
-  color: #000;
+  font-size: 20px;
+  color: #495867;
+  text-decoration: none;
   &:hover {
     cursor: pointer;
     text-decoration: underline;
-    color: #C9C4C4;
+    color: #CE796B;
+  }
+  @media(max-width: 1500px) {
+    font-size: 18px;
+  }
+  @media(max-width: 1024px) {
+    font-size: 16px;
   }
   `
+
+const CreditsWrapper = styled.div`
+  font-size: 9px;
+  color: #3a3a3a;
+  text-align: right;
+`
+const LinkCredit = styled.a`
+text-decoration: none;
+color: #3a3a3a;
+&:hover {
+  cursor: pointer;
+    text-decoration: underline;
+    color: #C9C4C4;
+}
+`

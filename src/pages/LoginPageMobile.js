@@ -37,7 +37,7 @@ export const LoginPageMobile = () => {
   return (
     <FormContainer>
       <HeaderTextContainer> 
-      <PageHeader>Login</PageHeader>}
+      <PageHeader>Login</PageHeader>
       </HeaderTextContainer>
       {/* {!registered && ( */}
         <Form onSubmit={handleSubmit}>
@@ -80,17 +80,17 @@ const HeaderTextContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 70px auto 20px auto;
+  margin: 0 auto 20px auto;
   @media(max-width: 1024px) {
     margin: 60px auto;
   }
   @media(max-width: 500px) {
-    margin: 30px auto;
+    margin: 0 auto 30px auto;
   }
 `
 const PageHeader = styled.h2`
   font-size: 2rem;
-  margin: 0;
+  margin: 90px 0 0 0;
   color: #7a7a7a;
 `
 

@@ -105,13 +105,15 @@ export const WineCard = ({
     </CardContainer >
   )
 }
-// Darkred #811b23
 
 const CardImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: contain;
   object-position: center center;
+  @media(max-width: 560px) {
+    // height: 75%;
+  }
 `
 
 const TopTextWrapper = styled.div`
@@ -119,6 +121,7 @@ const TopTextWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 `
+
 const RatingsWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -129,6 +132,12 @@ const CardTextWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  @media(max-width: 1024px) {
+    width: 80%;
+  }
+  @media(max-width: 560px) {
+    margin-bottom: 15px;
+  }
 `
 const InfoTextWrapper = styled.div`
   display: flex
@@ -149,6 +158,9 @@ const RatingText = styled.p`
 const TextSubWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  // @media(max-width: 560px) {
+  //   width: 36%;
+  // }
 `
 
 const CardTextTitle = styled.p`
@@ -159,6 +171,13 @@ const CardTextTitle = styled.p`
   text-align: right;
   // color: #827e7c; hm group
   color:#44515f;
+  @media(max-width: 768px) {
+    font-size: 16px;
+  }
+  @media(max-width: 560px) {
+    font-size: 14px;
+    margin: 0 10px 0 0;
+  }
 `
 const CardText = styled.p`
   font-size: 18px;
@@ -166,6 +185,12 @@ const CardText = styled.p`
   text-align: left;
   margin: 0;
   color: #3a3a3a;
+  @media(max-width: 768px) {
+    font-size: 16px;
+  }
+  @media(max-width: 560px) {
+    font-size: 14px;
+  }
 `
 
 const CardLink = styled(NavLink)`

@@ -34,6 +34,12 @@ export const CardContainer = styled.div`
   max-height: 100%;
   background: #f2f2f2; 
   box-shadow: 3px 3px 8px rgba(90,87,87,0.6);
+  @media(max-width: 560px) {
+    margin: 10px;
+    justify-content: center;
+    align-items: flex-end;
+    height: auto;
+  }
 `
 export const CardImageWrapper = styled.div`
   width: 20%;
@@ -42,6 +48,13 @@ export const CardImageWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  @media(max-width: 1024px) {
+    width: 25%;
+  }
+  @media(max-width: 560px) {
+    width: 12%;
+    margin: 0 0 15px 0;
+  }
 `
 
 // Searchbar styles:

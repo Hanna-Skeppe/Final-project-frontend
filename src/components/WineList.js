@@ -90,13 +90,13 @@ export const WineList = () => {
           </Select>
         </FormControl>}
         {(searchTerm.length > 0) && 
-        <button
+        <ClearButton
           type="button"
           onClick={() => handleBackClick()}
         >Back to all wines
-        </button>}
+        </ClearButton>}
       </ButtonsWrapper>
-      {searchTerm && !errorMessage && (winesList.length < 26) ? <h3>Results for: {searchTerm}</h3> : ''}
+      {searchTerm && !errorMessage && (winesList.length < 26) ? <SearchText>Results for: {searchTerm}</SearchText> : ''}
       <WineListWrapper>
         {winesList && winesList.map((wine) => (
           <WineCard
@@ -108,6 +108,27 @@ export const WineList = () => {
     </>
   )
 }
+
+const ClearButton = styled.button`
+  border: 1px solid #c1bfbf;
+  background: #fff;
+  color: #827e7c;
+  padding: 18px;
+  font-size: 16px;
+  border-radius: 4px;
+  margin: 8px;
+`
+
+
+const SearchText = styled.p`
+  text-align: center;
+  margin: 0 0 15px 0;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  color: #827e7c;
+`
+
 
 const WineListWrapper = styled.section`
   display: grid;
@@ -122,9 +143,15 @@ const WineListWrapper = styled.section`
   //justify-items: center;
   @media(max-width: 1024px) {
     grid-template-columns: repeat(1, 1fr);
+    max-width: 85vw;
+  }
+  @media(max-width: 768px) {
+    max-width: 95vw;
+  }
+  @media(max-width: 560px) {
+    max-width: 100vw;
   }
 `
-
 
 const ButtonsWrapper = styled.div`
   width: 100vw;
@@ -133,5 +160,8 @@ const ButtonsWrapper = styled.div`
   align-items: center;
   justify-content: center;
   margin-bottom: 50px;
+  @media(max-width: 768px) {
+    margin-bottom: 20px;
+  }
 `
 

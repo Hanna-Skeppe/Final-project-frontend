@@ -100,10 +100,14 @@ const FormSearch = styled.form`
   display: block;
   margin: 25px 20px 30px 20px;
   width: 60vw;
-  
-  // @media(max-width: 768px) {
-  //   margin-bottom: 10px;
-  // }
+  @media(max-width: 768px) {
+    margin-bottom: 20px;
+    width: 90vw;
+  }
+  @media(max-width: 560px) {
+    margin: 15px 15px 20px 15px;
+    width: 100vw;
+  }
 `
 
 // const SearchInput = styled.input`

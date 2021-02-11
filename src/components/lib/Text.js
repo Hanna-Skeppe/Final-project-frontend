@@ -34,6 +34,9 @@ export const CardTitle = styled.h3`
     font-size: 26px;
     margin: 10px;
   }
+  @media(max-width: 560px) {
+    font-size: 22px;
+  }
 `
 
 export const SearchHeading = styled.h3`
@@ -42,6 +45,9 @@ export const SearchHeading = styled.h3`
   font-size: 2rem;
   margin: 0;
   padding: 0;
+  @media(max-width: 768px) {
+    font-size: 1.5rem;
+  }
 `
 
 // Sub-pages Heading: 

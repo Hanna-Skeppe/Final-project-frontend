@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import { Link } from 'react-router-dom'
+
 
 import img from '../assets/vineyard _1.jpg'
 
@@ -10,12 +10,6 @@ export const HeaderSingleProducer = () => {
       <SingleProducerHeaderImage src={img} alt="vineyard landscape" />
       <SingleProducerHeaderOverlay />
       <SingleProducerHeaderText>producer name</SingleProducerHeaderText>
-      <BackLink to="/">
-        <h3>Home</h3>
-      </BackLink>
-      <BackLinkProducers to="/producers">
-        <h3>All producers</h3>
-      </BackLinkProducers>
     </SingleProducerHeaderContainer>
   )
 }
@@ -32,21 +26,6 @@ const SingleProducerHeaderContainer = styled.section`
   @media(max-width: 500px) {
     height: 25vh;
   }
-`
-
-const BackLink = styled(Link)`
-  position: absolute;
-  bottom: 5vh;
-  left: 10vw;
-  text-decoration: none;
-  color: #fff;
-  font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  z-index: 4;
-`
-const BackLinkProducers = styled(BackLink)`
-  bottom: 10vh;
 `
 const SingleProducerHeaderImage = styled.img`
   position: absolute;

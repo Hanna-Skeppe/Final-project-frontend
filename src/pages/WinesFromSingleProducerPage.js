@@ -9,8 +9,8 @@ import { WineCard } from '../components/WineCard'
 // import { HeaderSingleProducer } from '../components/HeaderSingleProducer'
 import img from '../assets/singleproducerheader.jpg'
 import {
-  CardContainer,
-  CardImageWrapper,
+  // CardContainer,
+  // CardImageWrapper,
   SubHeaderContainer,
   HeaderOverlay
 } from '../components/lib/Containers'
@@ -69,15 +69,16 @@ export const WinesFromSingleProducerPage = () => {
               <SingleProducerHeaderImage src={img} alt="person holding red grapes" />
               <HeaderOverlay />
               <SingleProducerHeaderText>{singleProducer.producer_name}</SingleProducerHeaderText>
+            </SubHeaderContainer>
+            <div>
               <BackLink to="/">
                 <h3>Home</h3>
               </BackLink>
-              <BackLinkProducers to="/producers">
+              <BackLink to="/producers">
                 <h3>All producers</h3>
-              </BackLinkProducers>
-            </SubHeaderContainer>
-
-            <CardContainer>
+              </BackLink>
+            </div>
+            <TopWrapper>
               <CardImageWrapper>
                 <CardImage
                   src={singleProducer.producer_image_url}
@@ -85,43 +86,95 @@ export const WinesFromSingleProducerPage = () => {
                 />
               </CardImageWrapper>
               <TextDiv>
-                <h3>{singleProducer.producer_name} </h3>
-                <p>Country: {singleProducer.producer_country}</p>
-                <a href={singleProducer.url} target="_blank" rel="noopener noreferrer">Producer homepage</a>
+                {/* <h3>{singleProducer.producer_name} </h3> */}
+                {/* <p>Country: {singleProducer.producer_country}</p> */}
+                {singleProducer.producer_country === 'France' && <FlagIcon src="/assets/france.png" />}
+                {singleProducer.producer_country === 'Italy' && <FlagIcon src="/assets/italy.png" />}
+                {singleProducer.producer_country === 'Spain' && <FlagIcon src="/assets/spain.png" />}
+                <CardLinkProducer to={singleProducer.url}>Producer homepage</CardLinkProducer>
+                {/* <a href={singleProducer.url} target="_blank" rel="noopener noreferrer">Producer homepage</a> */}
               </TextDiv>
-            </CardContainer>
+            </TopWrapper>
             <div>
-              <h3>All wines from {singleProducer.producer_name}:</h3>
+              <SubHeading>All wines from {singleProducer.producer_name}:</SubHeading>
             </div>
           </>}
-        <div>
+        <CardWrapper>
           {producerWines && producerWines.map((wine) => (
             <WineCard
               isFavorite={favoriteWines.find((favorite) => favorite._id === wine._id)}
               key={wine._id}
               {...wine} />
           ))}
-        </div>
+        </CardWrapper>
       </section>
 
     </>
   )
 }
 
-const BackLink = styled(Link)`
-  position: absolute;
-  bottom: 5vh;
-  left: 10vw;
-  text-decoration: none;
-  color: #fff;
-  font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  z-index: 4;
+const CardWrapper = styled.div`
+  dispay: flex;
+  justify-content: center;
+  margin: auto;
+  max-width: 1000px;
 `
 
-const BackLinkProducers = styled(BackLink)`
-  bottom: 10vh;
+
+const CardLinkProducer = styled(Link)`
+  font-weight: bold;
+  font-size: 20px;
+  color: #495867;
+  text-decoration: none;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color: #CE796B;
+  }
+  @media(max-width: 1500px) {
+    font-size: 18px;
+  }
+  @media(max-width: 1024px) {
+    font-size: 16px;
+  }
+  `
+
+const SubHeading = styled.h3`
+  margin-left: 10vh;
+  color: #495867;
+  text-align: center;
+  @media(max-width: 560px) {
+    margin-left: 0;
+  }
+`
+
+const FlagIcon = styled.img`
+  width: 85px;
+  height: 85px;
+  margin: 20px 20px 20px 10px;
+  border-radius: 10px;
+`
+
+const TopWrapper = styled.div`
+  width: 100vw;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  margin-top: 5vh;
+`
+
+const BackLink = styled(Link)`
+font-size: 18px;
+margin: 20px 10px 0 50px;
+text-decoration: none;
+color: #495867;
+font-weight: 700;
+display: inline-flex;
+align-items: center;
+z-index: 4;
+@media(min-width: 769px) {
+  display: none;
+}
 `
 
 const SingleProducerHeaderImage = styled.img`
@@ -130,17 +183,6 @@ const SingleProducerHeaderImage = styled.img`
   height: 100%;
   object-fit: cover;
   object-position: center 55%;
-`
-
-const SingleProducerHeaderOverlay = styled.div`
-  background-color: #665E5E;
-  opacity: 0.40;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 4;
 `
 
 const SingleProducerHeaderText = styled.h1`
@@ -168,14 +210,40 @@ const SingleProducerHeaderText = styled.h1`
 const TextDiv = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 50px;
-  margin-top: 50px;
+  width: 50%;
+  margin-right: 5vw;
+  margin-left: 5vh;
   line-height: 30px;
+  @media(max-width: 560px) {
+    margin-left: 2vw;
+    margin-right: 2vw;
+    //justify-content: center;
+    align-items: center;
+  }
+`
+
+const CardImageWrapper = styled.div`
+  width: 50%;
+  max-width: 390px;
+  margin: 10px;
+  margin-left: 10vw;
+  background: #fff;
+  align-self: center;
+  @media(max-width: 560px) {
+    margin-left: 2vw;
+  }
 `
 
 const CardImage = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: center center;
+  max-height: 500px;
+  object-fit: cover;
+  object-position: top center;
+  border: 10px solid #efeded; 
+  box-shadow: 3px 3px 8px rgba(90,87,87,0.6);
+  transition: transform .8s ease-in-out;
+  &:hover {
+    transform: rotate(6deg);
+  }
 `

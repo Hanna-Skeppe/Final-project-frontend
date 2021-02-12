@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import { useSelector, useDispatch } from 'react-redux'
@@ -13,7 +14,7 @@ export const HamburgerMenu = ({ open, setOpen }) => {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const handleLogout = (event) => { 
+  const handleLogout = (event) => {
     event.preventDefault()
     dispatch(logoutUser(accessToken)) // 'logoutUser' is the thunk-function in user reducer
     history.push(`/`)

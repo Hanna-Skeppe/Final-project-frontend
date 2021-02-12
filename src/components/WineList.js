@@ -1,5 +1,4 @@
-/* eslint-disable comma-dangle */
-/* eslint-disable no-underscore-dangle */
+/* eslint-disable */
 import styled from 'styled-components/macro'
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'

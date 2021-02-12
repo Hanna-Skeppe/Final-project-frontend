@@ -1,6 +1,4 @@
-/* eslint-disable operator-linebreak */
-/* eslint-disable camelcase */
-/* eslint-disable no-underscore-dangle */
+/* eslint-disable */
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components/macro'

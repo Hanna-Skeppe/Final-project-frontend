@@ -99,9 +99,6 @@ const HeaderTextContainer = styled.div`
   @media(max-width: 1024px) {
     margin: 0 auto;
   }
-  // @media(max-width: 500px) {
-  //   margin: 0 auto;
-  // }
 `
 const PageHeader = styled.h2`
   font-size: 2rem;
@@ -167,7 +164,7 @@ const Label = styled.label`
   padding: 10px;  
 `
 const Button = styled.button`
-  background: #7d5143;
+  background: #CE796B;
   border-color: transparent;
   border-radius: 3px;
   color: #fff;

@@ -8,7 +8,7 @@ color: #fff;
 margin: 2vh 1vw;
 font-size: 18px;
 font-weight: bold;
-font-family: 'Montserrat', sans-serif;
+font-family: 'Overpass', sans-serif;
 text-decoration: none;
 &:hover {
   cursor: pointer;

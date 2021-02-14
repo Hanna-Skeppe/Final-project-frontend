@@ -57,8 +57,9 @@ export const UserPage = () => {
 }
 
 const UserListWrapper = styled.section`
-  max-width: 70vw;
+  max-width: 800px;
   margin: auto;
+  margin-top: 50px;
   @media (max-width: 1024px) {
     max-width: 90vw;
   }

@@ -14,7 +14,7 @@ export const LogInOutButton = styled.button.attrs({ activeClassName })`
   border: none;
   color: #fff;
   cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Overpass', sans-serif;
   font-size: 18px;
   font-weight: bold;
   margin: 2vh 1vw;

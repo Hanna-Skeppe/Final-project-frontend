@@ -25,10 +25,10 @@ const HeroContainer = styled.section`
 `
 
 const HeroHeaderText = styled.h1`
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Italiana', serif;
   color: #fff;
   font-size: 92px;
-  font-weight: 600;
+  // font-weight: 600;
   text-align: center;
   letter-spacing: 2px;
   text-shadow: 3px 3px 8px rgba(90,87,87,0.6);

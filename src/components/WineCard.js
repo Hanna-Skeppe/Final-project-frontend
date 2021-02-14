@@ -55,13 +55,13 @@ export const WineCard = ({
                 <FavoriteButton
                   type="submit"
                   onClick={handleRemoveFavorite}
-                ><FavoriteOutlinedIcon style={{ fontSize: 48, fill: '#CE796B' }} />
+                ><FavoriteOutlinedIcon style={{ fontSize: 48, fill: '#495867' }} />
                 </FavoriteButton>}
               {!isFavorite &&
                 <FavoriteButton
                   type="submit"
                   onClick={handleAddFavorite}
-                ><FavoriteBorderOutlinedIcon color="disabled" style={{ fontSize: 48, fill: '#CE796B' }} />
+                ><FavoriteBorderOutlinedIcon color="disabled" style={{ fontSize: 48, fill: '#C495867' }} />
                 </FavoriteButton>}
             </>}
         </TopTextWrapper>
@@ -144,10 +144,11 @@ const InfoTextWrapper = styled.div`
 `
 
 const RatingText = styled.p`
-  font-weight: 700;
+  // font-weight: 700;
   font-size: 22px;
   margin: 10px;
-  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 0;
+  font-family: 'Overpass', sans-serif;
   text-align: left;
   color: #3a3a3a;
   @media(max-width: 768px) {
@@ -161,18 +162,19 @@ const RatingText = styled.p`
 const TextSubWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 10px;
   // @media(max-width: 560px) {
   //   width: 36%;
   // }
 `
 
 const CardTextTitle = styled.p`
+  font-family: 'Overpass', sans-serif;
   font-weight: 700;
   color: #637050;
   margin: 0 15px 0 0;
   font-size: 18px;
   text-align: right;
-  // color: #827e7c; hm group
   color:#44515f;
   @media(max-width: 768px) {
     font-size: 16px;
@@ -183,6 +185,7 @@ const CardTextTitle = styled.p`
   }
 `
 const CardText = styled.p`
+  font-family: 'Overpass', sans-serif;
   font-size: 18px;
   font-weight: 400;
   text-align: left;
@@ -202,7 +205,6 @@ const CardLink = styled(NavLink)`
   &:hover {
     cursor: pointer;
     text-decoration: underline;
-    // color: #C9C4C4;
     color: #ce796b;
   }
   `
@@ -210,21 +212,13 @@ const CardLink = styled(NavLink)`
 const FavoriteButton = styled.button`
   border: none;
   border-radius: 5px;
-  //color: #fff;
-  // background: #7d5143;
   background: transparent;
-  // font-family: 'Montserrat', sans-serif;
-  // font-size: 16px;
-  // text-transform: uppercase;
-  // font-weight: 700;
   margin: 8px 8px 8px 0;
   padding: 0;
-  // letter-spacing: 1px;
   transition: .5s ease;
   &:hover {
     transform: scale(1.1);
     cursor: pointer;
-    // background: #7d5143;
   }
 `
 

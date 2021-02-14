@@ -30,7 +30,7 @@ export const ProducerCard = ({
         <CardLinkProducer to={`/singleproducer/${_id}/wines`} exact>
           All wines from this producer
         </CardLinkProducer>
-        <CardLinkProducer to={url}>Producer homepage</CardLinkProducer>
+        <CardLinkExternal href={url} target="_blank" rel="noopener noreferrer">Producer homepage</CardLinkExternal>
         <CreditsWrapper>
           Icons made by 
           <LinkCredit href="https://www.freepik.com" title="Freepik">Freepik</LinkCredit>
@@ -137,6 +137,24 @@ const CardLinkProducer = styled(Link)`
     font-size: 16px;
   }
   `
+  const CardLinkExternal = styled.a`
+    font-weight: bold;
+    font-size: 20px;
+    color: #495867;
+    text-decoration: none;
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+      color: #CE796B;
+    }
+    @media(max-width: 1500px) {
+      font-size: 18px;
+    }
+    @media(max-width: 1024px) {
+      font-size: 16px;
+    }
+  `
+
 
 const CreditsWrapper = styled.div`
   font-size: 9px;

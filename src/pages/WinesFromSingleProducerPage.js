@@ -86,13 +86,10 @@ export const WinesFromSingleProducerPage = () => {
                 />
               </CardImageWrapper>
               <TextDiv>
-                {/* <h3>{singleProducer.producer_name} </h3> */}
-                {/* <p>Country: {singleProducer.producer_country}</p> */}
                 {singleProducer.producer_country === 'France' && <FlagIcon src="/assets/france.png" />}
                 {singleProducer.producer_country === 'Italy' && <FlagIcon src="/assets/italy.png" />}
                 {singleProducer.producer_country === 'Spain' && <FlagIcon src="/assets/spain.png" />}
-                <CardLinkProducer to={singleProducer.url}>Producer homepage</CardLinkProducer>
-                {/* <a href={singleProducer.url} target="_blank" rel="noopener noreferrer">Producer homepage</a> */}
+                <CardLinkExternal href={singleProducer.url} target="_blank" rel="noopener noreferrer">Producer homepage</CardLinkExternal>
               </TextDiv>
             </TopWrapper>
             <div>
@@ -119,24 +116,22 @@ const CardWrapper = styled.div`
   margin: auto;
   max-width: 1000px;
 `
-
-
-const CardLinkProducer = styled(Link)`
-  font-weight: bold;
-  font-size: 20px;
-  color: #495867;
-  text-decoration: none;
-  &:hover {
-    cursor: pointer;
-    text-decoration: underline;
-    color: #CE796B;
-  }
-  @media(max-width: 1500px) {
-    font-size: 18px;
-  }
-  @media(max-width: 1024px) {
-    font-size: 16px;
-  }
+const CardLinkExternal = styled.a`
+    font-weight: bold;
+    font-size: 20px;
+    color: #495867;
+    text-decoration: none;
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+      color: #CE796B;
+    }
+    @media(max-width: 1500px) {
+      font-size: 18px;
+    }
+    @media(max-width: 1024px) {
+      font-size: 16px;
+    }
   `
 
 const SubHeading = styled.h3`

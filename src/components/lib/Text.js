@@ -22,10 +22,10 @@ export const NavSpan = styled.span`
 `
 
 export const CardTitle = styled.h3`
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
+  font-family: 'Italiana', serif;
+  // font-weight: 700;
   font-size: 32px;
-  text-decoration: underline;
+  // text-decoration: underline;
   text-align: left;
   margin: 10px 10px 10px 30px;
   // color: #827e7c; hm group
@@ -40,7 +40,7 @@ export const CardTitle = styled.h3`
 `
 
 export const SearchHeading = styled.h3`
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Italiana', serif;
   color: #827e7c;
   font-size: 2rem;
   margin: 0;

@@ -30,9 +30,10 @@ export const NavbarContainer = styled.header`
 export const CardContainer = styled.div`
   display: flex;
   margin: 20px;
-  height: 450px;
+  height: 475px;
   max-height: 100%;
-  background: #f2f2f2; 
+  // background: #f2f2f2; 
+  background: rgba(236, 199, 172, .67);
   box-shadow: 3px 3px 8px rgba(90,87,87,0.6);
   @media(max-width: 560px) {
     margin: 10px;
@@ -44,7 +45,8 @@ export const CardContainer = styled.div`
 export const CardImageWrapper = styled.div`
   width: 20%;
   margin: 10px;
-  background: #f2f2f2; 
+  // background: #f2f2f2; 
+  // background: rgba(236, 199, 172, .67);
   display: flex;
   align-items: center;
   justify-content: center;

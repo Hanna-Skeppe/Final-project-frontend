@@ -22,6 +22,9 @@ const HeroContainer = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
+  @media(max-width: 560px) {
+    height: 35vh;
+  }
 `
 
 const HeroHeaderText = styled.h1`
@@ -46,7 +49,7 @@ const HeroHeaderText = styled.h1`
   }
   @media(max-width: 500px) {
     font-size: 32px;
-    margin-top: 24vh;
+    margin-top: 17vh;
   }
 `
 

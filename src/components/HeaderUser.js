@@ -4,7 +4,7 @@ import styled from 'styled-components/macro'
 
 import img from '../assets/vin_natur_paket.jpg'
 import { SubHeaderText } from './lib/Text'
-import { SubHeaderContainer, HeaderOverlay  } from './lib/Containers'
+import { SubHeaderContainer, HeaderOverlay } from './lib/Containers'
 
 export const HeaderUser = () => {
   return (

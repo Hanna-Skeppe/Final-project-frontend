@@ -39,7 +39,6 @@ export const LoginPageMobile = () => {
       <HeaderTextContainer> 
       <PageHeader>Login</PageHeader>
       </HeaderTextContainer>
-      {/* {!registered && ( */}
         <Form onSubmit={handleSubmit}>
           <Label>
             * Email

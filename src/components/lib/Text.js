@@ -52,7 +52,7 @@ export const SearchHeading = styled.h3`
 
 // Sub-pages Heading: 
 export const SubHeaderText = styled.h1`
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Italiana', serif;
   color: #fff;
   font-size: 72px;
   font-weight: 600;
@@ -79,7 +79,7 @@ export const SubHeaderText = styled.h1`
 `
 
 export const ProducerHeaderText = styled.h1`
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Italiana', serif;
   color: #fff;
   font-size: 72px;
   font-weight: 600;

@@ -159,12 +159,12 @@ export const StyledMenu = styled.nav`
   }
   a {
     color: #ffffff;
-    font-family: 'Montserrat',sans-serif;
+    ffont-family: 'Overpass', sans-serif;
     font-size: 2rem;
     font-weight: bold;
     letter-spacing: 0.2rem;
     padding: 1.3rem 0;
-    text-decoration: underline;
+    text-decoration: none;
     transition: color 0.3s linear;
     &:hover {
       color: #ce796b;
@@ -175,13 +175,13 @@ const LogoutButton = styled.button`
   background: #44515f;
   border: none;
   color: #ffffff;
-  font-family: 'Montserrat',sans-serif;
+  font-family: 'Overpass', sans-serif;
   font-size: 2rem;
   font-weight: bold;
   letter-spacing: 0.2rem;
   padding: 1.3rem 0;
   float: left;
-  text-decoration: underline;
+  text-decoration: none;
   transition: color 0.3s linear;
   &:hover {
     color: #ce796b;

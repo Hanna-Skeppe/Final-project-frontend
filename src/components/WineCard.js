@@ -61,7 +61,7 @@ export const WineCard = ({
                 <FavoriteButton
                   type="submit"
                   onClick={handleAddFavorite}
-                ><FavoriteBorderOutlinedIcon color="disabled" style={{ fontSize: 48, fill: '#C495867' }} />
+                ><FavoriteBorderOutlinedIcon style={{ fontSize: 48, fill: '#495867' }} />
                 </FavoriteButton>}
             </>}
         </TopTextWrapper>

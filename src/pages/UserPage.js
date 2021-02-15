@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components/macro'
+import FadeIn from 'react-fade-in'
 
 import { WineCard } from 'components/WineCard'
 import { fetchFavoriteWines } from '../reducers/user'
@@ -46,10 +47,12 @@ export const UserPage = () => {
       </div>
       <UserListWrapper>
         {accessToken && favoriteWines.map((wine) => (
-          <WineCard
-            isFavorite="true"
-            key={wine._id}
-            {...wine} />
+          <FadeIn key={wine._id}>
+            <WineCard
+              isFavorite="true"
+              key={wine._id}
+              {...wine} />
+          </FadeIn>
         ))}
       </UserListWrapper>
     </>

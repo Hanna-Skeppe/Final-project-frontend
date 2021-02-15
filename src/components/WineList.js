@@ -7,6 +7,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import FadeIn from 'react-fade-in'
 
 import { SearchBar } from './SearchBar'
 import { WineCard } from './WineCard'
@@ -89,10 +90,12 @@ export const WineList = () => {
       {searchTerm && !errorMessage && (winesList.length < 26) ? <SearchText>Results for: {searchTerm}</SearchText> : ''}
       <ListWrapper>
         {winesList && winesList.map((wine) => (
-          <WineCard
-            isFavorite={favoriteWines.find((favorite) => favorite._id === wine._id)}
-            key={wine._id}
-            {...wine} />
+          <FadeIn key={wine._id}> 
+            <WineCard
+              isFavorite={favoriteWines.find((favorite) => favorite._id === wine._id)}
+              key={wine._id}
+              {...wine} />
+          </FadeIn>
         ))}
       </ListWrapper>
     </>

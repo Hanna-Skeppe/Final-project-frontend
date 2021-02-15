@@ -27,7 +27,7 @@ export const ProducerCard = ({
         <CardImage src={producer_image_url} alt={producer_name} />
       </CardImageWrapper>
       <TextDiv>
-        <CardLinkProducer to={`/singleproducer/${_id}/wines`} exact>
+        <CardLinkProducer to={`/singleproducer/${_id}/wines`} exact="true">
           All wines from this producer
         </CardLinkProducer>
         <CardLinkExternal href={url} target="_blank" rel="noopener noreferrer">Producer homepage</CardLinkExternal>
@@ -49,7 +49,8 @@ const CardContainer = styled.div`
   justify-content: space-between;
   margin: 20px;
   max-height: 100%;
-  background: #f2f2f2; 
+  // background: #f2f2f2; 
+  background: rgba(236, 199, 172, .67);
   box-shadow: 3px 3px 8px rgba(90,87,87,0.6);
   @media(max-width: 1500px) {
     height: 525px;
@@ -96,6 +97,7 @@ const TextDiv = styled.div`
   }
 `
 const ProducerCardHeading = styled.h3`
+  font-family: 'Italiana', serif;  
   font-size: 26px;
   color: #495867;
   margin: 20px 10px;
@@ -113,7 +115,7 @@ const CardImage = styled.img`
   object-fit: cover;
   object-position: top center;
   border: 10px solid #fff; 
-  box-shadow: 3px 3px 8px rgba(90,87,87,0.6);
+  // box-shadow: 3px 3px 8px rgba(90,87,87,0.6);
   transition: transform .8s ease-in-out;
   &:hover {
     transform: rotate(6deg);
@@ -121,6 +123,7 @@ const CardImage = styled.img`
 `
 
 const CardLinkProducer = styled(Link)`
+  font-family: 'Overpass', sans-serif;  
   font-weight: bold;
   font-size: 20px;
   color: #495867;
@@ -138,6 +141,7 @@ const CardLinkProducer = styled(Link)`
   }
   `
   const CardLinkExternal = styled.a`
+    font-family: 'Overpass', sans-serif;  
     font-weight: bold;
     font-size: 20px;
     color: #495867;
@@ -157,6 +161,7 @@ const CardLinkProducer = styled(Link)`
 
 
 const CreditsWrapper = styled.div`
+  font-family: 'Overpass', sans-serif;
   font-size: 9px;
   color: #3a3a3a;
   text-align: right;

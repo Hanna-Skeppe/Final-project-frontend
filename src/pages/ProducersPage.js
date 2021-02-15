@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components/macro'
 import { Link } from 'react-router-dom'
+import FadeIn from 'react-fade-in'
 
 
 import { HeaderProducer } from '../components/HeaderProducer'
@@ -26,9 +27,11 @@ export const ProducersPage = () => {
       </BackLink>
       <ListWrapper>
         {(producerList.length >= 1) && producerList.map((producer) => ( // solved error in console about key with .length so that map wil not happen until after producerList is fetched
-          <ProducerCard
-            key={producer._id}
-            {...producer} />
+          <FadeIn key={producer._id}> 
+            <ProducerCard
+              key={producer._id}
+              {...producer} />
+          </FadeIn>
         ))}
       </ListWrapper>
     </>
@@ -60,6 +63,7 @@ const ListWrapper = styled.section`
 `
 
 const BackLink = styled(Link)`
+  font-family: 'Overpass', sans-serif;
   font-size: 18px;
   margin: 20px 10px 0 50px;
   text-decoration: none;

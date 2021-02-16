@@ -9,6 +9,7 @@ import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutline
 import { addFavoriteWine, removeFavoriteWine } from 'reducers/user'
 import { CardContainer, CardImageWrapper } from './lib/Containers'
 import { CardTitle } from './lib/Text'
+import { UserRating } from './UserRating'
 
 export const WineCard = ({
   isFavorite,
@@ -67,7 +68,8 @@ export const WineCard = ({
         </TopTextWrapper>
         <RatingsWrapper>
           <RatingText>Average rating: {average_rating}</RatingText>
-          <RatingText>Rate this wine: <span role="img"> ⭐️  ⭐️  ⭐️  ⭐️  ⭐️ </span></RatingText>
+          <UserRating />
+          {/* <RatingText>Rate this wine: <span role="img"> ⭐️  ⭐️  ⭐️  ⭐️  ⭐️ </span></RatingText> */}
         </RatingsWrapper>
         <InfoTextWrapper>
           <TextSubWrapper>

@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { ui } from './ui'
 import { USERS_URL, SESSIONS_URL, USER_LOGOUT } from '../urls'
-// import { fetchWineList } from './wines'
 
 const initialState = {
   login: {
@@ -76,8 +75,6 @@ export const fetchFavoriteWines = (userId, accessToken) => {
 // ADD A FAVORITE WINE
 export const addFavoriteWine = (userId, accessToken, wineId) => {
   return (dispatch) => {
-    // const { userId } = getStore().user.login.userId
-    // const { accessToken } = getStore().user.login.accessToken
     fetch(`http://localhost:8080/users/${userId}/favorites`, {
       method: 'PUT',
       body: JSON.stringify({ _id: wineId }),
@@ -91,8 +88,6 @@ export const addFavoriteWine = (userId, accessToken, wineId) => {
       })
       .then(() => {
         dispatch(fetchFavoriteWines(userId, accessToken))
-        // dispatch(user.actions.setFavoriteWines(json))
-        // dispatch(user.actions.setFavoriteWines({ favoriteWines: json }))
       })
   }
 }
@@ -100,8 +95,6 @@ export const addFavoriteWine = (userId, accessToken, wineId) => {
 // REMOVE A FAVORITE WINE
 export const removeFavoriteWine = (userId, accessToken, wineId) => {
   return (dispatch) => {
-    // const { userId } = getStore().user.login.userId
-    // const { accessToken } = getStore().user.login.accessToken
     fetch(`http://localhost:8080/users/${userId}/favorites`, {
       method: 'DELETE',
       body: JSON.stringify({ _id: wineId }),

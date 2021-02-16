@@ -45,7 +45,7 @@ export const LoginPageMobile = () => {
             <Input
               lowercase
               type="text"
-              required="true"
+              required={true}
               placeholder="example@email.com"
               value={email}
               onChange={event => setEmail(event.target.value.toLowerCase())} />
@@ -53,7 +53,7 @@ export const LoginPageMobile = () => {
           <Label>
             * Password
           <Input
-            required="true"
+            required={true}
             type="password"
             value={password}
             minLength={5}

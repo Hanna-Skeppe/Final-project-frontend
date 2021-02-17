@@ -13,7 +13,7 @@ export const UserRating = ({ wineId }) => {
   const accessToken = useSelector((store) => store.user.login.accessToken)
   console.log('rate', rate)
 
-  const handleRating = (rating) => {
+  const handleRating = (rating) => { // This works so that database rating is updated correctly when user rates in frontend.
     setRate(rating)
     console.log(rating)
     fetch(`http://localhost:8080/users/${userId}/rated`, {
@@ -25,7 +25,7 @@ export const UserRating = ({ wineId }) => {
     })
   }
 
-  useEffect(() => {
+  useEffect(() => { // This does not work (the rated wines are not displayed in frontend as intended)
     if (!userId) return;
     fetch(`http://localhost:8080/users/${userId}/rated`, {
       method: 'GET',
@@ -34,7 +34,7 @@ export const UserRating = ({ wineId }) => {
       .then((res) => res.json()) // i need some kind of for each here?
       .then((json) => {
         setRate(json.rating)
-        console.log('json', json)
+        console.log('json', json) // --> outputs 27 instances(same as total num of wines) of 9 objects (number of wines the user has rated).
       })
   }, [wineId, userId, accessToken])
 

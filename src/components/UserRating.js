@@ -1,3 +1,5 @@
+
+// Docs for rating-component: https://material-ui.com/components/rating/
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Rating } from '@material-ui/lab'
@@ -5,14 +7,16 @@ import Box from '@material-ui/core/Box'
 import StarBorderIcon from '@material-ui/icons/StarBorder'
 import styled from 'styled-components/macro'
 
-export const UserRating = () => {
+export const UserRating = ({ wineId }) => {
   const [rate, setRate] = useState()
   const userId = useSelector((store) => store.user.login.userId)
   const accessToken = useSelector((store) => store.user.login.accessToken)
+  console.log('rate', rate)
 
-  const handleRating = (userId, wineId, rating) => {
+  const handleRating = (rating) => {
     setRate(rating)
-    fetch(`http://localhost:8080/users/${userId}rated`, {
+    console.log(rating)
+    fetch(`http://localhost:8080/users/${userId}/rated`, {
       method: 'PUT',
       body: JSON.stringify({ userId, wineId, rating }),
       headers: { 'Content-Type': 'application/json', Authorization: accessToken }
@@ -21,7 +25,19 @@ export const UserRating = () => {
     })
   }
 
-  // https://material-ui.com/components/rating/
+  useEffect(() => {
+    if (!userId) return;
+    fetch(`http://localhost:8080/users/${userId}/rated`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json', Authorization: accessToken }
+    })
+      .then((res) => res.json()) // i need some kind of for each here?
+      .then((json) => {
+        setRate(json.rating)
+        console.log('json', json)
+      })
+  }, [wineId, userId, accessToken])
+
   return (
     <>
       <RatingButtonContainer>
@@ -33,12 +49,10 @@ export const UserRating = () => {
           width="100px"
         >
           <Rating
-            name="customized-empty" // + wineId???
+            name="customized-empty"
             value={rate}
             disabled={!accessToken}
-            // onChange={(e, rating) => {
-            //   handleRating(userId, wineId, rating)
-            // }}
+            onChange={(event, rating) => { handleRating(rating) }}
             emptyIcon={<StarBorderIcon style={{ color: 'rgba(255, 255, 255, 0.8)', fill: '#495867' }} />}
           />
         </Box>

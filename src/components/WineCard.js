@@ -68,7 +68,7 @@ export const WineCard = ({
         </TopTextWrapper>
         <RatingsWrapper>
           <RatingText>Average rating: {average_rating}</RatingText>
-          <UserRating />
+          <UserRating wineId={_id}/>
           {/* <RatingText>Rate this wine: <span role="img"> ⭐️  ⭐️  ⭐️  ⭐️  ⭐️ </span></RatingText> */}
         </RatingsWrapper>
         <InfoTextWrapper>

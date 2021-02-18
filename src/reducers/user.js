@@ -137,7 +137,7 @@ export const loginUser = (email, password) => {
         dispatch(ui.actions.setLoginFailed(false))
       })
       .catch((err) => {
-        dispatch(user.actions.setErrorMessage({ errorMessage: err.toString }))
+        dispatch(user.actions.setErrorMessage({ errorMessage: err.toString() }))
         dispatch(ui.actions.setLoginFailed(true))
       })
   }

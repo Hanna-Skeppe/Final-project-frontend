@@ -1,12 +1,6 @@
-/* eslint-disable */
 import React from 'react'
 import styled from 'styled-components/macro'
 import { Link } from 'react-router-dom'
-
-// import {
-//   // CardContainer,
-//   CardImageWrapper
-// } from './lib/Containers'
 
 export const ProducerCard = ({
   producer_name,
@@ -32,7 +26,7 @@ export const ProducerCard = ({
         </CardLinkProducer>
         <CardLinkExternal href={url} target="_blank" rel="noopener noreferrer">Producer homepage</CardLinkExternal>
         <CreditsWrapper>
-          Icons made by 
+          Icons made by
           <LinkCredit href="https://www.freepik.com" title="Freepik">Freepik</LinkCredit>
           from
           <LinkCredit href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</LinkCredit>
@@ -49,7 +43,6 @@ const CardContainer = styled.div`
   justify-content: space-between;
   margin: 20px;
   max-height: 100%;
-  // background: #f2f2f2; 
   background: rgba(236, 199, 172, .67);
   box-shadow: 3px 3px 8px rgba(90,87,87,0.6);
   @media(max-width: 1500px) {
@@ -115,7 +108,6 @@ const CardImage = styled.img`
   object-fit: cover;
   object-position: top center;
   border: 10px solid #fff; 
-  // box-shadow: 3px 3px 8px rgba(90,87,87,0.6);
   transition: transform .8s ease-in-out;
   &:hover {
     transform: rotate(6deg);
@@ -140,25 +132,24 @@ const CardLinkProducer = styled(Link)`
     font-size: 16px;
   }
   `
-  const CardLinkExternal = styled.a`
-    font-family: 'Overpass', sans-serif;  
-    font-weight: bold;
-    font-size: 20px;
-    color: #495867;
-    text-decoration: none;
-    &:hover {
-      cursor: pointer;
-      text-decoration: underline;
-      color: #CE796B;
-    }
-    @media(max-width: 1500px) {
-      font-size: 18px;
-    }
-    @media(max-width: 1024px) {
-      font-size: 16px;
-    }
-  `
-
+const CardLinkExternal = styled.a`
+  font-family: 'Overpass', sans-serif;  
+  font-weight: bold;
+  font-size: 20px;
+  color: #495867;
+  text-decoration: none;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color: #CE796B;
+  }
+  @media(max-width: 1500px) {
+    font-size: 18px;
+  }
+  @media(max-width: 1024px) {
+    font-size: 16px;
+  }
+`
 
 const CreditsWrapper = styled.div`
   font-family: 'Overpass', sans-serif;

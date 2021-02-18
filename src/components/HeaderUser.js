@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-// import { useSelector, useDispatch } from 'react-redux'
 
 import img from '../assets/vin_natur_paket.jpg'
 import { SubHeaderText } from './lib/Text'

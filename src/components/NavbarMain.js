@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/macro'
@@ -15,50 +14,40 @@ export const NavbarMain = () => {
   const userId = useSelector((store) => store.user.login.userId)
   const name = useSelector((store) => store.user.login.name)
   const surname = useSelector((store) => store.user.login.surname)
-  
-  console.log('accessToken:', accessToken) 
+
+  console.log('accessToken:', accessToken) // REMOVE THESE LATER
   console.log('name:', name)
   console.log('surname:', surname)
   console.log('userId:', userId)
-  
+
   return (
     <NavbarContainer>
-      <Nav> 
-      <>
-      <Hamburger />
-      <NavbarLink to="/" exact={true} activeStyle={{ color: '#C9C4C4', textDecoration: 'underline' }}> 
-        Home
-      </NavbarLink>
-      <NavSpan>|</NavSpan>
-      </>
-      {/* <Link to="/about_us">
-        <NavbarLinkText>About Us</NavbarLinkText>
-      </Link>
-      <span>|</span>
-      <Link to="/naturalwines_info">
-        <NavbarLinkText>About Natural Wines</NavbarLinkText>
-      </Link>
-      <span>|</span> */}
-      <>
-      <NavbarLink to="/producers" exact={true} activeStyle={{ color: '#C9C4C4', textDecoration: 'underline' }} >
-        Wine Producers
-      </NavbarLink>
-      </>
-      {!accessToken &&
+      <Nav>
         <>
-        <NavSpan>|</NavSpan>
-        <PopoverLogin />
-        </>}
-      {accessToken && 
-        <>
-          <NavSpan>|</NavSpan>
-          <Logout />
-          <NavSpan>|</NavSpan>
-          <NavbarLink to={`/users/${userId}/collection`} activeStyle={{ color: '#C9C4C4', textDecoration: 'underline' }}>
-            {name}'s Page
+          <Hamburger />
+          <NavbarLink to="/" exact={true} activeStyle={{ color: '#C9C4C4', textDecoration: 'underline' }}>
+            Home
           </NavbarLink>
-        </>}
-        </Nav> 
+          <NavSpan>|</NavSpan>
+          <NavbarLink to="/producers" exact={true} activeStyle={{ color: '#C9C4C4', textDecoration: 'underline' }} >
+            Wine Producers
+          </NavbarLink>
+        </>
+        {!accessToken &&
+          <>
+            <NavSpan>|</NavSpan>
+            <PopoverLogin />
+          </>}
+        {accessToken &&
+          <>
+            <NavSpan>|</NavSpan>
+            <Logout />
+            <NavSpan>|</NavSpan>
+            <NavbarLink to={`/users/${userId}/collection`} activeStyle={{ color: '#C9C4C4', textDecoration: 'underline' }}>
+              {name}'s Page
+            </NavbarLink>
+          </>}
+      </Nav>
     </NavbarContainer>
   )
 }

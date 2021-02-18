@@ -1,14 +1,13 @@
-/* eslint-disable */
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components/macro'
-import { Link } from 'react-router-dom'
 import FadeIn from 'react-fade-in'
 
 
 import { HeaderProducer } from '../components/HeaderProducer'
 import { ProducerCard } from '../components/ProducerCard'
 import { fetchProducersList } from '../reducers/producers'
+import { BackLink } from '../components/lib/Links'
 
 export const ProducersPage = () => {
   const dispatch = useDispatch()
@@ -26,8 +25,8 @@ export const ProducersPage = () => {
         Home
       </BackLink>
       <ListWrapper>
-        {(producerList.length >= 1) && producerList.map((producer) => ( // solved error in console about key with .length so that map wil not happen until after producerList is fetched
-          <FadeIn key={producer._id}> 
+        {(producerList.length >= 1) && producerList.map((producer) => ( // map wil not happen until after producerList is fetched
+          <FadeIn key={producer._id}>
             <ProducerCard
               key={producer._id}
               {...producer} />
@@ -59,20 +58,5 @@ const ListWrapper = styled.section`
   }
   @media(max-width: 560px) {
     max-width: 100vw;
-  }
-`
-
-const BackLink = styled(Link)`
-  font-family: 'Overpass', sans-serif;
-  font-size: 18px;
-  margin: 20px 10px 0 50px;
-  text-decoration: none;
-  color: #495867;
-  font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  z-index: 4;
-  @media(min-width: 769px) {
-    display: none;
   }
 `

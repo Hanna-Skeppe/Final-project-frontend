@@ -1,74 +1,64 @@
-/* eslint-disable */
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import styled from 'styled-components/macro'
+import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import Popover from '@material-ui/core/Popover'
 import Typography from '@material-ui/core/Typography'
-import styled from 'styled-components/macro'
-import { makeStyles } from '@material-ui/core/styles'
+
 import { loginUser } from '../reducers/user'
 import { LogInOutButton } from './lib/Buttons'
-// https://material-ui.com/api/popover/
-// https://material-ui.com/components/popover/
+// https://material-ui.com/api/popover/ & https://material-ui.com/components/popover/
 
-// From material-ui 
 const useStyles = makeStyles((theme) => ({
   typography: {
     padding: theme.spacing(2)
-  },
+  }
 }));
 
 export const PopoverLogin = () => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const classes = useStyles() // From material-ui 
-  const [anchorEl, setAnchorEl] = useState(null) 
-  
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [anchorEl, setAnchorEl] = useState(null)
+  const failed = useSelector((store) => store.ui.isLoginFailed)
+  const classes = useStyles()
   const history = useHistory()
   const dispatch = useDispatch()
-  const failed = useSelector((store) => store.ui.isLoginFailed) 
-  
 
-  //const errorMessage = useSelector((store) => store.user.login.errorMessage) // use this instead in the return?
-
-  const handlePopupClick = (event) => { // From material-ui 
+  const handlePopupClick = (event) => {
     setAnchorEl(event.currentTarget)
   };
 
-  //From material-ui (for closing the popup)
   const handleClose = () => {
     if (failed) {
       setAnchorEl(null)
-    } 
+    }
   }
 
-  // From material-ui 
   const open = Boolean(anchorEl)
   const id = open ? 'popup-login' : undefined
 
-  const handleSubmit = (event) => { 
+  const handleSubmit = (event) => {
     event.preventDefault()
-    dispatch(loginUser(email, password)) // 'loginUser' is the thunk-function in user.js 
-    handleClose() 
-    history.push(`/`)
+    dispatch(loginUser(email, password))
+    history.push('/')
   }
 
-  const handleKeyPressLogin = (event) => { // Haven't tested to login on keypress yet
+  const handleKeyPressLogin = (event) => {
     if (event.key === 'Enter') {
       event.preventDefault()
-      dispatch(loginUser(email, password)) 
-      history.push(`/`)
+      dispatch(loginUser(email, password))
+      history.push('/')
     }
   }
-  
-  // This works. It redirects to '/register'-page when pressing button on popup
-  const goToSignup = () => { 
+
+  const goToSignup = () => {
     handleClose()
     setAnchorEl(null)
-    history.push(`/register`)
+    history.push('/register')
   }
-  
+
   return (
     <>
       <LogInOutButton aria-describedby={id} onClick={handlePopupClick}>
@@ -86,8 +76,7 @@ export const PopoverLogin = () => {
         transformOrigin={{
           vertical: 'top',
           horizontal: 'center'
-        }}
-      >
+        }}>
         <Typography className={classes.typography}>
           <Label> 
             Email
@@ -111,16 +100,10 @@ export const PopoverLogin = () => {
             />
           </Label>
           {failed && <ErrorMessage>Login failed. Try again.</ErrorMessage>}
-          <Button
-            type="submit"
-            onClick={handleSubmit}
-          >
+          <Button type="submit" onClick={handleSubmit}>
             Login
           </Button>
-          <Button
-            type="button"
-            onClick={goToSignup}
-          >
+          <Button type="button" onClick={goToSignup}>
             Not a member? Signup here.
           </Button>
         </Typography>
@@ -128,6 +111,14 @@ export const PopoverLogin = () => {
     </>
   )
 }
+
+const ErrorMessage = styled.span`
+  color: red;
+  font-size: 16px;
+  word-wrap: wrap;
+  display: block;
+  text-align: center;
+`
 
 const Label = styled.label`
   color: #666;
@@ -157,9 +148,4 @@ const Input = styled.input`
     border-color: #ededed;
     outline: none;
   }
-`
-
-const ErrorMessage = styled.p`
-  color: red;
-  font-size: 16px;
 `

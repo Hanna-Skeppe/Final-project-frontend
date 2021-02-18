@@ -4,7 +4,7 @@ export const ui = createSlice({
   name: 'ui',
   initialState: {
     isLoginFailed: false,
-    isLoading: false // For the loading-spinner
+    isLoading: false // For the loading-spinner not implemented yet
   },
   reducers: {
     setLoginFailed: (store, action) => {

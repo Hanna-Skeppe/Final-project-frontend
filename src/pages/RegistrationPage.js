@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,30 +12,30 @@ export const RegistrationPage = () => {
   const [email, setEmail] = useState('')
   const [registered, setRegistered] = useState(false)
 
-  const errorMessage = useSelector(store => store.user.login.errorMessage)
+  const errorMessage = useSelector((store) => store.user.login.errorMessage)
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault()
     dispatch(signUp(name, surname, email, password))
     setName('')
     setSurname('')
     setEmail('')
     setPassword('')
-    setRegistered(true)
+    setRegistered(true) // not optimal. need to find a better way.
   }
 
   const redirectHome = () => {
-    history.push(`/`)
+    history.push('/')
   }
 
   return (
     <FormContainer>
-      <HeaderTextContainer> 
-      {registered
-        ? <PageHeader>Registration was successful. You are now logged in!</PageHeader>
-        : <PageHeader>Create Account</PageHeader>}
+      <HeaderTextContainer>
+        {registered
+          ? <PageHeader>Registration was successful. You are now logged in!</PageHeader>
+          : <PageHeader>Create Account</PageHeader>}
       </HeaderTextContainer>
       {!registered && (
         <Form onSubmit={handleSubmit}>
@@ -65,17 +64,18 @@ export const RegistrationPage = () => {
               required="true"
               placeholder="example@email.com"
               value={email}
-              onChange={event => setEmail(event.target.value.toLowerCase())} />
+              onChange={(event) => setEmail(event.target.value.toLowerCase())} />
           </Label>
           <Label>
             * Password
-          <Input
-            required="true"
-            type="password"
-            value={password}
-            minLength={5}
-            placeholder="Type your password (min. 6 characters)."
-            onChange={event => setPassword(event.target.value)} />
+            <Input
+              required="true"
+              type="password"
+              value={password}
+              minLength={5}
+              placeholder="Type your password (min. 6 characters)."
+              onChange={(event) => setPassword(event.target.value)}
+            />
           </Label>
           <Button
             type="submit"
@@ -85,8 +85,8 @@ export const RegistrationPage = () => {
             Sign Up
           </Button>
         </Form>)}
-        {errorMessage && <h3>{errorMessage}</h3>}
-        {registered && <Button type="button" onClick={redirectHome}>Back To Home</Button>}
+      {errorMessage && <h3>{errorMessage}</h3>}
+      {registered && <Button type="button" onClick={redirectHome}>Back To Home</Button>}
     </FormContainer>
   )
 }

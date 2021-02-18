@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components/macro'
@@ -9,6 +8,7 @@ import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutline
 import { addFavoriteWine, removeFavoriteWine } from 'reducers/user'
 import { CardContainer, CardImageWrapper } from './lib/Containers'
 import { CardTitle } from './lib/Text'
+import { FavoriteButton } from './lib/Buttons'
 import { UserRating } from './UserRating'
 
 export const WineCard = ({
@@ -68,8 +68,7 @@ export const WineCard = ({
         </TopTextWrapper>
         <RatingsWrapper>
           <RatingText>Average rating: {average_rating}</RatingText>
-          <UserRating wineId={_id}/>
-          {/* <RatingText>Rate this wine: <span role="img"> ⭐️  ⭐️  ⭐️  ⭐️  ⭐️ </span></RatingText> */}
+          <UserRating wineId={_id} />
         </RatingsWrapper>
         <InfoTextWrapper>
           <TextSubWrapper>
@@ -111,9 +110,6 @@ const CardImage = styled.img`
   height: 100%;
   object-fit: contain;
   object-position: center center;
-  @media(max-width: 560px) {
-    // height: 75%;
-  }
 `
 
 const TopTextWrapper = styled.div`
@@ -133,7 +129,6 @@ const CardTextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   @media(max-width: 1024px) {
-    // width: 80%;
     width: 86%;
     margin: 5px;
   }
@@ -146,7 +141,6 @@ const InfoTextWrapper = styled.div`
 `
 
 const RatingText = styled.p`
-  // font-weight: 700;
   font-size: 22px;
   margin: 10px;
   margin-bottom: 0;
@@ -165,9 +159,6 @@ const TextSubWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 10px;
-  // @media(max-width: 560px) {
-  //   width: 36%;
-  // }
 `
 
 const CardTextTitle = styled.p`
@@ -209,18 +200,4 @@ const CardLink = styled(NavLink)`
     text-decoration: underline;
     color: #ce796b;
   }
-  `
-
-const FavoriteButton = styled.button`
-  border: none;
-  border-radius: 5px;
-  background: transparent;
-  margin: 8px 8px 8px 0;
-  padding: 0;
-  transition: .5s ease;
-  &:hover {
-    transform: scale(1.1);
-    cursor: pointer;
-  }
 `
-

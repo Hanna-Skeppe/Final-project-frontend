@@ -1,76 +1,82 @@
-/* eslint-disable */
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/macro'
 
 import { loginUser } from '../reducers/user'
+import { LoginButton } from '../components/lib/Buttons'
 
 export const LoginPageMobile = () => {
-  
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
-  const failed = useSelector((store) => store.ui.isLoginFailed) 
-
-  const errorMessage = useSelector(store => store.user.login.errorMessage)
+  const failed = useSelector((store) => store.ui.isLoginFailed)
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const handleSubmit = (event) => { 
-    event.preventDefault()
-    dispatch(loginUser(email, password)) 
-    setEmail('')
-    setPassword('')
-    history.push(`/`)
+  const handlePageReload = () => { // This worked before but not now. Why???
+    if (!failed) {
+      history.push('/login')
+    } else if (failed) {
+      history.push('/')
+    }
   }
 
-  const handleKeyPressLogin = (event) => { 
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    dispatch(loginUser(email, password))
+    setEmail('')
+    setPassword('')
+    handlePageReload()
+  }
+
+  const handleKeyPressLogin = (event) => {
     if (event.key === 'Enter') {
       event.preventDefault()
-      dispatch(loginUser(email, password)) 
+      dispatch(loginUser(email, password))
       setEmail('')
       setPassword('')
-      history.push(`/`)
+      handlePageReload()
     }
   }
 
   return (
     <FormContainer>
-      <HeaderTextContainer> 
-      <PageHeader>Login</PageHeader>
+      <HeaderTextContainer>
+        <PageHeader>Login</PageHeader>
       </HeaderTextContainer>
-        <Form onSubmit={handleSubmit}>
-          <Label>
-            * Email
-            <Input
-              lowercase
-              type="text"
-              required={true}
-              placeholder="example@email.com"
-              value={email}
-              onChange={event => setEmail(event.target.value.toLowerCase())} />
-          </Label>
-          <Label>
-            * Password
+      <Form onSubmit={handleSubmit}>
+        <Label>
+          * Email
+          <Input
+            lowercase
+            type="text"
+            required={true}
+            placeholder="example@email.com"
+            value={email}
+            onChange={(event) => setEmail(event.target.value.toLowerCase())}
+          />
+        </Label>
+        <Label>
+          * Password
           <Input
             required={true}
             type="password"
             value={password}
             minLength={5}
             placeholder="Type your password (min. 6 characters)."
-            onChange={event => setPassword(event.target.value)} 
-            onKeyPress={handleKeyPressLogin}/>
-          </Label>
-          <Button
-            type="submit"
-            disabled={!email || password.length < 5}
-            onSubmit={handleSubmit}
-          >
-            Log in
-          </Button>
-        </Form>
-        {errorMessage && <h3>{errorMessage}</h3>}
-        {failed && <ErrorMessage>Login failed. Try again.</ErrorMessage>}
+            onChange={(event) => setPassword(event.target.value)}
+            onKeyPress={handleKeyPressLogin}
+          />
+        </Label>
+        <LoginButton
+          type="submit"
+          disabled={!email || password.length < 5}
+          onSubmit={handleSubmit}
+        >
+          Log in
+        </LoginButton>
+      </Form>
+      {failed && <ErrorMessage>Login failed. Try again.</ErrorMessage>}
     </FormContainer>
   )
 }
@@ -147,25 +153,10 @@ const Label = styled.label`
   line-height: 1px;
   padding: 10px;  
 `
-const Button = styled.button`
-  background: #CE796B;
-  border-color: transparent;
-  border-radius: 3px;
-  color: #fff;
-  cursor: pointer;
-  font-size: 1em;
-  font-weight: 600;
-  margin: 10px 0 5px 0;
-  padding: 10px;
-  text-shadow: -1px -1px rgba(0,0,0,0.1);
-  text-transform: uppercase;
-  width: 110px;
-  letter-spacing: 1px;
-  align-self: center;
-  &:hover {
-    transform: scale(1.01);
-    transition: 
-      box-shadow 0.4s, 
-      transform 0.4s;
-  }
+const ErrorMessage = styled.span`
+  color: red;
+  font-size: 16px;
+  word-wrap: wrap;
+  display: block;
+  text-align: center;
 `

@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable spaced-comment */
 import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
@@ -7,11 +5,8 @@ import styled from 'styled-components/macro'
 import FadeIn from 'react-fade-in'
 
 import { WineCard } from '../components/WineCard'
-// import { HeaderSingleProducer } from '../components/HeaderSingleProducer'
 import img from '../assets/singleproducerheader.jpg'
 import {
-  // CardContainer,
-  // CardImageWrapper,
   SubHeaderContainer,
   HeaderOverlay
 } from '../components/lib/Containers'
@@ -222,7 +217,6 @@ const TextDiv = styled.div`
   @media(max-width: 560px) {
     margin-left: 2vw;
     margin-right: 2vw;
-    //justify-content: center;
     align-items: center;
   }
 `
@@ -246,9 +240,8 @@ const CardImage = styled.img`
   object-fit: cover;
   object-position: top center;
   border: 10px solid #efeded; 
-  // box-shadow: 3px 3px 8px rgba(90,87,87,0.6);
   transition: transform .8s ease-in-out;
   &:hover {
-    transform: rotate(6deg);
+    transform: rotate(5deg);
   }
 `

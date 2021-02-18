@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 
-
 import img from '../assets/vineyard _1.jpg'
 
 export const HeaderSingleProducer = () => {

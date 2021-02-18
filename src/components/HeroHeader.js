@@ -1,7 +1,9 @@
 import styled from 'styled-components/macro'
 import React from 'react'
+
 import video from '../videos/green_grapes.mp4'
-import { HeaderOverlay } from './lib/Containers'
+import { HeaderOverlay, HeroContainer } from './lib/Containers'
+import { HeroHeaderText } from './lib/Text'
 
 export const HeroHeader = () => {
   return (
@@ -14,44 +16,6 @@ export const HeroHeader = () => {
     </HeroContainer>
   )
 }
-
-const HeroContainer = styled.section`
-  height: 50vh;
-  width: 100vw;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  @media(max-width: 560px) {
-    height: 35vh;
-  }
-`
-
-const HeroHeaderText = styled.h1`
-  font-family: 'Italiana', serif;
-  color: #fff;
-  font-size: 92px;
-  // font-weight: 600;
-  text-align: center;
-  letter-spacing: 2px;
-  text-shadow: 3px 3px 8px rgba(90,87,87,0.6);
-  word-wrap; wrap;
-  margin: 20vh auto auto auto;
-  z-index: 8;
-  max-width: 70vw;
-  @media(max-width: 1024px) {
-    font-size: 72px;
-    margin-top: 21vh;
-  }
-  @media(max-width: 768px) {
-    font-size: 48px;
-    margin-top: 22vh;
-  }
-  @media(max-width: 500px) {
-    font-size: 32px;
-    margin-top: 17vh;
-  }
-`
 
 const Video = styled.video`
   position: absolute;

@@ -1,21 +1,15 @@
-/* eslint-disable */
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-// import { useHistory } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
-// import SearchIcon from '@material-ui/icons/Search';
-// import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 
-import { wines } from '../reducers/wines'
-import { fetchWineResults } from '../reducers/wines'
+import { wines, fetchWineResults } from '../reducers/wines'
 import { SearchButton } from './lib/Buttons'
 import { SearchHeading } from './lib/Text'
 import { InputTextDiv, SearchWrapper } from './lib/Containers'
 
-// from material ui:
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: 0,
@@ -23,25 +17,21 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
     fontSize: '20px',
     '& .MuiTextField-root': {
-      // margin: theme.spacing(1),
-      margin: 0,
+      margin: theme.spacing(1),
       borderRadius: 0,
       width: '300',
-      fontSize: '20px',
-    },
+      fontSize: '20px'
+    }
   },
   textField: {
-    // marginLeft: theme.spacing(1),
-    // marginRight: theme.spacing(1),
     width: '25ch',
-    fontSize: '20px',
-  },
+    fontSize: '20px'
+  }
 }));
 
 export const SearchBar = () => {
   const errorMessage = useSelector((store) => store.wines.errorMessage)
   const dispatch = useDispatch()
-  // const history = useHistory()
   const classes = useStyles();
   const searchTerm = useSelector((store) => store.wines.searchTerm)
   const sortOrder = useSelector((store) => store.wines.sortOrder)
@@ -50,8 +40,6 @@ export const SearchBar = () => {
     event.preventDefault()
     if (searchTerm.length > 0) {
       dispatch(fetchWineResults(searchTerm, sortOrder))
-      // dispatch(wines.actions.setSearchTerm(''))
-      // history.push(`/`)
     }
   }
 
@@ -59,31 +47,27 @@ export const SearchBar = () => {
     <SearchWrapper>
       <SearchHeading>Search All the Wines</SearchHeading>
       <FormSearch onSubmit={handleSubmit}>
-        <div className={classes.root} style={{ width: 100 + '%' }}>
+        <div className={classes.root} style={{ width: `${100}%` }}>
           <InputTextDiv>
             <TextField
               id="outlined-full-width"
-              style={{ margin: 8, fontSize: 16 + 'px' }}
+              style={{ margin: 8, fontSize: `${16}px` }}
               placeholder="Search..."
               type="search"
               fullWidth
-              // margin="normal"
               InputLabelProps={{
-                shrink: true,
+                shrink: true
               }}
               variant="outlined"
               value={searchTerm}
               onChange={(event) => dispatch(wines.actions.setSearchTerm(event.target.value))}
               autoComplete="off"
               spellCheck="false"
-              // InputProps={{
-              //   startAdornment: <InputAdornment position="start"><SearchIcon /></InputAdornment>,
-              // }} 
-              />
+            />
             <SearchButton
               type="submit"
               onSubmit={handleSubmit}>
-              <SearchOutlinedIcon style={{ fontSize: 36, fill: '#ffffff' }}/>
+              <SearchOutlinedIcon style={{ fontSize: 36, fill: '#ffffff' }} />
             </SearchButton>
           </InputTextDiv>
         </div>

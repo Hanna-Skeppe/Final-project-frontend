@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -13,7 +12,7 @@ export const Logout = () => {
 
   const handleLogout = (event) => { 
     event.preventDefault()
-    dispatch(logoutUser(accessToken)) // 'logoutUser' is the thunk-function in user reducer
+    dispatch(logoutUser(accessToken))
     history.push(`/`)
   }
 

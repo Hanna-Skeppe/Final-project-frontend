@@ -54,7 +54,7 @@ export const user = createSlice({
 // GET FAVORITE WINES
 export const fetchFavoriteWines = (userId, accessToken) => {
   return (dispatch) => {
-    fetch(`http://localhost:8080/users/${userId}/favorites`, {
+    fetch(`https://natural-wines-api.herokuapp.com/users/${userId}/favorites`, {
       method: 'GET',
       headers: { Authorization: accessToken }
     })
@@ -75,7 +75,7 @@ export const fetchFavoriteWines = (userId, accessToken) => {
 // ADD A FAVORITE WINE
 export const addFavoriteWine = (userId, accessToken, wineId) => {
   return (dispatch) => {
-    fetch(`http://localhost:8080/users/${userId}/favorites`, {
+    fetch(`https://natural-wines-api.herokuapp.com/users/${userId}/favorites`, {
       method: 'PUT',
       body: JSON.stringify({ _id: wineId }),
       headers: { Authorization: accessToken, 'Content-Type': 'application/json' }

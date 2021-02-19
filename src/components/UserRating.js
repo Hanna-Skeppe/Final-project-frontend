@@ -16,7 +16,7 @@ export const UserRating = ({ wineId }) => {
   const handleRating = (rating) => { // This works: the backend updates properly.
     setRate(rating)
     console.log(rating)
-    fetch(`http://localhost:8080/users/${userId}/rated`, {
+    fetch(`https://natural-wines-api.herokuapp.com/users/${userId}/rated`, {
       method: 'PUT',
       body: JSON.stringify({ userId, wineId, rating }),
       headers: { 'Content-Type': 'application/json', Authorization: accessToken }
@@ -27,23 +27,23 @@ export const UserRating = ({ wineId }) => {
 
   // This does not work yet. I don't get the ratings to display in frontend.
   // I would LOVE to get some pointers on how to solve it in the code-review if possible.
-  useEffect(() => {
-    if (!userId) return;
-    fetch(`http://localhost:8080/users/${userId}/rated`, { 
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json', Authorization: accessToken }
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        json.forEach((item) => {
-          if (item.wineId === wineId) {
-            setRate(item.rating)
-          }
-        })
-      //   setRate(json.rating)
-      //   console.log('json', json)
-      })
-  }, [wineId, userId, accessToken])
+  // useEffect(() => {
+  //   if (!userId) return;
+  //   fetch(`https://natural-wines-api.herokuapp.com/users/${userId}/rated`, {
+  //     method: 'GET',
+  //     headers: { 'Content-Type': 'application/json', Authorization: accessToken }
+  //   })
+  //     .then((res) => res.json())
+  //     .then((json) => {
+  //       json.forEach((item) => {
+  //         if (item.wineId === wineId) {
+  //           setRate(item.rating)
+  //         }
+  //       })
+  //     //   setRate(json.rating)
+  //     //   console.log('json', json)
+  //     })
+  // }, [wineId, userId, accessToken])
 
   return (
     <>

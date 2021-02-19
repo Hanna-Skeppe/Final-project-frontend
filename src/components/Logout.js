@@ -10,10 +10,10 @@ export const Logout = () => {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const handleLogout = (event) => { 
+  const handleLogout = (event) => {
     event.preventDefault()
     dispatch(logoutUser(accessToken))
-    history.push(`/`)
+    history.push('/')
   }
 
   return (

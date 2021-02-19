@@ -18,7 +18,7 @@ export const WinesFromSingleProducerPage = () => {
   const { id } = useParams()
 
   useEffect(() => {
-    const SINGLE_PRODUCER_WINES_URL = `http://localhost:8080/producers/${id}/wines`
+    const SINGLE_PRODUCER_WINES_URL = `https://natural-wines-api.herokuapp.com/producers/${id}/wines`
 
     fetch(SINGLE_PRODUCER_WINES_URL, {
       method: 'GET',
@@ -37,7 +37,7 @@ export const WinesFromSingleProducerPage = () => {
   }, [id])
 
   useEffect(() => {
-    const SINGLE_PRODUCER_URL = `http://localhost:8080/producers/${id}`
+    const SINGLE_PRODUCER_URL = `https://natural-wines-api.herokuapp.com/producers/${id}`
 
     fetch(SINGLE_PRODUCER_URL, {
       method: 'GET',

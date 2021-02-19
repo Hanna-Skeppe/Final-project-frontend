@@ -95,7 +95,7 @@ export const addFavoriteWine = (userId, accessToken, wineId) => {
 // REMOVE A FAVORITE WINE
 export const removeFavoriteWine = (userId, accessToken, wineId) => {
   return (dispatch) => {
-    fetch(`http://localhost:8080/users/${userId}/favorites`, {
+    fetch(`https://natural-wines-api.herokuapp.com/users/${userId}/favorites`, {
       method: 'DELETE',
       body: JSON.stringify({ _id: wineId }),
       headers: { Authorization: accessToken, 'Content-Type': 'application/json' }

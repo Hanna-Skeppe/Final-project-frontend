@@ -168,7 +168,7 @@ const CardTextTitle = styled.p`
   font-weight: 700;
   color: #637050;
   margin: 0;
-  margin-left: 8px;
+  margin-right: 8px;
   font-size: 18px;
   text-align: right;
   color:#44515f;

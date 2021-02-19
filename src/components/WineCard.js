@@ -168,6 +168,7 @@ const CardTextTitle = styled.p`
   font-weight: 700;
   color: #637050;
   margin: 0;
+  margin-left: 8px;
   font-size: 18px;
   text-align: right;
   color:#44515f;
@@ -176,7 +177,7 @@ const CardTextTitle = styled.p`
   }
   @media(max-width: 560px) {
     font-size: 14px;
-    margin: 0 10px 0 0;
+    margin: 0 6px 0 0;
   }
 `
 const CardText = styled.p`

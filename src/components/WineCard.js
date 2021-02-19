@@ -142,8 +142,7 @@ const InfoTextWrapper = styled.div`
 
 const RatingText = styled.p`
   font-size: 22px;
-  margin: 10px;
-  margin-bottom: 0;
+  margin: 0 10px;
   font-family: 'Overpass', sans-serif;
   text-align: left;
   color: #3a3a3a;
@@ -159,13 +158,16 @@ const TextSubWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 10px;
+  @media(min-width: 1024px) {
+    line-height: 1.5;
+  }
 `
 
 const CardTextTitle = styled.p`
   font-family: 'Overpass', sans-serif;
   font-weight: 700;
   color: #637050;
-  margin: 0 15px 0 0;
+  margin: 0;
   font-size: 18px;
   text-align: right;
   color:#44515f;

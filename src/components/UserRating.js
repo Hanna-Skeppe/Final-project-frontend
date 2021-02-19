@@ -54,6 +54,7 @@ export const UserRating = ({ wineId }) => {
           borderColor="transparent"
           marginBottom="0px"
           width="100px"
+          padding="4px"
         >
           <Rating
             name={"customized-empty" + wineId} // If I remove wineId it breaks (can't rate) // In frontend this has the same wineId on all wines.

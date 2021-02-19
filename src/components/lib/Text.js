@@ -7,11 +7,11 @@ export const CardTitle = styled.h3`
   font-family: 'Italiana', serif;
   font-size: 32px;
   text-align: left;
-  margin: 10px 10px 10px 30px;
+  margin: 0 10px 0 30px;
   color: #44515f;
   @media(max-width: 768px) {
     font-size: 26px;
-    margin: 10px;
+    margin: 0 10px;
   }
   @media(max-width: 560px) {
     font-size: 22px;

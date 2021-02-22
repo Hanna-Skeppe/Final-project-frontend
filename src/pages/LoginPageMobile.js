@@ -5,7 +5,7 @@ import styled from 'styled-components/macro'
 
 import { loginUser } from '../reducers/user'
 import { LoginButton } from '../components/lib/Buttons'
-
+// redirect to home after login doesn't work on mobile.
 export const LoginPageMobile = () => {
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')

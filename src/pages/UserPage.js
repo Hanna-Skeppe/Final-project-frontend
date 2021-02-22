@@ -9,6 +9,7 @@ import { fetchFavoriteWines } from '../reducers/user'
 import { HeaderUser } from '../components/HeaderUser'
 import { RedirectHomeButton } from '../components/lib/Buttons'
 
+// Why does't it work to reload this page after I have deployed it? I get a 404. Why? Works in Postman.
 export const UserPage = () => {
   const accessToken = useSelector((store) => store.user.login.accessToken)
   const userId = useSelector((store) => store.user.login.userId)

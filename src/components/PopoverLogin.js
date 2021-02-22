@@ -61,7 +61,11 @@ export const PopoverLogin = () => {
 
   return (
     <>
-      <LogInOutButton aria-describedby={id} onClick={handlePopupClick}>
+      <LogInOutButton
+        aria-describedby={id}
+        onClick={handlePopupClick}
+        className={anchorEl ? 'nav-item-active' : ''}
+      >
         Login
       </LogInOutButton>
       <Popover

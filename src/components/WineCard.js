@@ -55,8 +55,8 @@ export const WineCard = ({
               {isFavorite &&
                 <FavoriteButton
                   type="submit"
-                  onClick={handleRemoveFavorite}
-                ><FavoriteOutlinedIcon style={{ fontSize: 48, fill: '#495867' }} />
+                  onClick={handleRemoveFavorite}>
+                  <FavoriteOutlinedIcon style={{ fontSize: 48, fill: '#495867' }} />
                 </FavoriteButton>}
               {!isFavorite &&
                 <FavoriteButton

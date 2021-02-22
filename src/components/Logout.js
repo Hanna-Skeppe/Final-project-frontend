@@ -18,6 +18,7 @@ export const Logout = () => {
 
   return (
     <LogInOutButton
+      activeClassName={{ color: '#C9C4C4', textDecoration: 'underline' }}
       type="submit"
       onClick={handleLogout}>
       Logout

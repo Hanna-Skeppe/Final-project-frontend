@@ -29,7 +29,7 @@ export const NavbarMain = () => {
             Home
           </NavbarLink>
           <NavSpan>|</NavSpan>
-          <NavbarLink to="/producers" exact={true} activeStyle={{ color: '#C9C4C4', textDecoration: 'underline' }} >
+          <NavbarLink to="/producers" exact={true} activeStyle={{ color: '#C9C4C4', textDecoration: 'underline' }}>
             Wine Producers
           </NavbarLink>
         </>

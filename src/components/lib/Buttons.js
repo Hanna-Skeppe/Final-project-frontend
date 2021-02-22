@@ -80,11 +80,12 @@ export const LogoutButton = styled.button`
 }
 `
 
-// NavbarMain:
+// NavbarMain (components: PopoverLogin & Logout):
 const activeClassName = 'nav-item-active'
 export const LogInOutButton = styled.button.attrs({ activeClassName })`
   background: inherit;
   border: none;
+  outline: none;
   color: #fff;
   cursor: pointer;
   font-family: 'Overpass', sans-serif;
@@ -95,13 +96,14 @@ export const LogInOutButton = styled.button.attrs({ activeClassName })`
   &:hover {
     cursor: pointer;
     text-decoration: underline;
-    color: #C9C4C4;
+    color: #ce796b;
   }
   @media(max-width: 768px) {
     display: none;
   }
   &.${activeClassName} {
     color: #C9C4C4;
+    text-decoration: underline;
   }
 `
 // // Home - styles // //

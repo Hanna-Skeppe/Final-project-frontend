@@ -80,7 +80,6 @@ export const LogoutButton = styled.button`
 }
 `
 
-
 // NavbarMain:
 const activeClassName = 'nav-item-active'
 export const LogInOutButton = styled.button.attrs({ activeClassName })`

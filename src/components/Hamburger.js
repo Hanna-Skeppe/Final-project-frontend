@@ -111,8 +111,8 @@ export const StyledMenu = styled.nav`
     width: 100%;
   }
   a {
-    color: #ffffff;
-    ffont-family: 'Overpass', sans-serif;
+    color: #fff;
+    font-family: 'Overpass', sans-serif;
     font-size: 2rem;
     font-weight: bold;
     letter-spacing: 0.2rem;

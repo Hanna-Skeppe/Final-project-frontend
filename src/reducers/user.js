@@ -63,7 +63,7 @@ export const fetchFavoriteWines = (userId, accessToken) => {
           return res.json()
         }
         throw new Error(
-          'Could not get Wines'
+          'Could not get Favorite Wines'
         )
       })
       .then((json) => {

@@ -102,30 +102,4 @@ export const SearchHeading = styled.h3`
     font-size: 1.5rem;
   }
 `
-// // ProducersPage-styles: // //
-export const ProducerHeaderText = styled.h1`
-  font-family: 'Italiana', serif;
-  color: #fff;
-  font-size: 72px;
-  font-weight: 600;
-  text-align: center;
-  letter-spacing: 2px;
-  text-shadow: 3px 3px 8px rgba(90,87,87,0.6);
-  word-wrap; wrap;
-  margin: auto;
-  z-index: 8;
-  max-width: 85vw;
-  margin-top: 17vh;
-  @media(max-width: 1024px) {
-    font-size: 52px;
-    margin-top: 20vh;
-  }
-  @media(max-width: 768px) {
-    max-width: 90vw;
-    font-size: 36px;
-  }
-  @media(max-width: 500px) {
-    max-width: 95vw;
-    font-size: 32px;
-  }
-`
+

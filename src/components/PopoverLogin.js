@@ -31,9 +31,9 @@ export const PopoverLogin = () => {
   };
 
   const handleClose = () => {
-    if (failed) {
-      setAnchorEl(null)
-    }
+    // if (failed) {
+    setAnchorEl(null)
+  //   }
   }
 
   const open = Boolean(anchorEl)

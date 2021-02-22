@@ -1,24 +1,16 @@
 import React from 'react'
-import styled from 'styled-components/macro'
 
 import img from '../assets/vineyard _1.jpg'
-import { ProducerHeaderText } from './lib/Text'
+import { SubHeaderText } from './lib/Text'
 import { SubHeaderContainer, HeaderOverlay } from './lib/Containers'
+import { SubHeaderImage } from './lib/Images'
 
 export const HeaderProducer = () => {
   return (
     <SubHeaderContainer>
-      <ProducerHeaderImage src={img} alt="vineyard landscape" />
+      <SubHeaderImage src={img} alt="vineyard landscape" />
       <HeaderOverlay />
-      <ProducerHeaderText>Wine Producers</ProducerHeaderText>
+      <SubHeaderText>Wine Producers</SubHeaderText>
     </SubHeaderContainer>
   )
 }
-
-const ProducerHeaderImage = styled.img`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 55%;
-`

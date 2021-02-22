@@ -39,7 +39,7 @@ export const WineList = () => {
 
   useEffect(() => {
     dispatch(fetchWineResults(searchTerm, sortOrder))
-    if (accessToken && userId) { // Removed: && (favoriteWines.length > 0)
+    if (accessToken && favoriteWines.length > 0) { // Removed: && (favoriteWines.length > 0) removed: accessToken && userId
       dispatch(fetchFavoriteWines(userId, accessToken))
     }
   }, [sortOrder, userId, dispatch, accessToken, errorMessage])

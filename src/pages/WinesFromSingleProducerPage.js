@@ -4,12 +4,8 @@ import { useSelector } from 'react-redux'
 import styled from 'styled-components/macro'
 import FadeIn from 'react-fade-in'
 
+import { HeaderSingleProducer } from 'components/HeaderSingleProducer'
 import { WineCard } from '../components/WineCard'
-import img from '../assets/singleproducerheader.jpg'
-import {
-  SubHeaderContainer,
-  HeaderOverlay
-} from '../components/lib/Containers'
 
 export const WinesFromSingleProducerPage = () => {
   const [producerWines, setProducerWines] = useState()
@@ -61,11 +57,7 @@ export const WinesFromSingleProducerPage = () => {
       <section>
         {singleProducer &&
           <>
-            <SubHeaderContainer>
-              <SingleProducerHeaderImage src={img} alt="person holding red grapes" />
-              <HeaderOverlay />
-              <SingleProducerHeaderText>{singleProducer.producer_name}</SingleProducerHeaderText>
-            </SubHeaderContainer>
+            <HeaderSingleProducer producerName={singleProducer.producer_name} />
             <FadeIn>
               <div>
                 <BackLink to="/">
@@ -174,36 +166,6 @@ const BackLink = styled(Link)`
   z-index: 4;
   @media(min-width: 769px) {
     display: none;
-  }
-`
-
-const SingleProducerHeaderImage = styled.img`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 55%;
-`
-
-const SingleProducerHeaderText = styled.h1`
-  font-family: 'Italiana', serif;
-  color: #fff;
-  font-size: 68px;
-  font-weight: 600;
-  text-align: center;
-  letter-spacing: 2px;
-  text-shadow: 3px 3px 8px rgba(90,87,87,0.6);
-  word-wrap; wrap;
-  margin: auto;
-  z-index: 8;
-  max-width: 85vw;
-  @media(max-width: 768px) {
-    max-width: 90vw;
-    font-size: 52px;
-  }
-  @media(max-width: 500px) {
-    max-width: 95vw;
-    font-size: 42px;
   }
 `
 

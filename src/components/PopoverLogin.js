@@ -31,7 +31,7 @@ export const PopoverLogin = () => {
   };
 
   const handleClose = () => {
-    // if (failed) {
+    // if (failed) { // removed this. Popup could not be closed otherwise.
     setAnchorEl(null)
   //   }
   }

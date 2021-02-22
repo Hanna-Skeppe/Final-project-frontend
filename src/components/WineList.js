@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
@@ -39,7 +40,7 @@ export const WineList = () => {
 
   useEffect(() => {
     dispatch(fetchWineResults(searchTerm, sortOrder))
-    if (accessToken && favoriteWines.length > 0) { // Removed: && (favoriteWines.length > 0) removed: accessToken && userId
+    if (accessToken && favoriteWines.length > 0) { // removed && userId and added favoriteWines.length > 0. Got error before (could not fetch) if no favorites.
       dispatch(fetchFavoriteWines(userId, accessToken))
     }
   }, [sortOrder, userId, dispatch, accessToken, errorMessage])

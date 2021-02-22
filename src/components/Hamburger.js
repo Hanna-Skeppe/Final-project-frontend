@@ -17,7 +17,7 @@ export const HamburgerMenu = ({ open, setOpen }) => {
   const handleLogout = (event) => {
     event.preventDefault()
     dispatch(logoutUser(accessToken))
-    history.push(`/`)
+    history.push('/')
   }
 
   return (
@@ -101,7 +101,6 @@ export const StyledMenu = styled.nav`
   padding: 1.5rem;
   position: absolute;
   align-items: flex-start;
-  // text-align: left;
   top: 0;
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
   transition: transform 0.3s ease-in-out;

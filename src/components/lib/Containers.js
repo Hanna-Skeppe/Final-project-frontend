@@ -80,6 +80,9 @@ export const CardContainer = styled.div`
   max-height: 100%;
   background: rgba(236, 199, 172, .67);
   box-shadow: 3px 3px 8px rgba(90,87,87,0.6);
+  @media(min-width: 1025px) {
+    height: 520px;
+  }
   @media(max-width: 560px) {
     margin: 10px;
     justify-content: center;

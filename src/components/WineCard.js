@@ -71,7 +71,49 @@ export const WineCard = ({
           <UserRating wineId={_id} />
         </RatingsWrapper>
         <InfoTextWrapper>
-          <TextSubWrapper>
+          <Table>
+            <tbody>
+              <Tr>
+                <Th>Country:</Th><Td>{country}</Td>
+              </Tr>
+              <Tr>
+                <Th>Origin:</Th><Td>{origin}</Td>
+              </Tr>
+              <Tr>
+                <Th>Producer:</Th>
+                <Td>
+                  <CardLink to={`/singleproducer/${producer._id}/wines`}>
+                    {producer.producer_name}
+                  </CardLink>
+                </Td>
+              </Tr>
+              <Tr>
+                <Th>Type:</Th><Td>{type}</Td>
+              </Tr>
+              <Tr>
+                <Th>Year:</Th><Td>{year}</Td>
+              </Tr>
+              <Tr>
+                <Th>Grape:</Th><Td>{grape}</Td>
+              </Tr>
+              <Tr>
+                <Th>Added sulfites:</Th><Td>{added_sulfites}</Td>
+              </Tr>
+              <Tr>
+                <Th>Average Price:</Th><Td>{average_price} (SEK)</Td>
+              </Tr>
+              <Tr>
+                <Th>Goes well with:</Th><Td>{goes_well_with}</Td>
+              </Tr>
+              <Tr>
+                <Th>Country:</Th><Td>{country}</Td>
+              </Tr>
+              <Tr>
+                <Th>Importer:</Th><Td>{importer}</Td>
+              </Tr>
+            </tbody>
+          </Table>
+          {/* <TextSubWrapper>
             <CardTextTitle>Country:</CardTextTitle>
             <CardTextTitle>Origin:</CardTextTitle>
             <CardTextTitle>Producer:</CardTextTitle>
@@ -98,12 +140,50 @@ export const WineCard = ({
             <CardText>{average_price} (SEK)</CardText>
             <CardText>{goes_well_with}</CardText>
             <CardText>{importer}</CardText>
-          </TextSubWrapper>
+          </TextSubWrapper> */}
         </InfoTextWrapper>
       </CardTextWrapper>
     </CardContainer >
   )
 }
+
+// TO DO: Style this table like the outcommented code.
+const Table = styled.table`
+  font-family: 'Overpass', sans-serif;
+  font-size: 18px;
+  border: none;
+  word-wrap: break-word;
+  // width: 250px;
+  width: 100%;
+  margin: auto;
+  @media(min-width: 1025px) {
+    line-height: 1.4;
+  }
+`
+const Tr = styled.tr`
+  width: 100%;
+`
+
+const Th = styled.th`
+  font-weight: 700;
+  color:#44515f;
+  vertical-align: top;
+  // float: right;
+  text-align: right;
+  // width: 100px;
+  width: 40%;
+  max-width: 100px;
+  margin-right: .5rem;
+  @media(min-width: 1200px) {
+    width: 29%;
+  }
+`
+const Td = styled.td`
+  width: 100px;
+  font-weight: 400;
+  vertical-align: top;
+  color: #3a3a3a;
+`
 
 const CardImage = styled.img`
   width: 100%;
@@ -137,7 +217,9 @@ const CardTextWrapper = styled.div`
   }
 `
 const InfoTextWrapper = styled.div`
-  display: flex
+  display: flex;
+  height: 100%;
+  width: 100%;
 `
 
 const RatingText = styled.p`
@@ -166,7 +248,6 @@ const TextSubWrapper = styled.div`
 const CardTextTitle = styled.p`
   font-family: 'Overpass', sans-serif;
   font-weight: 700;
-  color: #637050;
   margin: 0;
   margin-right: 8px;
   font-size: 18px;

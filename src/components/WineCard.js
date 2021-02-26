@@ -71,7 +71,7 @@ export const WineCard = ({
           <UserRating wineId={_id} />
         </RatingsWrapper>
         <InfoTextWrapper>
-          <Table>
+          {/* <Table>
             <tbody>
               <Tr>
                 <Th>Country:</Th><Td>{country}</Td>
@@ -112,8 +112,8 @@ export const WineCard = ({
                 <Th>Importer:</Th><Td>{importer}</Td>
               </Tr>
             </tbody>
-          </Table>
-          {/* <TextSubWrapper>
+          </Table> */}
+          <TextSubWrapper>
             <CardTextTitle>Country:</CardTextTitle>
             <CardTextTitle>Origin:</CardTextTitle>
             <CardTextTitle>Producer:</CardTextTitle>
@@ -140,7 +140,7 @@ export const WineCard = ({
             <CardText>{average_price} (SEK)</CardText>
             <CardText>{goes_well_with}</CardText>
             <CardText>{importer}</CardText>
-          </TextSubWrapper> */}
+          </TextSubWrapper>
         </InfoTextWrapper>
       </CardTextWrapper>
     </CardContainer >
@@ -201,6 +201,7 @@ const TopTextWrapper = styled.div`
 const RatingsWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  margin-left: 30px;
 `
 
 const CardTextWrapper = styled.div`
@@ -224,13 +225,13 @@ const InfoTextWrapper = styled.div`
 
 const RatingText = styled.p`
   font-size: 22px;
-  margin: 0 10px;
+  margin: 0;
   font-family: 'Overpass', sans-serif;
   text-align: left;
   color: #3a3a3a;
   @media(max-width: 768px) {
     font-size: 18px;
-    margin-top: 0;
+    // margin-top: 0;
   }
   @media(max-width: 560px) {
     font-size: 16px;

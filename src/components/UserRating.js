@@ -52,9 +52,11 @@ export const UserRating = ({ wineId }) => {
           component="fieldset"
           mb={3}
           borderColor="transparent"
-          marginBottom="0px"
+          // marginBottom="0px"
+          margin="0px"
           width="100px"
           padding="4px"
+          paddingLeft="0px"
         >
           <Rating
             name={"customized-empty" + wineId} // If I remove wineId it breaks (can't rate) // In frontend this has the same wineId on all wines.
@@ -73,3 +75,4 @@ const RatingButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
 `
+

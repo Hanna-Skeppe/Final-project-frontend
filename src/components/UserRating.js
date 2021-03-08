@@ -8,10 +8,9 @@ import styled from 'styled-components/macro'
 
 // This ratings-component does not fully work yet.
 export const UserRating = ({ wineId }) => {
-  const [rate, setRate] = useState()
+  const [rate, setRate] = useState(0) // Changed this from empty to 0 and setRate now seems to work (no error about uncontrolled UI-component in console)
   const userId = useSelector((store) => store.user.login.userId)
   const accessToken = useSelector((store) => store.user.login.accessToken)
-  console.log('rate', rate)
 
   const handleRating = (rating) => { // This works: the backend updates properly.
     setRate(rating)
@@ -25,25 +24,28 @@ export const UserRating = ({ wineId }) => {
     })
   }
 
+  // UPDATE: Now the rating seems to display properly in the frontend as well!
+  // Left to do: Make a 'tab' on the userpage to see all their rated wines.
   // This does not work yet. I don't get the ratings to display in frontend.
   // I would LOVE to get some pointers on how to solve it in the code-review if possible.
-  // useEffect(() => {
-  //   if (!userId) return;
-  //   fetch(`https://natural-wines-api.herokuapp.com/users/${userId}/rated`, {
-  //     method: 'GET',
-  //     headers: { 'Content-Type': 'application/json', Authorization: accessToken }
-  //   })
-  //     .then((res) => res.json())
-  //     .then((json) => {
-  //       json.forEach((item) => {
-  //         if (item.wineId === wineId) {
-  //           setRate(item.rating)
-  //         }
-  //       })
-  //     //   setRate(json.rating)
-  //     //   console.log('json', json)
-  //     })
-  // }, [wineId, userId, accessToken])
+  useEffect(() => {
+    if (!userId) return;
+    fetch(`https://natural-wines-api.herokuapp.com/users/${userId}/rated`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json', Authorization: accessToken }
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        // console.log(json, wineId)
+        json.forEach((item) => {
+          // console.log('item.wineId', item.wineId, 'item.rating', item.rating)
+          if (wineId === item.wineId) {
+            console.log(`${wineId} is rated ${item.rating}`) // Logs out only on the rated wines, so seems to work.
+            setRate(item.rating) // now this also seems to work. rating is shown for rated wines for logged in user.
+          }
+        })
+      })
+  }, [wineId, userId, accessToken])
 
   return (
     <>
@@ -52,17 +54,16 @@ export const UserRating = ({ wineId }) => {
           component="fieldset"
           mb={3}
           borderColor="transparent"
-          // marginBottom="0px"
           margin="0px"
           width="100px"
           padding="4px"
           paddingLeft="0px"
         >
           <Rating
-            name={"customized-empty" + wineId} // If I remove wineId it breaks (can't rate) // In frontend this has the same wineId on all wines.
-            value={rate} // The value in frontend is not correct when checking this element. It has the value of "1" on all(?) wines.
+            name={"customized-empty" + wineId} // If I remove wineId it breaks (can't rate)
+            value={accessToken ? rate : 0} // if not logged in the rating does not show
             disabled={!accessToken}
-            onChange={(event, rating) => { handleRating(rating) }} // how should this onChange look like? 'event' is not used, but it doesn't work if I remove it.
+            onChange={(event, rating) => { handleRating(rating) }} // 'event' is not used, but it doesn't work if I remove it.
             emptyIcon={<StarBorderIcon style={{ color: 'rgba(255, 255, 255, 0.8)', fill: '#495867' }} />}
           />
         </Box>

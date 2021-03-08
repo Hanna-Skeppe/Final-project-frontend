@@ -8,7 +8,6 @@ import { ProducerCard } from '../components/ProducerCard'
 import { fetchProducersList } from '../reducers/producers'
 import { BackLink } from '../components/lib/Links'
 
-// Why does't it work to reload this page after I have deployed it? I get a 404. Why? Works in Postman.
 export const ProducersPage = () => {
   const dispatch = useDispatch()
   const producerList = useSelector((store) => store.producers.producers)

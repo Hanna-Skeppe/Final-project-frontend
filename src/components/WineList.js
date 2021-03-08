@@ -40,10 +40,11 @@ export const WineList = () => {
 
   useEffect(() => {
     dispatch(fetchWineResults(searchTerm, sortOrder))
-    if (accessToken && favoriteWines.length > 0) { // removed && userId and added favoriteWines.length > 0. Got error before (could not fetch) if no favorites.
+    if (accessToken && userId) { // --> now it seems to work & not crash even if no favorites exists when user logs in. // removed && favoriteWines.length > 0 because favorites not fetched in winelist // (Got error 404 before (could not fetch) if no favorites).
       dispatch(fetchFavoriteWines(userId, accessToken))
     }
   }, [sortOrder, userId, dispatch, accessToken, errorMessage])
+  console.log('favoriteWines, winelist', favoriteWines)
 
   const handleSortChange = (event) => {
     dispatch(wines.actions.setSortOrder(event.target.value))

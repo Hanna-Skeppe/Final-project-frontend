@@ -6,7 +6,6 @@ import StarBorderIcon from '@material-ui/icons/StarBorder'
 import styled from 'styled-components/macro'
 // Docs for rating-component: https://material-ui.com/components/rating/
 
-// This ratings-component does not fully work yet.
 export const UserRating = ({ wineId }) => {
   const [rate, setRate] = useState(0) // Changed this from empty to 0 and setRate now seems to work (no error about uncontrolled UI-component in console)
   const userId = useSelector((store) => store.user.login.userId)

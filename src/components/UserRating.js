@@ -29,21 +29,24 @@ export const UserRating = ({ wineId }) => {
   // I would LOVE to get some pointers on how to solve it in the code-review if possible.
   useEffect(() => {
     if (!userId) return;
-    fetch(`https://natural-wines-api.herokuapp.com/users/${userId}/rated`, {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json', Authorization: accessToken }
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        // console.log(json, wineId)
-        json.forEach((item) => {
-          // console.log('item.wineId', item.wineId, 'item.rating', item.rating)
-          if (wineId === item.wineId) {
-            console.log(`${wineId} is rated ${item.rating}`) // Logs out only on the rated wines, so seems to work.
-            setRate(item.rating) // now this also seems to work. rating is shown for rated wines for logged in user.
-          }
-        })
+    if (userId) {
+      fetch(`https://natural-wines-api.herokuapp.com/users/${userId}/rated`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json', Authorization: accessToken }
       })
+        .then((res) => res.json())
+        .then((json) => {
+          // console.log(json, wineId)
+          json.forEach((item) => {
+            // console.log('item.wineId', item.wineId, 'item.rating', item.rating)
+            if (wineId === item.wineId) {
+              console.log(`${wineId} is rated ${item.rating}`) // Logs out only on the rated wines, so seems to work.
+              setRate(item.rating) // now this also seems to work. rating is shown for rated wines for logged in user.
+            }
+          })
+        })
+    }
+
   }, [wineId, userId, accessToken])
 
   return (
@@ -54,6 +57,7 @@ export const UserRating = ({ wineId }) => {
           mb={3}
           borderColor="transparent"
           margin="0px"
+          marginBottom="10px"
           width="100px"
           padding="4px"
           paddingLeft="0px"

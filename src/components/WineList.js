@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -15,6 +15,7 @@ import { wines, fetchWineResults } from '../reducers/wines'
 import { ClearButton } from './lib/Buttons'
 import { SearchText } from './lib/Text'
 import { ListWrapper, ButtonsWrapper } from './lib/Containers'
+import { Loadingspinner } from './Loadingspinner'
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -37,14 +38,18 @@ export const WineList = () => {
   const errorMessage = useSelector((store) => store.wines.errorMessage)
   const dispatch = useDispatch()
   const classes = useStyles();
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    dispatch(fetchWineResults(searchTerm, sortOrder))
-    if (accessToken && userId) { // --> now it seems to work & not crash even if no favorites exists when user logs in. // removed && favoriteWines.length > 0 because favorites not fetched in winelist // (Got error 404 before (could not fetch) if no favorites).
-      dispatch(fetchFavoriteWines(userId, accessToken))
-    }
+    setTimeout(() => {
+      dispatch(fetchWineResults(searchTerm, sortOrder))
+      if (accessToken && userId) { // --> now it seems to work & not crash even if no favorites exists when user logs in. // removed && favoriteWines.length > 0 because favorites not fetched in winelist // (Got error 404 before (could not fetch) if no favorites).
+        dispatch(fetchFavoriteWines(userId, accessToken))
+      }
+      setLoading(false)
+    }, 1500)
   }, [sortOrder, userId, dispatch, accessToken, errorMessage])
-  console.log('favoriteWines, winelist', favoriteWines)
+  // console.log('favoriteWines, winelist', favoriteWines)
 
   const handleSortChange = (event) => {
     dispatch(wines.actions.setSortOrder(event.target.value))
@@ -60,32 +65,32 @@ export const WineList = () => {
       <SearchBar />
       <ButtonsWrapper>
         {searchResult &&
-        <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel id="demo-simple-select-outlined-label">Sort</InputLabel>
-          <Select
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
-            value={sortOrder}
-            onChange={handleSortChange}
-            label="Sort"
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value="name_desc">Name (desc.)</MenuItem>
-            <MenuItem value="name_asc">Name (asc)</MenuItem>
-            <MenuItem value="average_rating_desc">Highest rated</MenuItem>
-            <MenuItem value="average_rating_asc">Lowest rated</MenuItem>
-            <MenuItem value="average_price_desc">Highest avg. price</MenuItem>
-            <MenuItem value="average_price_asc">Lowest avg. price</MenuItem>
-          </Select>
-        </FormControl>}
+          <FormControl variant="outlined" className={classes.formControl}>
+            <InputLabel id="demo-simple-select-outlined-label">Sort</InputLabel>
+            <Select
+              labelId="demo-simple-select-outlined-label"
+              id="demo-simple-select-outlined"
+              value={sortOrder}
+              onChange={handleSortChange}
+              label="Sort">
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value="name_desc">Name (desc.)</MenuItem>
+              <MenuItem value="name_asc">Name (asc)</MenuItem>
+              <MenuItem value="average_rating_desc">Highest rated</MenuItem>
+              <MenuItem value="average_rating_asc">Lowest rated</MenuItem>
+              <MenuItem value="average_price_desc">Highest avg. price</MenuItem>
+              <MenuItem value="average_price_asc">Lowest avg. price</MenuItem>
+            </Select>
+          </FormControl>}
         {(searchTerm.length > 0) &&
-        <ClearButton type="button" onClick={() => handleBackClick()}>
-          Back to all wines
-        </ClearButton>}
+          <ClearButton type="button" onClick={() => handleBackClick()}>
+            Back to all wines
+          </ClearButton>}
       </ButtonsWrapper>
       {searchTerm && !errorMessage && (winesList.length < 26) ? <SearchText>Results for: {searchTerm}</SearchText> : ''}
+      {loading && (winesList.length < 1) ? <Loadingspinner /> : ''}
       <ListWrapper>
         {winesList && winesList.map((wine) => (
           <FadeIn key={wine._id}>

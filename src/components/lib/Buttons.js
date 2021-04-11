@@ -15,8 +15,10 @@ export const FavoriteButton = styled.button`
   border: none;
   border-radius: 5px;
   background: transparent;
-  margin: 8px 8px 8px 0;
+  margin: 0;
+  margin-left: 10px;
   padding: 0;
+  align-self: flex-start;
   transition: .5s ease;
   &:hover {
     transform: scale(1.1);

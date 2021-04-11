@@ -3,20 +3,20 @@ import styled from 'styled-components/macro'
 // // General styles // //
 
 // Winecard:
-export const CardTitle = styled.h3`
-  font-family: 'Italiana', serif;
-  font-size: 32px;
-  text-align: left;
-  margin: 0 10px 0 30px;
-  color: #44515f;
-  @media(max-width: 768px) {
-    font-size: 26px;
-    margin: 0 10px;
-  }
-  @media(max-width: 560px) {
-    font-size: 22px;
-  }
-`
+// export const CardTitle = styled.h3`
+//   font-family: 'Italiana', serif;
+//   font-size: 32px;
+//   text-align: left;
+//   margin: 0 10px 0 30px;
+//   color: #44515f;
+//   @media(max-width: 768px) {
+//     font-size: 26px;
+//     margin: 0 10px;
+//   }
+//   @media(max-width: 560px) {
+//     font-size: 22px;
+//   }
+// `
 // Sub-pages Heading:
 export const SubHeaderText = styled.h1`
   font-family: 'Italiana', serif;

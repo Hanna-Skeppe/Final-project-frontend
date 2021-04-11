@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -15,7 +16,7 @@ export const UserPage = () => {
   const favoriteWines = useSelector((store) => store.user.userActions.favoriteWines)
   const history = useHistory()
   const dispatch = useDispatch()
-  console.log('accessToken (userPage):', accessToken)
+  // console.log('accessToken (userPage):', accessToken)
 
   const redirectHome = () => {
     history.push('/')
@@ -35,8 +36,7 @@ export const UserPage = () => {
             <p>You must be logged in to see this page!</p>
             <RedirectHomeButton
               type="button"
-              onClick={redirectHome}
-            >
+              onClick={redirectHome}>
               Home
             </RedirectHomeButton>
           </>}

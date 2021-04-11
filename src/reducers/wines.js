@@ -33,7 +33,7 @@ export const wines = createSlice({
 })
 
 // Thunk:
-export const fetchWineResults = (searchTerm, sort) => { 
+export const fetchWineResults = (searchTerm, sort) => {
   console.log('searchTerm:', searchTerm, 'sort:', sort)
   return (dispatch) => {
     fetch(`${WINES_URL}/?sort=${sort}&query=${searchTerm}`)

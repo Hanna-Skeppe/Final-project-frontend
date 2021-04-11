@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/macro'
@@ -12,21 +12,21 @@ export const LoginPageMobile = () => {
   const failed = useSelector((store) => store.ui.isLoginFailed)
   const dispatch = useDispatch()
   const history = useHistory()
+  const accessToken = useSelector((store) => store.user.login.accessToken)
 
-  const handlePageReload = () => { // This worked before but not now. Why???
-    if (!failed) {
-      history.push('/login')
-    } else if (failed) {
+  useEffect(() => {
+    if (accessToken && !failed) {
       history.push('/')
+    } else if (!accessToken && failed) {
+      history.push('/login')
     }
-  }
+  }, [failed, accessToken, history])
 
   const handleSubmit = (event) => {
     event.preventDefault()
     dispatch(loginUser(email, password))
     setEmail('')
     setPassword('')
-    handlePageReload()
   }
 
   const handleKeyPressLogin = (event) => {
@@ -35,7 +35,6 @@ export const LoginPageMobile = () => {
       dispatch(loginUser(email, password))
       setEmail('')
       setPassword('')
-      handlePageReload()
     }
   }
 
@@ -53,8 +52,7 @@ export const LoginPageMobile = () => {
             required={true}
             placeholder="example@email.com"
             value={email}
-            onChange={(event) => setEmail(event.target.value.toLowerCase())}
-          />
+            onChange={(event) => setEmail(event.target.value.toLowerCase())} />
         </Label>
         <Label>
           * Password
@@ -65,14 +63,12 @@ export const LoginPageMobile = () => {
             minLength={5}
             placeholder="Type your password (min. 6 characters)."
             onChange={(event) => setPassword(event.target.value)}
-            onKeyPress={handleKeyPressLogin}
-          />
+            onKeyPress={handleKeyPressLogin} />
         </Label>
         <LoginButton
           type="submit"
           disabled={!email || password.length < 5}
-          onSubmit={handleSubmit}
-        >
+          onSubmit={handleSubmit}>
           Log in
         </LoginButton>
       </Form>

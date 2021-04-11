@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react'
+/* eslint-disable no-underscore-dangle */
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components/macro'
 import FadeIn from 'react-fade-in'
 
+import { Loadingspinner } from '../components/Loadingspinner'
 import { HeaderProducer } from '../components/HeaderProducer'
 import { ProducerCard } from '../components/ProducerCard'
 import { fetchProducersList } from '../reducers/producers'
@@ -11,9 +13,13 @@ import { BackLink } from '../components/lib/Links'
 export const ProducersPage = () => {
   const dispatch = useDispatch()
   const producerList = useSelector((store) => store.producers.producers)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    dispatch(fetchProducersList())
+    setTimeout(() => {
+      dispatch(fetchProducersList())
+      setLoading(false)
+    }, 1500)
   }, [dispatch])
   console.log(producerList)
 
@@ -23,6 +29,7 @@ export const ProducersPage = () => {
       <BackLink to="/">
         Home
       </BackLink>
+      {loading && (producerList.length < 1) ? <Loadingspinner /> : ''}
       <ListWrapper>
         {(producerList.length >= 1) && producerList.map((producer) => ( // map wil not happen until after producerList is fetched
           <FadeIn key={producer._id}>

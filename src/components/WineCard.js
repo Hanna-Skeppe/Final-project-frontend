@@ -6,8 +6,8 @@ import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 
 import { addFavoriteWine, removeFavoriteWine } from 'reducers/user'
-import { CardContainer, CardImageWrapper } from './lib/Containers'
-import { CardTitle } from './lib/Text'
+// import { CardContainer, CardImageWrapper } from './lib/Containers'
+// import { CardTitle } from './lib/Text'
 import { FavoriteButton } from './lib/Buttons'
 import { UserRating } from './UserRating'
 
@@ -44,11 +44,8 @@ export const WineCard = ({
 
   return (
     <CardContainer>
-      <CardImageWrapper>
-        <CardImage src={image_url} alt={name} />
-      </CardImageWrapper>
-      <CardTextWrapper>
-        <TopTextWrapper>
+      <TopTextWrapper>
+        <TitleWrapper>
           <CardTitle>{name}</CardTitle>
           {accessToken &&
             <>
@@ -56,31 +53,36 @@ export const WineCard = ({
                 <FavoriteButton
                   type="submit"
                   onClick={handleRemoveFavorite}>
-                  <FavoriteOutlinedIcon style={{ fontSize: 48, fill: '#495867' }} />
+                  <FavoriteOutlinedIcon style={{ fontSize: 42, fill: '#495867' }} />
                 </FavoriteButton>}
               {!isFavorite &&
                 <FavoriteButton
                   type="submit"
                   onClick={handleAddFavorite}
-                ><FavoriteBorderOutlinedIcon style={{ fontSize: 48, fill: '#495867' }} />
+                ><FavoriteBorderOutlinedIcon style={{ fontSize: 42, fill: '#495867' }} />
                 </FavoriteButton>}
             </>}
-        </TopTextWrapper>
+        </TitleWrapper>
         <RatingsWrapper>
           <RatingText>Average rating: {average_rating}</RatingText>
           <UserRating wineId={_id} />
         </RatingsWrapper>
+      </TopTextWrapper>
+      <CardContentWrapper>
+        <CardImageWrapper>
+          <CardImage src={image_url} alt={name} />
+        </CardImageWrapper>
         <InfoTextWrapper>
-          {/* <Table>
+          <Table>
             <tbody>
               <Tr>
-                <Th>Country:</Th><Td>{country}</Td>
+                <Th>Country</Th><Td>{country}</Td>
               </Tr>
               <Tr>
-                <Th>Origin:</Th><Td>{origin}</Td>
+                <Th>Origin</Th><Td>{origin}</Td>
               </Tr>
               <Tr>
-                <Th>Producer:</Th>
+                <Th>Producer</Th>
                 <Td>
                   <CardLink to={`/singleproducer/${producer._id}/wines`}>
                     {producer.producer_name}
@@ -88,101 +90,148 @@ export const WineCard = ({
                 </Td>
               </Tr>
               <Tr>
-                <Th>Type:</Th><Td>{type}</Td>
+                <Th>Type</Th><Td>{type}</Td>
               </Tr>
               <Tr>
-                <Th>Year:</Th><Td>{year}</Td>
+                <Th>Year</Th><Td>{year}</Td>
               </Tr>
               <Tr>
-                <Th>Grape:</Th><Td>{grape}</Td>
+                <Th>Grape</Th><Td>{grape}</Td>
               </Tr>
               <Tr>
-                <Th>Added sulfites:</Th><Td>{added_sulfites}</Td>
+                <Th>Sulfites</Th><Td>{added_sulfites}</Td>
               </Tr>
               <Tr>
-                <Th>Average Price:</Th><Td>{average_price} (SEK)</Td>
+                <Th>Avg. price</Th><Td>{average_price} (SEK)</Td>
               </Tr>
               <Tr>
-                <Th>Goes well with:</Th><Td>{goes_well_with}</Td>
+                <Th>Goes well with</Th><Td>{goes_well_with}</Td>
               </Tr>
               <Tr>
-                <Th>Country:</Th><Td>{country}</Td>
-              </Tr>
-              <Tr>
-                <Th>Importer:</Th><Td>{importer}</Td>
+                <Th>Importer</Th><Td>{importer}</Td>
               </Tr>
             </tbody>
-          </Table> */}
-          <TextSubWrapper>
-            <CardTextTitle>Country:</CardTextTitle>
-            <CardTextTitle>Origin:</CardTextTitle>
-            <CardTextTitle>Producer:</CardTextTitle>
-            <CardTextTitle>Type:</CardTextTitle>
-            <CardTextTitle>Year:</CardTextTitle>
-            <CardTextTitle>Grape:</CardTextTitle>
-            <CardTextTitle>Added sulfites:</CardTextTitle>
-            <CardTextTitle>Average Price:</CardTextTitle>
-            <CardTextTitle>Goes well with:</CardTextTitle>
-            <CardTextTitle>Importer:</CardTextTitle>
-          </TextSubWrapper>
-          <TextSubWrapper>
-            <CardText>{country}</CardText>
-            <CardText>{origin}</CardText>
-            <CardText>
-              <CardLink to={`/singleproducer/${producer._id}/wines`}>
-                {producer.producer_name}
-              </CardLink>
-            </CardText>
-            <CardText>{type}</CardText>
-            <CardText>{year}</CardText>
-            <CardText>{grape}</CardText>
-            <CardText>{added_sulfites}</CardText>
-            <CardText>{average_price} (SEK)</CardText>
-            <CardText>{goes_well_with}</CardText>
-            <CardText>{importer}</CardText>
-          </TextSubWrapper>
+          </Table>
         </InfoTextWrapper>
-      </CardTextWrapper>
-    </CardContainer >
+      </CardContentWrapper>
+    </CardContainer>
   )
 }
 
-// TO DO: Style this table like the outcommented code.
-const Table = styled.table`
-  font-family: 'Overpass', sans-serif;
-  font-size: 18px;
-  border: none;
-  word-wrap: break-word;
-  // width: 250px;
-  width: 100%;
-  margin: auto;
+const CardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+  height: auto;
+  background: rgba(236, 199, 172, .67);
+  box-shadow: 3px 3px 8px rgba(90,87,87,0.6);
   @media(min-width: 1025px) {
-    line-height: 1.4;
+    height: 575px;
   }
-`
-const Tr = styled.tr`
-  width: 100%;
+  @media(max-width: 560px) {
+    margin: 10px;
+    justify-content: center;
+  }
+  @media(min-width: 1400px) {
+    height: 610px;
+  }
 `
 
-const Th = styled.th`
-  font-weight: 700;
-  color:#44515f;
-  vertical-align: top;
-  // float: right;
-  text-align: right;
-  // width: 100px;
-  width: 40%;
-  max-width: 100px;
-  margin-right: .5rem;
-  @media(min-width: 1200px) {
-    width: 29%;
+const TopTextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  align-items: flex-start;
+  align-self: center;
+`
+
+const TitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: auto;
+  padding: 30px 0px 10px 0px;
+`
+
+const CardTitle = styled.h3`
+  font-family: 'Italiana', serif;
+  font-size: 32px;
+  margin: 0;
+  color: #44515f;
+  @media(max-width: 768px) {
+    font-size: 26px;
+    margin: 0;
+  }
+  @media(max-width: 560px) {
+    font-size: 24px;
   }
 `
-const Td = styled.td`
-  width: 100px;
-  font-weight: 400;
-  vertical-align: top;
-  color: #3a3a3a;
+
+const RatingsWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid #44515f;
+  align-self: center;
+  margin-bottom: 10px;
+`
+
+const CardContentWrapper = styled.div`
+  margin-top: 10px;
+  display: flex;
+  width: 90%;
+  align-self: center;
+  @media(max-width: 1024px) {
+    margin-top: 5px;
+    margin-bottom: 30px;
+  }
+  @media(max-width: 460px) {
+    flex-direction: column-reverse;
+  }
+`
+
+const InfoTextWrapper = styled.div`
+  display: flex;
+  flex: 1;
+  @media(max-width: 1024px) {
+    align-items: center;
+  }
+`
+
+const RatingText = styled.p`
+  font-size: 22px;
+  margin: 0;
+  font-family: 'Overpass', sans-serif;
+  color: #44515f;
+  @media(max-width: 768px) {
+    font-size: 18px;
+  }
+  @media(max-width: 560px) {
+    font-size: 16px;
+  }
+`
+
+const CardImageWrapper = styled.div`
+  width: 21%;
+  max-height: 375px;
+  margin: 0 10px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media(max-width: 560px) {
+    width: 20%;
+    margin: 0;
+  }
+  @media(max-width: 460px) {
+    align-self: center;
+    width: 15%;
+    margin-top: 15px;
+  }
+  @media(min-width: 1400px) {
+    max-height: 390px;
+    width: 30%;
+  }
 `
 
 const CardImage = styled.img`
@@ -190,92 +239,105 @@ const CardImage = styled.img`
   height: 100%;
   object-fit: contain;
   object-position: center center;
-`
-
-const TopTextWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`
-
-const RatingsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-left: 30px;
-`
-
-const CardTextWrapper = styled.div`
-  margin: 10px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
   @media(max-width: 1024px) {
-    width: 86%;
-    margin: 5px;
+    object-fit: contain;
   }
-  @media(max-width: 560px) {
-    margin-bottom: 15px;
-  }
-`
-const InfoTextWrapper = styled.div`
-  display: flex;
-  height: 100%;
-  width: 100%;
 `
 
-const RatingText = styled.p`
-  font-size: 22px;
-  margin: 0;
+const Table = styled.table`
   font-family: 'Overpass', sans-serif;
-  text-align: left;
-  color: #3a3a3a;
-  @media(max-width: 768px) {
-    font-size: 18px;
-    // margin-top: 0;
-  }
-  @media(max-width: 560px) {
+  font-size: 18px;
+  border: none;
+  word-wrap: break-word;
+  width: 100%;
+  margin: auto;
+  margin-top: 0;
+  line-height: 1.5;
+  @media(max-width: 460px) {
     font-size: 16px;
+    line-height: 1.4;
   }
-`
-const TextSubWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: 10px;
-  @media(min-width: 1024px) {
+  @media(min-width: 1025px) {
+    line-height: 1.4;
+    
+  }
+  @media(min-width: 1400px) {
+    font-size: 20px;
     line-height: 1.5;
   }
 `
+const Tr = styled.tr`
+  width: 100%;
+`
 
-const CardTextTitle = styled.p`
-  font-family: 'Overpass', sans-serif;
-  font-weight: 700;
-  margin: 0;
-  margin-right: 8px;
-  font-size: 18px;
-  text-align: right;
+const Th = styled.th`
+  font-weight: 800;
   color:#44515f;
-  @media(max-width: 768px) {
-    font-size: 16px;
-  }
-  @media(max-width: 560px) {
-    font-size: 14px;
-    margin: 0 6px 0 0;
+  vertical-align: top;
+  text-align: right;
+  width: 35%;
+  max-width: 100px;
+  padding-right: 1rem; 
+  @media(max-width: 460px) {
+    text-align: left;
+    padding-right: 0.5rem;
   }
 `
-const CardText = styled.p`
-  font-family: 'Overpass', sans-serif;
-  font-size: 18px;
+const Td = styled.td`
   font-weight: 400;
-  text-align: left;
-  margin: 0;
+  vertical-align: bottom;
   color: #3a3a3a;
-  @media(max-width: 768px) {
-    font-size: 16px;
-  }
-  @media(max-width: 560px) {
-    font-size: 14px;
-  }
 `
+
+// const CardImageSmall = styled.img`
+//   width: 100%;
+//   height: 100%;
+//   object-fit: contain;
+//   object-position: center center;
+//   @media(min-width: 500px) {
+//     display: none;
+//   }
+// `
+
+// const TextSubWrapper = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   margin-top: 10px;
+//   @media(min-width: 1024px) {
+//     line-height: 1.5;
+//   }
+// `
+
+// const CardTextTitle = styled.p`
+//   font-family: 'Overpass', sans-serif;
+//   font-weight: 700;
+//   margin: 0;
+//   margin-right: 8px;
+//   font-size: 18px;
+//   text-align: right;
+//   color:#44515f;
+//   @media(max-width: 768px) {
+//     font-size: 16px;
+//   }
+//   @media(max-width: 560px) {
+//     font-size: 14px;
+//     margin: 0 6px 0 0;
+//   }
+// `
+// const CardText = styled.p`
+//   font-family: 'Overpass', sans-serif;
+//   font-size: 18px;
+//   font-weight: 400;
+//   text-align: left;
+//   margin: 0;
+//   color: #3a3a3a;
+//   @media(max-width: 768px) {
+//     font-size: 16px;
+//   }
+//   @media(max-width: 560px) {
+//     font-size: 14px;
+//   }
+// `
 
 const CardLink = styled(NavLink)`
   font-weight: bold;

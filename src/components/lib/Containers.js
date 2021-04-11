@@ -54,7 +54,7 @@ export const ListWrapper = styled.section`
     max-width: 85vw;
   }
   @media(max-width: 768px) {
-    max-width: 95vw;
+    max-width: 100vw;
   }
   @media(max-width: 560px) {
     max-width: 100vw;
@@ -73,37 +73,40 @@ export const ButtonsWrapper = styled.div`
   }
 `
 // Home (WineCard)
-export const CardContainer = styled.div`
-  display: flex;
-  margin: 20px;
-  height: 475px;
-  max-height: 100%;
-  background: rgba(236, 199, 172, .67);
-  box-shadow: 3px 3px 8px rgba(90,87,87,0.6);
-  @media(min-width: 1025px) {
-    height: 520px;
-  }
-  @media(max-width: 560px) {
-    margin: 10px;
-    justify-content: center;
-    align-items: flex-end;
-    height: auto;
-  }
-`
-export const CardImageWrapper = styled.div`
-  width: 20%;
-  margin: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  @media(max-width: 1024px) {
-    width: 25%;
-  }
-  @media(max-width: 560px) {
-    width: 12%;
-    margin: 0 0 15px 0;
-  }
-`
+// export const CardContainer = styled.div`
+//   display: flex;
+//   margin: 20px;
+//   height: 475px;
+//   max-height: 100%;
+//   background: rgba(236, 199, 172, .67);
+//   box-shadow: 3px 3px 8px rgba(90,87,87,0.6);
+//   @media(min-width: 1025px) {
+//     height: 520px;
+//   }
+//   @media(max-width: 560px) {
+//     margin: 10px;
+//     justify-content: center;
+//     align-items: flex-end;
+//     height: auto;
+//   }
+// `
+// export const CardImageWrapper = styled.div`
+//   width: 20%;
+//   margin: 10px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   @media(max-width: 1024px) {
+//     width: 25%;
+//   }
+//   @media(max-width: 560px) {
+//     width: 12%;
+//     margin: 0 0 15px 0;
+//   }
+//   @media(max-width: 500px) {
+//     display: none;
+//   }
+// `
 
 // Home (Searchbar):
 export const InputTextDiv = styled.div`

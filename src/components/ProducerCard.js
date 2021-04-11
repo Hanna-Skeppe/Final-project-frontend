@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React from 'react'
 import styled from 'styled-components/macro'
 import { Link } from 'react-router-dom'
@@ -11,7 +12,7 @@ export const ProducerCard = ({
 }) => {
   return (
     <CardContainer>
-      <CardTopWrapper> 
+      <CardTopWrapper>
         <ProducerCardHeading>{producer_name} </ProducerCardHeading>
         {producer_country === 'France' && <FlagIcon src="./assets/france.png" />}
         {producer_country === 'Italy' && <FlagIcon src="./assets/italy.png" />}
@@ -67,7 +68,6 @@ const CardTopWrapper = styled.div`
 const CardImageWrapper = styled.div`
   width: 55%;
   margin: 10px;
-  background: #f2f2f2;
   align-self: center;
   @media(max-width: 560px) {
     margin: 0 0 15px 0;
@@ -89,6 +89,7 @@ const TextDiv = styled.div`
     margin: 0 20px 20px 20px;
   }
 `
+
 const ProducerCardHeading = styled.h3`
   font-family: 'Italiana', serif;  
   font-size: 26px;
@@ -110,7 +111,7 @@ const CardImage = styled.img`
   border: 10px solid #fff; 
   transition: transform .8s ease-in-out;
   &:hover {
-    transform: rotate(6deg);
+    transform: rotate(-3deg);
   }
 `
 
@@ -157,6 +158,7 @@ const CreditsWrapper = styled.div`
   color: #3a3a3a;
   text-align: right;
 `
+
 const LinkCredit = styled.a`
 text-decoration: none;
 color: #3a3a3a;

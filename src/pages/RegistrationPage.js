@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/macro'
 
 import { signUp } from '../reducers/user'
-
+// Left to do: redirect after signup (& check that error messages works)
 export const RegistrationPage = () => {
   const [name, setName] = useState('')
   const [surname, setSurname] = useState('')
@@ -74,14 +74,12 @@ export const RegistrationPage = () => {
               value={password}
               minLength={5}
               placeholder="Type your password (min. 6 characters)."
-              onChange={(event) => setPassword(event.target.value)}
-            />
+              onChange={(event) => setPassword(event.target.value)} />
           </Label>
           <Button
             type="submit"
             disabled={!name || !email || password.length < 5}
-            onSubmit={handleSubmit}
-          >
+            onSubmit={handleSubmit}>
             Sign Up
           </Button>
         </Form>)}

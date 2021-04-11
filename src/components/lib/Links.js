@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro'
 import { Link, NavLink } from 'react-router-dom'
 
-// NavbarMain:
+// NavbarMain-styles:
 export const NavbarLink = styled(NavLink)`
   font-family: 'Overpass', sans-serif;
   font-size: 18px;
@@ -19,18 +19,18 @@ export const NavbarLink = styled(NavLink)`
   }
   `
 
-// WineCard:
+// WineCard-styles:
 export const CardLink = styled(NavLink)`
   font-weight: bold;
-  color: #000;
+  color: #3a3a3a;
   &:hover {
     cursor: pointer;
     text-decoration: underline;
-    color: #C9C4C4;
+    color: #ce796b;
   }
-  `
+`
 
-// Producers-page:
+// ProducersPage-styles:
 export const BackLink = styled(Link)`
   display: inline-flex;
   align-items: center;  

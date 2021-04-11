@@ -21,47 +21,44 @@ export const HamburgerMenu = ({ open, setOpen }) => {
   }
 
   return (
-    <>
-      <StyledMenu open={open}>
+    <StyledMenu open={open}>
+      <Link
+        to="/"
+        onClick={() => setOpen(!open)}>
+          Home
+      </Link>
+      <Link
+        to="/producers"
+        onClick={() => setOpen(!open)}
+      >Wine Producers
+      </Link>
+      {!accessToken &&
+      <>
         <Link
-          to="/"
-          onClick={() => setOpen(!open)}
-        >Home
+          to="/login"
+          onClick={() => setOpen(!open)}>
+            Login
         </Link>
         <Link
-          to="/producers"
-          onClick={() => setOpen(!open)}
-        >Wine Producers
+          to="/register"
+          onClick={() => setOpen(!open)}>
+            Register
         </Link>
-        {!accessToken &&
-        <>
-          <Link
-            to="/login"
-            onClick={() => setOpen(!open)}
-          >Login
-          </Link>
-          <Link
-            to="/register"
-            onClick={() => setOpen(!open)}
-          >Register
-          </Link>
-        </>}
-        {accessToken &&
-        <>
-          <LogoutButton
-            type="submit"
-            onClick={handleLogout}
-          >Logout
-          </LogoutButton>
-          <Link
-            to={`/users/${userId}/collection`}
-            onClick={() => setOpen(!open)}
-          >
-            {name}'s Page
-          </Link>
-        </>}
-      </StyledMenu>
-    </>
+      </>}
+      {accessToken &&
+      <>
+        <LogoutButton
+          type="submit"
+          onClick={handleLogout}>
+            Logout
+        </LogoutButton>
+        <Link
+          to={`/users/${userId}/collection`}
+          onClick={() => setOpen(!open)}>
+          {name}'s Page
+        </Link>
+      </>}
+    </StyledMenu>
   )
 }
 

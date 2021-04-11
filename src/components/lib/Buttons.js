@@ -1,16 +1,6 @@
 import styled from 'styled-components/macro'
 
-export const RedirectHomeButton = styled.button`
-  border: none;
-  padding: 20px;
-  margin: 20px;
-  background: #879A6E;
-  color: white;
-`
-
-// // General styles // //
-
-// WineCard:
+// WineCard-styles:
 export const FavoriteButton = styled.button`
   border: none;
   border-radius: 5px;
@@ -78,11 +68,12 @@ export const LogoutButton = styled.button`
   transition: color 0.3s linear;
   &:hover {
     color: #ce796b;
+    cursor: pointer;
   }
 }
 `
 
-// NavbarMain (components: PopoverLogin & Logout):
+// NavbarMain, PopoverLogin & Logout-styles:
 const activeClassName = 'nav-item-active'
 export const LogInOutButton = styled.button.attrs({ activeClassName })`
   background: inherit;
@@ -108,9 +99,8 @@ export const LogInOutButton = styled.button.attrs({ activeClassName })`
     text-decoration: underline;
   }
 `
-// // Home - styles // //
 
-// Home (SearchBar):
+// Home, SearchBar-styles:
 export const SearchButton = styled.button`
 border: none;
 border-radius: 5px;
@@ -118,7 +108,7 @@ background: #44515f;
 margin: 8px 8px 8px 0;
 padding: 9px 16px;
 `
-// Home (WineList):
+// home, WineList-styles:
 export const ClearButton = styled.button`
   border: 1px solid #c1bfbf;
   background: #fff;
@@ -129,7 +119,7 @@ export const ClearButton = styled.button`
   margin: 8px;
 `
 
-// LoginPageMobile:
+// RegistrationPage & LoginPageMobile-styles:
 export const LoginButton = styled.button`
   background: #CE796B;
   border-color: transparent;
@@ -151,3 +141,8 @@ export const LoginButton = styled.button`
       transform 0.4s;
   }
   `
+
+// RegistrationPage & UserPage-styles:
+export const HomeButton = styled(LoginButton)`
+  text-shadow: -1px -1px rgba(0,0,0,0.1);
+`

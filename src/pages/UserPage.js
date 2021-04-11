@@ -2,13 +2,13 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import styled from 'styled-components/macro'
 import FadeIn from 'react-fade-in'
 
 import { WineCard } from 'components/WineCard'
 import { fetchFavoriteWines } from '../reducers/user'
 import { HeaderUser } from '../components/HeaderUser'
-import { RedirectHomeButton } from '../components/lib/Buttons'
+import { HomeButton } from '../components/lib/Buttons'
+import { UserListWrapper } from '../components/lib/Containers'
 
 export const UserPage = () => {
   const accessToken = useSelector((store) => store.user.login.accessToken)
@@ -16,7 +16,6 @@ export const UserPage = () => {
   const favoriteWines = useSelector((store) => store.user.userActions.favoriteWines)
   const history = useHistory()
   const dispatch = useDispatch()
-  // console.log('accessToken (userPage):', accessToken)
 
   const redirectHome = () => {
     history.push('/')
@@ -25,7 +24,6 @@ export const UserPage = () => {
   useEffect(() => {
     dispatch(fetchFavoriteWines(userId, accessToken))
   }, [])
-  console.log('favoriteWines, userpage', favoriteWines)
 
   return (
     <>
@@ -34,11 +32,11 @@ export const UserPage = () => {
         {!accessToken &&
           <>
             <p>You must be logged in to see this page!</p>
-            <RedirectHomeButton
+            <HomeButton
               type="button"
               onClick={redirectHome}>
               Home
-            </RedirectHomeButton>
+            </HomeButton>
           </>}
       </div>
       <UserListWrapper>
@@ -54,16 +52,3 @@ export const UserPage = () => {
     </>
   )
 }
-
-const UserListWrapper = styled.section`
-  max-width: 800px;
-  margin: auto;
-  margin-top: 50px;
-  @media (max-width: 1024px) {
-    max-width: 90vw;
-  }
-  @media (max-width: 768px) {
-    max-width: 100vw;
-    margin-top: 20px;
-  }
-`

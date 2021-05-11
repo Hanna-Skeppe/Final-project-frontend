@@ -12,7 +12,6 @@ export const producers = createSlice({
   reducers: {
     setProducers: (store, action) => {
       store.producers = action.payload
-      console.log('action.payload: setProducersList', action.payload)
     },
     setErrorMessage: (store, action) => {
       const { errorMessage } = action.payload
@@ -35,7 +34,6 @@ export const fetchProducersList = () => {
       })
       .then((json) => {
         dispatch(producers.actions.setProducers(json))
-        console.log(json)
       })
   }
 }

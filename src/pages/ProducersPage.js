@@ -21,7 +21,6 @@ export const ProducersPage = () => {
       setLoading(false)
     }, 1500)
   }, [dispatch])
-  console.log(producerList)
 
   return (
     <>

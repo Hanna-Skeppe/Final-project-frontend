@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { ui } from './ui'
+
 import { USERS_URL, SESSIONS_URL, USER_LOGOUT } from '../urls'
 
 const initialState = {

@@ -13,12 +13,6 @@ export const NavbarMain = () => {
   const accessToken = useSelector((store) => store.user.login.accessToken)
   const userId = useSelector((store) => store.user.login.userId)
   const name = useSelector((store) => store.user.login.name)
-  // const surname = useSelector((store) => store.user.login.surname)
-
-  // console.log('accessToken:', accessToken) // REMOVE THESE LATER
-  // console.log('name:', name)
-  // console.log('surname:', surname)
-  // console.log('userId:', userId)
 
   return (
     <NavbarContainer>

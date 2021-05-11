@@ -28,7 +28,6 @@ export const WinesFromSingleProducerPage = () => {
       })
       .then((json) => {
         setProducerWines(json)
-        console.log(json)
       })
   }, [id])
 
@@ -47,11 +46,9 @@ export const WinesFromSingleProducerPage = () => {
       })
       .then((json) => {
         setSingleProducer(json)
-        console.log('singleProducer json:', json)
       })
   }, [id])
 
-  console.log('singleProducer', singleProducer)
   return (
     <>
       <section>

@@ -1,63 +1,63 @@
-import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
-import styled from 'styled-components/macro'
-import { makeStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
-import Popover from '@material-ui/core/Popover'
-import Typography from '@material-ui/core/Typography'
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import styled from 'styled-components/macro';
+import { makeStyles } from '@mui/styles';
+import Button from '@mui/material/Button';
+import Popover from '@mui/material/Popover';
+import Typography from '@mui/material/Typography';
 
-import { loginUser } from '../reducers/user'
-import { LogInOutButton } from './lib/Buttons'
+import { loginUser } from '../reducers/user';
+import { LogInOutButton } from './lib/Buttons';
 // https://material-ui.com/api/popover/ & https://material-ui.com/components/popover/
 
 const useStyles = makeStyles((theme) => ({
   typography: {
-    padding: theme.spacing(2)
-  }
+    padding: theme.spacing ? theme.spacing(2) : 16,
+  },
 }));
 
-export const PopoverLogin = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [anchorEl, setAnchorEl] = useState(null)
-  const failed = useSelector((store) => store.ui.isLoginFailed)
-  const classes = useStyles()
-  const history = useHistory()
-  const dispatch = useDispatch()
+const PopoverLogin = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [anchorEl, setAnchorEl] = useState(null);
+  const failed = useSelector((store) => store.ui.isLoginFailed);
+  const classes = useStyles();
+  const history = useHistory();
+  const dispatch = useDispatch();
 
   const handlePopupClick = (event) => {
-    setAnchorEl(event.currentTarget)
+    setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
     // if (failed) { // removed this. Popup could not be closed otherwise.
-    setAnchorEl(null)
-  //   }
-  }
+    setAnchorEl(null);
+    //   }
+  };
 
-  const open = Boolean(anchorEl)
-  const id = open ? 'popup-login' : undefined
+  const open = Boolean(anchorEl);
+  const id = open ? 'popup-login' : undefined;
 
   const handleSubmit = (event) => {
-    event.preventDefault()
-    dispatch(loginUser(email, password))
-    history.push('/')
-  }
+    event.preventDefault();
+    dispatch(loginUser(email, password));
+    history.push('/');
+  };
 
   const handleKeyPressLogin = (event) => {
     if (event.key === 'Enter') {
-      event.preventDefault()
-      dispatch(loginUser(email, password))
-      history.push('/')
+      event.preventDefault();
+      dispatch(loginUser(email, password));
+      history.push('/');
     }
-  }
+  };
 
   const goToSignup = () => {
-    handleClose()
-    setAnchorEl(null)
-    history.push('/register')
-  }
+    handleClose();
+    setAnchorEl(null);
+    history.push('/register');
+  };
 
   return (
     <>
@@ -75,14 +75,15 @@ export const PopoverLogin = () => {
         onClose={handleClose}
         anchorOrigin={{
           vertical: 'bottom',
-          horizontal: 'center'
+          horizontal: 'center',
         }}
         transformOrigin={{
           vertical: 'top',
-          horizontal: 'center'
-        }}>
+          horizontal: 'center',
+        }}
+      >
         <Typography className={classes.typography}>
-          <Label> 
+          <Label>
             Email
             <Input
               type="email"
@@ -113,8 +114,10 @@ export const PopoverLogin = () => {
         </Typography>
       </Popover>
     </>
-  )
-}
+  );
+};
+
+export default PopoverLogin;
 
 const ErrorMessage = styled.span`
   color: red;
@@ -122,15 +125,15 @@ const ErrorMessage = styled.span`
   word-wrap: wrap;
   display: block;
   text-align: center;
-`
+`;
 
 const Label = styled.label`
   color: #666;
   display: block;
   font-size: 13px;
   line-height: 1px;
-  padding: 10px;  
-`
+  padding: 10px;
+`;
 
 const Input = styled.input`
   background: transparent;
@@ -147,9 +150,10 @@ const Input = styled.input`
   transition: border-color $standard-transition;
   width: 100%;
   z-index: 2;
-  &:focus, &:active {
+  &:focus,
+  &:active {
     border-bottom: 2px solid black;
     border-color: #ededed;
     outline: none;
   }
-`
+`;

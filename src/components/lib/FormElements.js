@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro'
+import styled from 'styled-components/macro';
 
 // Login- (mobile) & Signup-pages:
 
@@ -18,7 +18,7 @@ export const Form = styled.form`
     width: 90vw;
     margin: 20px auto 10px auto;
   }
-`
+`;
 export const Input = styled.input`
   background: transparent;
   border: none;
@@ -34,16 +34,17 @@ export const Input = styled.input`
   transition: border-color $standard-transition;
   width: 100%;
   z-index: 2;
-  &:focus, &:active {
+  &:focus,
+  &:active {
     border-bottom: 2px solid black;
     border-color: #ededed;
     outline: none;
   }
-`
+`;
 export const Label = styled.label`
   color: #666;
   display: block;
   font-size: 13px;
   line-height: 1px;
-  padding: 10px;  
-`
+  padding: 10px;
+`;

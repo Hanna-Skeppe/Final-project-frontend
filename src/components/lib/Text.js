@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro'
+import styled from 'styled-components/macro';
 
 // Sub-pages Heading:
 export const SubHeaderText = styled.h1`
@@ -26,16 +26,16 @@ export const SubHeaderText = styled.h1`
     max-width: 95vw;
     font-size: 32px;
   }
-`
+`;
 
 // Home, NavbarMain-styles:
-export const NavSpan = styled.span` 
+export const NavSpan = styled.span`
   color: #fff;
   font-weight: bold;
-  @media(max-width: 768px) {
+  @media (max-width: 768px) {
     display: none;
   }
-`
+`;
 
 // Home, HeroHeader-styles:
 export const HeroHeaderText = styled.h1`
@@ -61,7 +61,7 @@ export const HeroHeaderText = styled.h1`
     font-size: 30px;
     margin-top: 19vh;
   }
-`
+`;
 
 // Home, WineList-styles:
 export const SearchText = styled.p`
@@ -71,7 +71,7 @@ export const SearchText = styled.p`
   font-weight: 700;
   font-family: 'Montserrat', sans-serif;
   color: #827e7c;
-`
+`;
 
 export const SearchHeading = styled.h3`
   font-family: 'Italiana', serif;
@@ -79,20 +79,20 @@ export const SearchHeading = styled.h3`
   font-size: 2rem;
   margin: 0;
   padding: 0;
-  @media(max-width: 768px) {
+  @media (max-width: 768px) {
     font-size: 1.5rem;
   }
-`
+`;
 
 // LoginPageMobile & RegistrationPage-styles:
 export const PageHeader = styled.h2`
-font-size: 2rem;
-margin: 110px 0 0 0;
-color: #7a7a7a;
-&: nth-child(2) {
-  margin: 30px 0 30px 0;
-}
-`
+  font-size: 2rem;
+  margin: 110px 0 0 0;
+  color: #7a7a7a;
+  &: nth-child(2) {
+    margin: 30px 0 30px 0;
+  }
+`;
 export const ErrorMessage = styled.p`
   color: red;
   font-size: 18px;
@@ -100,7 +100,7 @@ export const ErrorMessage = styled.p`
   text-align: center;
   word-break: break-word;
   margin: 20px;
-`
+`;
 
 // WineCard-styles:
 export const CardTitle = styled.h3`
@@ -108,24 +108,24 @@ export const CardTitle = styled.h3`
   font-size: 32px;
   margin: 0;
   color: #44515f;
-  @media(max-width: 768px) {
+  @media (max-width: 768px) {
     font-size: 26px;
     margin: 0;
   }
-  @media(max-width: 560px) {
+  @media (max-width: 560px) {
     font-size: 24px;
   }
-`
+`;
 
 export const RatingText = styled.p`
   font-size: 22px;
   margin: 0;
   font-family: 'Overpass', sans-serif;
   color: #44515f;
-  @media(max-width: 768px) {
+  @media (max-width: 768px) {
     font-size: 18px;
   }
-  @media(max-width: 560px) {
+  @media (max-width: 560px) {
     font-size: 16px;
   }
-`
+`;

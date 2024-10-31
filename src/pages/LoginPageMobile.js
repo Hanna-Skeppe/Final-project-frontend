@@ -1,45 +1,48 @@
-import React, { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { loginUser } from '../reducers/user'
-import { LoginButton } from '../components/lib/Buttons'
-import { PageHeader, ErrorMessage } from '../components/lib/Text'
-import { HeaderTextContainer, FormContainer } from '../components/lib/Containers'
-import { Form, Input, Label } from '../components/lib/FormElements'
+import { loginUser } from '../reducers/user';
+import { LoginButton } from '../components/lib/Buttons';
+import { PageHeader, ErrorMessage } from '../components/lib/Text';
+import {
+  HeaderTextContainer,
+  FormContainer,
+} from '../components/lib/Containers';
+import { Form, Input, Label } from '../components/lib/FormElements';
 
-export const LoginPageMobile = () => {
-  const [password, setPassword] = useState('')
-  const [email, setEmail] = useState('')
-  const failed = useSelector((store) => store.ui.isLoginFailed)
-  const dispatch = useDispatch()
-  const history = useHistory()
-  const accessToken = useSelector((store) => store.user.login.accessToken)
-  const errorMessage = useSelector((store) => store.user.login.errorMessage)
+const LoginPageMobile = () => {
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const failed = useSelector((store) => store.ui.isLoginFailed);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const accessToken = useSelector((store) => store.user.login.accessToken);
+  const errorMessage = useSelector((store) => store.user.login.errorMessage);
 
   useEffect(() => {
     if (accessToken && !failed) {
-      history.push('/')
+      history.push('/');
     } else if (!accessToken && failed) {
-      history.push('/login')
+      history.push('/login');
     }
-  }, [failed, accessToken, history])
+  }, [failed, accessToken, history]);
 
   const handleSubmit = (event) => {
-    event.preventDefault()
-    dispatch(loginUser(email, password))
-    setEmail('')
-    setPassword('')
-  }
+    event.preventDefault();
+    dispatch(loginUser(email, password));
+    setEmail('');
+    setPassword('');
+  };
 
   const handleKeyPressLogin = (event) => {
     if (event.key === 'Enter') {
-      event.preventDefault()
-      dispatch(loginUser(email, password))
-      setEmail('')
-      setPassword('')
+      event.preventDefault();
+      dispatch(loginUser(email, password));
+      setEmail('');
+      setPassword('');
     }
-  }
+  };
 
   return (
     <FormContainer>
@@ -52,30 +55,35 @@ export const LoginPageMobile = () => {
           <Input
             lowercase
             type="text"
-            required={true}
+            required
             placeholder="example@email.com"
             value={email}
-            onChange={(event) => setEmail(event.target.value.toLowerCase())} />
+            onChange={(event) => setEmail(event.target.value.toLowerCase())}
+          />
         </Label>
         <Label>
           * Password
           <Input
-            required={true}
+            required
             type="password"
             value={password}
             minLength={5}
             placeholder="Type your password (min. 6 characters)."
             onChange={(event) => setPassword(event.target.value)}
-            onKeyPress={handleKeyPressLogin} />
+            onKeyPress={handleKeyPressLogin}
+          />
         </Label>
         <LoginButton
           type="submit"
           disabled={!email || password.length < 5}
-          onSubmit={handleSubmit}>
+          onSubmit={handleSubmit}
+        >
           Log in
         </LoginButton>
       </Form>
       {failed && <ErrorMessage>{errorMessage}</ErrorMessage>}
     </FormContainer>
-  )
-}
+  );
+};
+
+export default LoginPageMobile;

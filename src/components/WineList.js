@@ -1,11 +1,11 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components/macro';
 import { useSelector, useDispatch } from 'react-redux';
 import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 import { Box } from '@mui/material';
 import FadeIn from './lib/FadeIn';
-import LoadingSpinner from './LoadingSpinner';
 import SearchBar from './SearchBar';
 import WineCard from './WineCard';
 import { fetchFavoriteWines } from '../reducers/user';
@@ -14,6 +14,27 @@ import { ClearButton } from './lib/Buttons';
 import { SearchText } from './lib/Text';
 import { ListWrapper, ButtonsWrapper } from './lib/Containers';
 
+const LoadingSpinner = () => {
+  return (
+    <LoadingWrapper className="la-ball-spin-clockwise la-3x">
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+    </LoadingWrapper>
+  );
+};
+
+const LoadingWrapper = styled.div`
+  color: #ce796b;
+  align-self: center;
+  margin: auto;
+  margin-top: 30px;
+`;
 const WineList = () => {
   const winesList = useSelector((store) => store.wines.wines);
   const searchResult = useSelector((store) => store.wines.wines);

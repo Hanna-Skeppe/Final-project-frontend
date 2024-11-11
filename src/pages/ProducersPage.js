@@ -1,13 +1,35 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components/macro';
 import { useSelector, useDispatch } from 'react-redux';
 import FadeIn from '../components/lib/FadeIn';
-import LoadingSpinner from '../components/LoadingSpinner';
 import HeaderProducer from '../components/HeaderProducer';
 import ProducerCard from '../components/ProducerCard';
 import { fetchProducersList } from '../reducers/producers';
 import { BackLink } from '../components/lib/Links';
 import { ProducerListWrapper } from '../components/lib/Containers';
+
+const LoadingSpinner = () => {
+  return (
+    <LoadingWrapper className="la-ball-spin-clockwise la-3x">
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+    </LoadingWrapper>
+  );
+};
+
+const LoadingWrapper = styled.div`
+  color: #ce796b;
+  align-self: center;
+  margin: auto;
+  margin-top: 30px;
+`;
 
 const ProducersPage = () => {
   const dispatch = useDispatch();

@@ -1,82 +1,84 @@
-import React, { useState } from 'react'
-import styled from 'styled-components/macro'
-import { useSelector, useDispatch } from 'react-redux'
-import { Link, useHistory } from 'react-router-dom'
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components/macro';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
 
-import { logoutUser } from '../reducers/user'
-import { StyledBurger, LogoutButton } from './lib/Buttons'
-import { HamburgerWrap } from './lib/Containers'
+import { logoutUser } from '../reducers/user';
+import { StyledBurger, LogoutButton } from './lib/Buttons';
+import { HamburgerWrap } from './lib/Containers';
 
 export const HamburgerMenu = ({ open, setOpen }) => {
-  const name = useSelector((store) => store.user.login.name)
-  const accessToken = useSelector((store) => store.user.login.accessToken)
-  const userId = useSelector((store) => store.user.login.userId)
-  const dispatch = useDispatch()
-  const history = useHistory()
+  const name = useSelector((store) => store.user.login.name);
+  const accessToken = useSelector((store) => store.user.login.accessToken);
+  const userId = useSelector((store) => store.user.login.userId);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleLogout = (event) => {
-    event.preventDefault()
-    dispatch(logoutUser(accessToken))
-    history.push('/')
-  }
+    event.preventDefault();
+    dispatch(logoutUser(accessToken));
+    history.push('/');
+  };
 
   return (
     <StyledMenu open={open}>
-      <Link
-        to="/"
-        onClick={() => setOpen(!open)}>
-          Home
+      <Link to="/" onClick={() => setOpen(!open)}>
+        Home
       </Link>
-      <Link
-        to="/producers"
-        onClick={() => setOpen(!open)}
-      >Wine Producers
+      <Link to="/producers" onClick={() => setOpen(!open)}>
+        Wine Producers
       </Link>
-      {!accessToken &&
-      <>
-        <Link
-          to="/login"
-          onClick={() => setOpen(!open)}>
+      {!accessToken && (
+        <>
+          <Link to="/login" onClick={() => setOpen(!open)}>
             Login
-        </Link>
-        <Link
-          to="/register"
-          onClick={() => setOpen(!open)}>
+          </Link>
+          <Link to="/register" onClick={() => setOpen(!open)}>
             Register
-        </Link>
-      </>}
-      {accessToken &&
-      <>
-        <LogoutButton
-          type="submit"
-          onClick={handleLogout}>
+          </Link>
+        </>
+      )}
+      {accessToken && (
+        <>
+          <LogoutButton type="submit" onClick={handleLogout}>
             Logout
-        </LogoutButton>
-        <Link
-          to={`/users/${userId}/collection`}
-          onClick={() => setOpen(!open)}>
-          {name}'s Page
-        </Link>
-      </>}
+          </LogoutButton>
+          <Link
+            to={`/users/${userId}/collection`}
+            onClick={() => setOpen(!open)}
+          >
+            {name}&apos;s Page
+          </Link>
+        </>
+      )}
     </StyledMenu>
-  )
-}
+  );
+};
+
+HamburgerMenu.propTypes = {
+  open: PropTypes.bool.isRequired,
+  setOpen: PropTypes.func.isRequired,
+};
 
 const Burger = ({ open, setOpen }) => {
   return (
-    <StyledBurger
-      open={open}
-      onClick={() => setOpen(!open)}>
+    <StyledBurger open={open} onClick={() => setOpen(!open)}>
       <div />
       <div />
       <div />
     </StyledBurger>
-  )
-}
+  );
+};
+
+Burger.propTypes = {
+  open: PropTypes.bool.isRequired,
+  setOpen: PropTypes.func.isRequired,
+};
 
 export const Hamburger = () => {
-  const [open, setOpen] = useState(false)
-  const node = React.useRef()
+  const [open, setOpen] = useState(false);
+  const node = React.useRef();
 
   return (
     <HamburgerWrap>
@@ -85,8 +87,8 @@ export const Hamburger = () => {
         <HamburgerMenu open={open} setOpen={setOpen} />
       </div>
     </HamburgerWrap>
-  )
-}
+  );
+};
 
 export const StyledMenu = styled.nav`
   background: #44515f;
@@ -103,7 +105,7 @@ export const StyledMenu = styled.nav`
   transition: transform 0.3s ease-in-out;
   z-index: 15;
   width: 75%;
-  @media(max-width: 500px) {
+  @media (max-width: 500px) {
     width: 100%;
   }
   a {
@@ -119,4 +121,4 @@ export const StyledMenu = styled.nav`
       color: #ce796b;
     }
   }
-`
+`;

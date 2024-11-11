@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro'
+import styled from 'styled-components/macro';
 
 // WineCard-styles:
 export const FavoriteButton = styled.button`
@@ -9,12 +9,12 @@ export const FavoriteButton = styled.button`
   margin-left: 10px;
   padding: 0;
   align-self: flex-start;
-  transition: .5s ease;
+  transition: 0.5s ease;
   &:hover {
     transform: scale(1.1);
     cursor: pointer;
   }
-`
+`;
 
 // Hamburger-styles:
 export const StyledBurger = styled.button`
@@ -53,7 +53,7 @@ export const StyledBurger = styled.button`
       transform: ${({ open }) => (open ? 'rotate(-45deg)' : 'rotate(0)')};
     }
   }
-`
+`;
 export const LogoutButton = styled.button`
   background: #44515f;
   border: none;
@@ -71,10 +71,10 @@ export const LogoutButton = styled.button`
     cursor: pointer;
   }
 }
-`
+`;
 
 // NavbarMain, PopoverLogin & Logout-styles:
-const activeClassName = 'nav-item-active'
+const activeClassName = 'nav-item-active';
 export const LogInOutButton = styled.button.attrs({ activeClassName })`
   background: inherit;
   border: none;
@@ -91,23 +91,23 @@ export const LogInOutButton = styled.button.attrs({ activeClassName })`
     text-decoration: underline;
     color: #ce796b;
   }
-  @media(max-width: 768px) {
+  @media (max-width: 768px) {
     display: none;
   }
   &.${activeClassName} {
-    color: #C9C4C4;
+    color: #c9c4c4;
     text-decoration: underline;
   }
-`
+`;
 
 // Home, SearchBar-styles:
 export const SearchButton = styled.button`
-border: none;
-border-radius: 5px;
-background: #44515f;
-margin: 8px 8px 8px 0;
-padding: 9px 16px;
-`
+  border: none;
+  border-radius: 5px;
+  background: #44515f;
+  margin: 8px 8px 8px 0;
+  padding: 9px 16px;
+`;
 // home, WineList-styles:
 export const ClearButton = styled.button`
   border: 1px solid #c1bfbf;
@@ -117,11 +117,11 @@ export const ClearButton = styled.button`
   font-size: 16px;
   border-radius: 4px;
   margin: 8px;
-`
+`;
 
 // RegistrationPage & LoginPageMobile-styles:
 export const LoginButton = styled.button`
-  background: #CE796B;
+  background: #ce796b;
   border-color: transparent;
   border-radius: 3px;
   color: #fff;
@@ -136,13 +136,13 @@ export const LoginButton = styled.button`
   align-self: center;
   &:hover {
     transform: scale(1.01);
-    transition: 
-      box-shadow 0.4s, 
+    transition:
+      box-shadow 0.4s,
       transform 0.4s;
   }
-  `
+`;
 
 // RegistrationPage & UserPage-styles:
 export const HomeButton = styled(LoginButton)`
-  text-shadow: -1px -1px rgba(0,0,0,0.1);
-`
+  text-shadow: -1px -1px rgba(0, 0, 0, 0.1);
+`;

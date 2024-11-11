@@ -1,5 +1,5 @@
-export const USERS_URL = 'https://natural-wines-api.herokuapp.com/users'
-export const USER_LOGOUT = 'https://natural-wines-api.herokuapp.com/users/logout'
-export const SESSIONS_URL = 'https://natural-wines-api.herokuapp.com/sessions'
-export const WINES_URL = 'https://natural-wines-api.herokuapp.com/wines'
-export const PRODUCERS_URL = 'https://natural-wines-api.herokuapp.com/producers'
+export const USERS = 'https://natural-wines-api.onrender.com/users';
+export const LOGOUT = 'https://natural-wines-api.onrender.com/users/logout';
+export const LOGIN = 'https://natural-wines-api.onrender.com/sessions';
+export const WINES = 'https://natural-wines-api.onrender.com/wines';
+export const PRODUCERS = 'https://natural-wines-api.onrender.com/producers';

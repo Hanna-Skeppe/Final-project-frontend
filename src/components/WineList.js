@@ -1,14 +1,8 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import { styled } from '@mui/material/styles';
-// import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
-
-// import FormControl from '@mui/material/FormControl';
-// import Select from '@mui/material/Select';
-
 import { Box } from '@mui/material';
 import FadeIn from './lib/FadeIn';
 import LoadingSpinner from './LoadingSpinner';
@@ -19,21 +13,6 @@ import { wines, fetchWineResults } from '../reducers/wines';
 import { ClearButton } from './lib/Buttons';
 import { SearchText } from './lib/Text';
 import { ListWrapper, ButtonsWrapper } from './lib/Containers';
-
-// const useStyles = makeStyles((theme) => ({
-//   formControl: {
-//     margin: theme.spacing(1),
-//     minWidth: 120,
-//   },
-//   selectEmpty: {
-//     marginTop: theme.spacing(2),
-//   },
-// }));
-
-// const CustomFormControl = styled(FormControl)(({ theme }) => ({
-//   margin: theme.spacing(1),
-//   minWidth: 120,
-// }));
 
 const WineList = () => {
   const winesList = useSelector((store) => store.wines.wines);
@@ -46,7 +25,6 @@ const WineList = () => {
     (store) => store.user.userActions.favoriteWines,
   );
   const errorMessage = useSelector((store) => store.wines.errorMessage);
-  console.log(errorMessage);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
 
@@ -58,7 +36,7 @@ const WineList = () => {
       }
       setLoading(false);
     }, 1500);
-  }, [sortOrder, userId, dispatch, accessToken]);
+  }, [sortOrder, userId, dispatch, accessToken, searchTerm]);
 
   const handleSortChange = (event) => {
     dispatch(wines.actions.setSortOrder(event.target.value));
@@ -67,6 +45,7 @@ const WineList = () => {
   const handleBackClick = () => {
     dispatch(wines.actions.setSearchTerm(''));
     dispatch(wines.actions.setErrorMessage(''));
+    dispatch(fetchWineResults('', ''));
   };
 
   return (
@@ -111,10 +90,10 @@ const WineList = () => {
           </ClearButton>
         )}
       </ButtonsWrapper>
-      {searchTerm && !errorMessage && winesList.length < 26 ? (
+      {searchTerm && !errorMessage && winesList?.length > 0 ? (
         <SearchText>Results for: {searchTerm}</SearchText>
       ) : (
-        ''
+        <SearchText>{errorMessage ? <p>{errorMessage}</p> : null}</SearchText>
       )}
       {loading && winesList.length < 1 ? <LoadingSpinner /> : ''}
       <ListWrapper>

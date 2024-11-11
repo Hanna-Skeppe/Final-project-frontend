@@ -1,6 +1,5 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable camelcase */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
@@ -141,6 +140,7 @@ const WineCard = ({
     </CardContainer>
   );
 };
+
 WineCard.propTypes = {
   isFavorite: PropTypes.bool.isRequired,
   _id: PropTypes.string.isRequired,
@@ -156,8 +156,13 @@ WineCard.propTypes = {
   added_sulfites: PropTypes.string.isRequired,
   goes_well_with: PropTypes.string.isRequired,
   importer: PropTypes.string.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types, react/require-default-props
-  producer: PropTypes.any,
+  producer: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    producer_name: PropTypes.string.isRequired,
+    producer_country: PropTypes.string.isRequired,
+    producer_image_url: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default WineCard;
@@ -193,6 +198,7 @@ const Table = styled.table`
     line-height: 1.5;
   }
 `;
+
 const Tr = styled.tr`
   width: 100%;
 `;

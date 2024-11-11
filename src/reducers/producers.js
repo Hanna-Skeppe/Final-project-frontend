@@ -6,13 +6,11 @@ const initialState = {
   errorMessage: '',
 };
 
-// TODO: ändra namn till producersSlice
 export const producers = createSlice({
   name: 'producers',
   initialState,
   reducers: {
     setProducers: (state, action) => {
-      // Returnera en ny state-objekt istället för att modifiera state direkt
       return {
         ...state,
         producers: action.payload,
@@ -20,7 +18,6 @@ export const producers = createSlice({
     },
     setErrorMessage: (state, action) => {
       const { errorMessage } = action.payload;
-      // Returnera en ny state-objekt istället för att modifiera state direkt
       return {
         ...state,
         errorMessage,
@@ -29,7 +26,6 @@ export const producers = createSlice({
   },
 });
 
-// Exportera actions och reducer
 export const { setProducers, setErrorMessage } = producers.actions;
 export const producersReducer = producers.reducer;
 

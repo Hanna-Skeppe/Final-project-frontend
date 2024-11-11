@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
-// import FadeIn from 'react-fade-in';
 import FadeIn from '../components/lib/FadeIn';
 import HeaderSingleProducer from '../components/HeaderSingleProducer';
 import WineCard from '../components/WineCard';
@@ -128,6 +127,7 @@ const CardWrapper = styled.div`
   margin: auto;
   max-width: 1000px;
 `;
+
 const CardLinkExternal = styled.a`
   font-family: 'Overpass', sans-serif;
   font-weight: bold;

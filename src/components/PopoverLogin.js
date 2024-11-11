@@ -2,19 +2,15 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components/macro';
-import { makeStyles } from '@mui/styles';
 import Button from '@mui/material/Button';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 
 import { loginUser } from '../reducers/user';
 import { LogInOutButton } from './lib/Buttons';
-// https://material-ui.com/api/popover/ & https://material-ui.com/components/popover/
 
-const useStyles = makeStyles((theme) => ({
-  typography: {
-    padding: theme.spacing ? theme.spacing(2) : 16,
-  },
+const StyledTypography = styled(Typography)(({ theme }) => ({
+  padding: theme.spacing ? theme.spacing(2) : 16,
 }));
 
 const PopoverLogin = () => {
@@ -22,7 +18,6 @@ const PopoverLogin = () => {
   const [password, setPassword] = useState('');
   const [anchorEl, setAnchorEl] = useState(null);
   const failed = useSelector((store) => store.ui.isLoginFailed);
-  const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -31,9 +26,7 @@ const PopoverLogin = () => {
   };
 
   const handleClose = () => {
-    // if (failed) { // removed this. Popup could not be closed otherwise.
     setAnchorEl(null);
-    //   }
   };
 
   const open = Boolean(anchorEl);
@@ -82,7 +75,7 @@ const PopoverLogin = () => {
           horizontal: 'center',
         }}
       >
-        <Typography className={classes.typography}>
+        <StyledTypography>
           <Label>
             Email
             <Input
@@ -101,7 +94,7 @@ const PopoverLogin = () => {
               value={password}
               placeholder="type your password (min. 5 characters)"
               onChange={(event) => setPassword(event.target.value)}
-              onKeyPress={handleKeyPressLogin}
+              onKeyDown={handleKeyPressLogin}
             />
           </Label>
           {failed && <ErrorMessage>Login failed. Try again.</ErrorMessage>}
@@ -111,7 +104,7 @@ const PopoverLogin = () => {
           <Button type="button" onClick={goToSignup}>
             Not a member? Signup here.
           </Button>
-        </Typography>
+        </StyledTypography>
       </Popover>
     </>
   );

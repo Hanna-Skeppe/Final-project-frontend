@@ -1,8 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import FadeIn from 'react-fade-in';
-
 import FadeIn from '../components/lib/FadeIn';
 import LoadingSpinner from '../components/LoadingSpinner';
 import HeaderProducer from '../components/HeaderProducer';

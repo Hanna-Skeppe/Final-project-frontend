@@ -177,7 +177,6 @@ export const loginUser = (email, password) => {
         dispatch(user.actions.setName({ name: json.name }));
         dispatch(user.actions.setSurname({ surname: json.surname }));
         dispatch(user.actions.setErrorMessage({ errorMessage: '' }));
-        // dispatch(setProducers(json));
         dispatch(ui.actions.setLoginFailed(false));
       })
       .catch((err) => {

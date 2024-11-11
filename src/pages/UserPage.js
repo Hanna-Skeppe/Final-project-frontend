@@ -2,7 +2,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-// import FadeIn from 'react-fade-in';
 import FadeIn from '../components/lib/FadeIn';
 import WineCard from '../components/WineCard';
 import { fetchFavoriteWines } from '../reducers/user';

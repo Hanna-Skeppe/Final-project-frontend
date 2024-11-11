@@ -4,11 +4,9 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { Rating } from '@mui/material';
 import Box from '@mui/material/Box';
-// import StarBorderIcon from '@material-ui/icons/StarBorder';
-import StarIcon from '@mui/icons-material/Star'; // Star-ikonen från @mui/icons-material
+import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import styled from 'styled-components/macro';
-// Docs for rating-component: https://material-ui.com/components/rating/
 
 const UserRating = ({ wineId }) => {
   const [rate, setRate] = useState(0);
@@ -64,35 +62,18 @@ const UserRating = ({ wineId }) => {
       >
         <Rating
           name={`customized-empty${wineId}`} // Identifierar betyget för varje vin
-          value={accessToken ? rate : 0} // Visar betyg endast om användaren är inloggad
-          disabled={!accessToken} // Gör betygsättningen inaktiverad om användaren inte är inloggad
-          onChange={(event, rating) => {
-            handleRating(rating); // Hanterar betygsättningen
-          }}
-          emptyIcon={
-            <StarBorderIcon
-              style={{ color: 'rgba(255, 255, 255, 0.8)', fill: '#495867' }} // Styr utseendet på den tomma stjärnan
-            />
-          }
-          icon={
-            <StarIcon
-              style={{ color: '#ff9800' }} // Färgen på den fyllda stjärnan
-            />
-          }
-        />
-        {/* <Rating
-          name={`customized-empty${wineId}`} // If I remove wineId it breaks (can't rate)
-          value={accessToken ? rate : 0} // if not logged in the rating does not show
+          value={accessToken ? rate : 0}
           disabled={!accessToken}
           onChange={(event, rating) => {
             handleRating(rating);
-          }} // 'event' is not used, but it doesn't work if I remove it.
+          }}
           emptyIcon={
-            <StarIcon
+            <StarBorderIcon
               style={{ color: 'rgba(255, 255, 255, 0.8)', fill: '#495867' }}
             />
           }
-        /> */}
+          icon={<StarIcon style={{ color: '#ff9800' }} />}
+        />
       </Box>
     </RatingButtonContainer>
   );

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { loginUser } from '../reducers/user';
 import { LoginButton } from '../components/lib/Buttons';
 import { PageHeader, ErrorMessage } from '../components/lib/Text';
@@ -70,7 +69,7 @@ const LoginPageMobile = () => {
             minLength={5}
             placeholder="Type your password (min. 6 characters)."
             onChange={(event) => setPassword(event.target.value)}
-            onKeyPress={handleKeyPressLogin}
+            onKeyDown={handleKeyPressLogin}
           />
         </Label>
         <LoginButton

@@ -17,7 +17,7 @@ const RootDiv = muiStyled('div')(() => ({
   fontSize: '20px',
   width: '100%',
   '& .MuiTextField-root': {
-    margin: '16px', // theme.spacing(1),
+    margin: '16px',
     borderRadius: 0,
     fontSize: '20px',
   },
@@ -29,7 +29,6 @@ const CustomTextField = muiStyled(TextField)(() => ({
 }));
 
 const SearchBar = () => {
-  const errorMessage = useSelector((store) => store.wines.errorMessage);
   const dispatch = useDispatch();
   const searchTerm = useSelector((store) => store.wines.searchTerm);
   const sortOrder = useSelector((store) => store.wines.sortOrder);
@@ -66,9 +65,6 @@ const SearchBar = () => {
             </SearchButton>
           </InputTextDiv>
         </RootDiv>
-        {errorMessage?.errorMessage?.length > 1 ? (
-          <p>{errorMessage.errorMessage}</p>
-        ) : null}
       </FormSearch>
     </SearchWrapper>
   );

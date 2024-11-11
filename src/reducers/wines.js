@@ -25,10 +25,12 @@ export const wines = createSlice({
         searchTerm: action.payload,
       };
     },
-    setErrorMessage: (store, action) => {
+    setErrorMessage: (state, action) => {
       const { errorMessage } = action.payload;
-      // eslint-disable-next-line no-param-reassign
-      store.errorMessage = errorMessage;
+      return {
+        ...state,
+        errorMessage,
+      };
     },
     setSortOrder: (state, action) => {
       return {
@@ -62,7 +64,13 @@ export const fetchWineResults = (searchTerm, sort) => {
         }
       })
       .catch((err) => {
-        dispatch(wines.actions.setErrorMessage({ errorMessage: err.toString }));
+        dispatch(
+          wines.actions.setErrorMessage({
+            errorMessage: err.toString().includes('found')
+              ? `No results found for: "${searchTerm}". Try another search.`
+              : err.toString(),
+          }),
+        );
       });
   };
 };

@@ -28,5 +28,5 @@ I have used some Material UI-components as well. For example Popover login, Hear
 
 https://natural-wines-finder.netlify.app/
 
-The available endpoints of the API can be found here:
-https://natural-wines-api.herokuapp.com/
+The available endpoints of the API can be found here (It might take a while to load initially because of the delay for free plans on Render):
+https://natural-wines-api.onrender.com/
